@@ -1,0 +1,15 @@
+.title {
+    color: green;
+}
+
+.subhead {
+    color: darkolivegreen;
+}
+
+.correctAnswer {
+    color: springgreen;
+}
+
+.incorrectAnswer {
+    color: red;
+}

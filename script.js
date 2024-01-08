@@ -56,12 +56,12 @@ function reset() {
         nameLabel.htmlFor = 'name' + i;
         var description = document.createTextNode(shuffledPF[i][1]);
         nameLabel.appendChild(description);
-        var nameLine = document.createElement('br');
-        var nameLine2 = document.createElement('br');
+        //var nameLine = document.createElement('br');
+        //var nameLine2 = document.createElement('br');
         nameContainer.appendChild(nameRadio);
         nameContainer.appendChild(nameLabel);
-        nameContainer.appendChild(nameLine);
-        nameContainer.appendChild(nameLine2);
+        //nameContainer.appendChild(nameLine);
+        //nameContainer.appendChild(nameLine2);
     }
     
     shuffledPF = shuffle(pfCopy);
@@ -75,12 +75,12 @@ function reset() {
         var eqLabel = document.createElement('label');
         eqLabel.htmlFor = 'eq' + i;
         eqLabel.innerHTML = '<img src="Images/' + shuffledPF[i][2] + '" >';
-        var eqLine = document.createElement('br');
-        var eqLine2 = document.createElement('br');
+        //var eqLine = document.createElement('br');
+        //var eqLine2 = document.createElement('br');
         eqContainer.appendChild(eqRadio);
         eqContainer.appendChild(eqLabel);
-        eqContainer.appendChild(eqLine);
-        eqContainer.appendChild(eqLine2);
+        //eqContainer.appendChild(eqLine);
+        //eqContainer.appendChild(eqLine2);
     }
     
     shuffledPF = shuffle(pfCopy);
@@ -94,10 +94,10 @@ function reset() {
         var graphLabel = document.createElement('label');
         graphLabel.htmlFor = 'eq' + i;
         graphLabel.innerHTML = '<img src="Images/' + shuffledPF[i][3] + '" height="200" >';
-        var graphLine = document.createElement('br');
+        //var graphLine = document.createElement('br');
         graphContainer.appendChild(graphRadio);
         graphContainer.appendChild(graphLabel);
-        graphContainer.appendChild(graphLine);
+        //graphContainer.appendChild(graphLine);
     }
 }
 

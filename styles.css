@@ -13,3 +13,13 @@
 .incorrectAnswer {
     color: red;
 }
+
+td {
+    height: 50px;
+    vertical-align: center;
+    text-align: left;
+}
+
+.entry {
+    width: 430px;
+}

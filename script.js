@@ -11,6 +11,8 @@ let parentFunctions = [
     [9, "Constant", "constantEQ.png", "constantGraph.png"],
 ];
 
+let tableEntries = ["Col11", "Col12", "Col13", "Col14", "Col21", "Col22", "Col23", "Col24", "Col31", "Col32", "Col33", "Col34"];
+
 let pfCopy = Array.from(parentFunctions);
 
 function shuffle(array) {
@@ -27,23 +29,30 @@ function shuffle(array) {
 }
 
 function clearDivs() {
-    var nameContainer = document.getElementById('nameDiv');
-    var eqContainer = document.getElementById('eqDiv');
-    var graphContainer = document.getElementById('graphDiv');
+    //var nameContainer = document.getElementById('nameDiv');
+    //var eqContainer = document.getElementById('eqDiv');
+    //var graphContainer = document.getElementById('graphDiv');
     var checkContainer = document.getElementById('checkDiv');
-    nameContainer.innerHTML = '';
-    eqContainer.innerHTML = '';
-    graphContainer.innerHTML = '';
+    //nameContainer.innerHTML = '';
+    //eqContainer.innerHTML = '';
+    //graphContainer.innerHTML = '';
     checkContainer.innerHTML = '';
+    var allTableEntries = document.getElementsByTagName('td');
+    for (var i = 0; i < allTableEntries.length; i++) {
+        allTableEntries[i].innerHTML = '';
+    }
 }
 
 function reset() {
     clearDivs();
     
     var shuffledPF = shuffle(pfCopy);
-    var nameContainer = document.getElementById('nameDiv');
-    var eqContainer = document.getElementById('eqDiv');
-    var graphContainer = document.getElementById('graphDiv');
+    //var nameContainer = document.getElementById('nameDiv');
+    //var eqContainer = document.getElementById('eqDiv');
+    //var graphContainer = document.getElementById('graphDiv');
+    var eqTable = document.getElementById('eqTable');
+    var nameTable = document.getElementById('nameTable');
+    var graphTable = document.getElementById('graphTable');
     
     for (var i = 0; i < shuffledPF.length; i++) {
         //Set Names
@@ -58,10 +67,15 @@ function reset() {
         nameLabel.appendChild(description);
         //var nameLine = document.createElement('br');
         //var nameLine2 = document.createElement('br');
-        nameContainer.appendChild(nameRadio);
-        nameContainer.appendChild(nameLabel);
+        //nameContainer.appendChild(nameRadio);
+        //nameContainer.appendChild(nameLabel);
         //nameContainer.appendChild(nameLine);
         //nameContainer.appendChild(nameLine2);
+        var row = nameTable.getElementsByTagName('tr')[Math.floor(i/4)];
+        var td = row.getElementsByTagName('td')[2*(i%4)];
+        td.appendChild(nameRadio);
+        td = row.getElementsByTagName('td')[2*(i%4)+1];
+        td.appendChild(nameLabel);
     }
     
     shuffledPF = shuffle(pfCopy);
@@ -77,10 +91,15 @@ function reset() {
         eqLabel.innerHTML = '<img src="Images/' + shuffledPF[i][2] + '" >';
         //var eqLine = document.createElement('br');
         //var eqLine2 = document.createElement('br');
-        eqContainer.appendChild(eqRadio);
-        eqContainer.appendChild(eqLabel);
+        //eqContainer.appendChild(eqRadio);
+        //eqContainer.appendChild(eqLabel);
         //eqContainer.appendChild(eqLine);
         //eqContainer.appendChild(eqLine2);
+        var row = eqTable.getElementsByTagName('tr')[Math.floor(i/4)];
+        var td = row.getElementsByTagName('td')[2*(i%4)];
+        td.appendChild(eqRadio);
+        td = row.getElementsByTagName('td')[2*(i%4)+1];
+        td.appendChild(eqLabel);
     }
     
     shuffledPF = shuffle(pfCopy);
@@ -95,9 +114,14 @@ function reset() {
         graphLabel.htmlFor = 'eq' + i;
         graphLabel.innerHTML = '<img src="Images/' + shuffledPF[i][3] + '" height="200" >';
         //var graphLine = document.createElement('br');
-        graphContainer.appendChild(graphRadio);
-        graphContainer.appendChild(graphLabel);
+        //graphContainer.appendChild(graphRadio);
+        //graphContainer.appendChild(graphLabel);
         //graphContainer.appendChild(graphLine);
+        var row = graphTable.getElementsByTagName('tr')[Math.floor(i/4)];
+        var td = row.getElementsByTagName('td')[2*(i%4)];
+        td.appendChild(graphRadio);
+        td = row.getElementsByTagName('td')[2*(i%4)+1];
+        td.appendChild(graphLabel);
     }
 }
 

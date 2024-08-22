@@ -8,121 +8,31 @@
     </head>
     <body>
         <h1 class="title">Parent Functions</h1>
-        <p>Click the button to match parent function names, equations, and graphs.  Then click the button at the bottom to check your answer.</p>
-        <button onclick="reset()" id="start">Start</button>
+        <p>Instructions:</p>
+        <ul>
+            <li>Click the button for your class to be given the name of a parent function.</li>
+            <li>Select which equation and graph match the name.</li>
+            <li>Click the "Check" button at the bottom to check your answer.</li>
+            <li>Then click the "Continue" button to get the next parent function name.</li>
+        </ul>
+        <p>Once all parent functions are correctly matched, it will say so at the bottom.</p>
+        <button onclick="startGeo()" id="gStart">Begin with Geometry Parent Functions</button><button onclick="startPC()" id="pcStart">Begin with Pre-Calculus Parent Functions</button>
         
         <h2 class="subhead">Names</h2>
-        <div id="nameDiv">
-            <table id="nameTable">
-                <tr>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                </tr>
-                <tr>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                </tr>
-                <tr>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                </tr>
-            </table>
-        </div>
+        <div id="nameGrid"></div>
+        
         
         <h2 class="subhead">Equations</h2>
-        <div id="eqDiv">
-            <table id="eqTable">
-                <tr>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                </tr>
-                <tr>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                </tr>
-                <tr>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                </tr>
-            </table>
-        </div>
+        <div id="eqGrid" class="eqGrid"></div>
+        
         
         <h2 class="subhead">Graphs</h2>
-        <div id="graphDiv">
-            <table id="graphTable">
-                <tr>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                </tr>
-                <tr>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                </tr>
-                <tr>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                    <td style="width:30px"></td>
-                    <td style="width:420px"></td>
-                </tr>
-            </table>
-        </div>
+        <div id="graphGrid" class="graphGrid"></div>
         
-        <br />
-        <button onclick="check()">Check Answer</button>
+        
         <div id="checkDiv"></div>
         <br />
-        <button onclick="reset()">Reset</button>
+        <button onclick="check()">Check Answer</button> <button onclick="continuePracGrid()">Continue</button>
+        <br />
     </body>
 </html>

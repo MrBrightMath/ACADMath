@@ -1,4 +1,4 @@
-let parentFunctions = [
+let geoParentFunctions = [
     [0, "Linear", "linearEQ.png", "linearGraph.png"],
     [1, "Quadratic", "quadEQ.png", "quadGraph.png"],
     [2, "Cubic", "cubicEQ.png", "cubicGraph.png"],
@@ -11,9 +11,24 @@ let parentFunctions = [
     [9, "Constant", "constantEQ.png", "constantGraph.png"],
 ];
 
-let tableEntries = ["Col11", "Col12", "Col13", "Col14", "Col21", "Col22", "Col23", "Col24", "Col31", "Col32", "Col33", "Col34"];
+let pcParentFunctions = [
+    [0, "Linear", "linearEQ.png", "linearGraph.png"],
+    [1, "Quadratic", "quadEQ.png", "quadGraph.png"],
+    [2, "Cubic", "cubicEQ.png", "cubicGraph.png"],
+    [3, "Square Root", "sqrtEQ.png", "sqrtGraph.png"],
+    [4, "Cube Root", "cbrtEQ.png", "cbrtGraph.png"],
+    [5, "Absolute Value", "absEQ.png", "absGraph.png"],
+    [6, "Exponential Growth", "expGrowthEQ.png", "expGrowthGraph.png"],
+    [7, "Exponential Decay", "expDecayEQ.png", "expDecayGraph.png"],
+    [8, "Inverse", "inverseEQ.png", "inverseGraph.png"],
+    [9, "Constant", "constantEQ.png", "constantGraph.png"],
+    [10, "Sine", "sineEQ.png", "sineGraph.png"],
+    [11, "Cosine", "cosineEQ.png", "cosineGraph.png"],
+    [12, "Tangent", "tangentEQ.png", "tangentGraph.png"],
+    [13, "Log", "logEQ.png", "logGraph.png"]
+];
 
-let pfCopy = Array.from(parentFunctions);
+var pfCopy = Array.from(geoParentFunctions);
 
 function shuffle(array) {
     let currentIndex = array.length, randomIndex;
@@ -28,59 +43,48 @@ function shuffle(array) {
     return array;
 }
 
-function clearDivs() {
-    //var nameContainer = document.getElementById('nameDiv');
-    //var eqContainer = document.getElementById('eqDiv');
-    //var graphContainer = document.getElementById('graphDiv');
-    var checkContainer = document.getElementById('checkDiv');
-    //nameContainer.innerHTML = '';
-    //eqContainer.innerHTML = '';
-    //graphContainer.innerHTML = '';
-    checkContainer.innerHTML = '';
-    var allTableEntries = document.getElementsByTagName('td');
-    for (var i = 0; i < allTableEntries.length; i++) {
-        allTableEntries[i].innerHTML = '';
-    }
+function clearGrids() {
+    document.getElementById('checkDiv').innerHTML = '';
+    document.getElementById('nameGrid').innerHTML = '';
+    document.getElementById('eqGrid').innerHTML = '';
+    document.getElementById('graphGrid').innerHTML = '';
 }
 
-function reset() {
-    clearDivs();
+function startPC() {
+    pfCopy = Array.from(pcParentFunctions);
+    continuePracGrid();
+}
+
+function startGeo() {
+    pfCopy = Array.from(geoParentFunctions);
+    continuePracGrid();
+}
+
+function continuePracGrid() {
+    clearGrids();
     
     var shuffledPF = shuffle(pfCopy);
-    //var nameContainer = document.getElementById('nameDiv');
-    //var eqContainer = document.getElementById('eqDiv');
-    //var graphContainer = document.getElementById('graphDiv');
-    var eqTable = document.getElementById('eqTable');
-    var nameTable = document.getElementById('nameTable');
-    var graphTable = document.getElementById('graphTable');
+    var eqGrid = document.getElementById('eqGrid');
+    var nameGrid = document.getElementById('nameGrid');
+    var graphGrid = document.getElementById('graphGrid');
     
-    for (var i = 0; i < shuffledPF.length; i++) {
-        //Set Names
-        var nameRadio = document.createElement('input');
-        nameRadio.type = 'radio';
-        nameRadio.id = 'name' + i;
-        nameRadio.value = shuffledPF[i][0];
-        nameRadio.name = 'pfName';
-        var nameLabel = document.createElement('label');
-        nameLabel.htmlFor = 'name' + i;
-        var description = document.createTextNode(shuffledPF[i][1]);
-        nameLabel.appendChild(description);
-        //var nameLine = document.createElement('br');
-        //var nameLine2 = document.createElement('br');
-        //nameContainer.appendChild(nameRadio);
-        //nameContainer.appendChild(nameLabel);
-        //nameContainer.appendChild(nameLine);
-        //nameContainer.appendChild(nameLine2);
-        var row = nameTable.getElementsByTagName('tr')[Math.floor(i/4)];
-        var td = row.getElementsByTagName('td')[2*(i%4)];
-        td.appendChild(nameRadio);
-        td = row.getElementsByTagName('td')[2*(i%4)+1];
-        td.appendChild(nameLabel);
-    }
+    //Get random name into first grid
+    var nameRadio = document.createElement('input');
+    nameRadio.type = 'radio';
+    nameRadio.id = 'name0';
+    nameRadio.value = shuffledPF[0][0];
+    nameRadio.name = 'pfName';
+    nameRadio.checked = true;
+    var nameLabel = document.createElement('label');
+    nameLabel.htmlFor = 'name0';
+    var description = document.createTextNode(shuffledPF[0][1]);
+    nameLabel.appendChild(description);
+    nameGrid.appendChild(nameRadio);
+    nameGrid.appendChild(nameLabel);
     
+    //Shuffle again and set EQ
     shuffledPF = shuffle(pfCopy);
     for (i = 0; i < shuffledPF.length; i++) {
-        //Set Equations
         var eqRadio = document.createElement('input');
         eqRadio.type = 'radio';
         eqRadio.id = 'eq' + i;
@@ -89,19 +93,14 @@ function reset() {
         var eqLabel = document.createElement('label');
         eqLabel.htmlFor = 'eq' + i;
         eqLabel.innerHTML = '<img src="Images/' + shuffledPF[i][2] + '" >';
-        //var eqLine = document.createElement('br');
-        //var eqLine2 = document.createElement('br');
-        //eqContainer.appendChild(eqRadio);
-        //eqContainer.appendChild(eqLabel);
-        //eqContainer.appendChild(eqLine);
-        //eqContainer.appendChild(eqLine2);
-        var row = eqTable.getElementsByTagName('tr')[Math.floor(i/4)];
-        var td = row.getElementsByTagName('td')[2*(i%4)];
-        td.appendChild(eqRadio);
-        td = row.getElementsByTagName('td')[2*(i%4)+1];
-        td.appendChild(eqLabel);
+        var newDiv = document.createElement('div');
+        newDiv.className = 'vertCent';
+        newDiv.appendChild(eqRadio);
+        newDiv.appendChild(eqLabel);
+        eqGrid.appendChild(newDiv);
     }
     
+    //Shuffle again and set graphs
     shuffledPF = shuffle(pfCopy);
     for (i = 0; i < shuffledPF.length; i++) {
         //Set Graphs
@@ -113,24 +112,17 @@ function reset() {
         var graphLabel = document.createElement('label');
         graphLabel.htmlFor = 'eq' + i;
         graphLabel.innerHTML = '<img src="Images/' + shuffledPF[i][3] + '" height="200" >';
-        //var graphLine = document.createElement('br');
-        //graphContainer.appendChild(graphRadio);
-        //graphContainer.appendChild(graphLabel);
-        //graphContainer.appendChild(graphLine);
-        var row = graphTable.getElementsByTagName('tr')[Math.floor(i/4)];
-        var td = row.getElementsByTagName('td')[2*(i%4)];
-        td.appendChild(graphRadio);
-        td = row.getElementsByTagName('td')[2*(i%4)+1];
-        td.appendChild(graphLabel);
+        var newGraphDiv = document.createElement('div');
+        newGraphDiv.className = 'vertImg';
+        newGraphDiv.appendChild(graphRadio);
+        newGraphDiv.appendChild(graphLabel);
+        graphGrid.appendChild(newGraphDiv);
     }
 }
 
 function check() {
     var nameRadio = document.getElementsByName('pfName'), selectedName = 0;
-    for (var i = 0; i < nameRadio.length; i++) {
-        if (nameRadio[i].checked)
-            selectedName = nameRadio[i].value;
-    }
+    selectedName = nameRadio[0].value;
     
     var eqRadio = document.getElementsByName('pfEQ'), selectedEQ = 0;
     for (i = 0; i < eqRadio.length; i++) {
@@ -144,11 +136,115 @@ function check() {
             selectedGraph = graphRadio[i].value;
     }
     
-    var checkContainer = document.getElementById('checkDiv');
-    
+    var checkContainer = document.getElementById('checkDiv'), indexToEliminate = 0;
     if (selectedName == selectedEQ && selectedEQ == selectedGraph) {
-        checkContainer.innerHTML = '<p class="correctAnswer">CORRECT!</p><p>' + parentFunctions[selectedName][1] + '&emsp;&emsp; <img src="Images/' + parentFunctions[selectedEQ][2] + '" >&emsp;&emsp; ' + '<img src="Images/' + parentFunctions[selectedGraph][3] + '" height="100"></p><br />';
+        //Remove correct answer from array named pfCopy
+        
+        for (i = 0; i < pfCopy.length; i++) {
+            if (pfCopy[i][0] == selectedName) {
+                indexToEliminate = i;
+            }
+        }
+        var nameText = pfCopy[indexToEliminate][1], eqPic = pfCopy[indexToEliminate][2], graphPic = pfCopy[indexToEliminate][3];
+        pfCopy.splice(indexToEliminate,1);
+
+        if (pfCopy.length > 0) {
+            checkContainer.innerHTML = '<p class="correctAnswer">CORRECT!</p><p>' + nameText + '&emsp;&emsp; <img src="Images/' + eqPic + '" >&emsp;&emsp; ' + '<img src="Images/' + graphPic + '" height="100"></p><br />';
+        } else {
+            checkContainer.innerHTML = '<p class="correctAnswer">CORRECT!</p><p>' + nameText + '&emsp;&emsp; <img src="Images/' + eqPic + '" >&emsp;&emsp; ' + '<img src="Images/' + graphPic + '" height="100"></p><br /><h2>YOU CORRECTLY IDENTIFIED ALL PARENT FUNCTIONS!</h2>';
+        }
+        
     } else {
         checkContainer.innerHTML = '<p class="incorrectAnswer">Please try again.</p><br />';
     }
+}
+
+var zero1 = 0, zero2 = 0, numberCorrect = 0, hasIncreased = 0;
+
+function getQuad() {
+    zero1 = Math.floor(Math.random()*20) - 10;
+    zero2 = Math.floor(Math.random()*20) - 10;
+    var c = -zero1 * -zero2, b = -zero1 + -zero2, bOp = '', cOp = '', quadToFactor = document.getElementById("quadToFactor"), linearTerm = '', constantTerm = '';
+    
+    if (b > 0) {
+        bOp = '+';
+    } else if (b < 0) {
+        bOp = '–';
+    }
+    
+    if (c > 0) {
+        cOp = '+';
+    } else if (c < 0) {
+        cOp = '–';
+    }
+    
+    b = Math.abs(b);
+    c = Math.abs(c);
+    
+    if (b == 0) {
+        linearTerm = '';
+    } else if (b == 1) {
+        linearTerm = bOp + ' <i>x</i> ';
+    } else {
+        linearTerm = bOp + ' ' + b + '<i>x</i> ';
+    }
+    
+    if (c == 0) {
+        constantTerm = '';
+    } else {
+        constantTerm = cOp + ' ' + c;
+    }
+    
+    let newQuad = '<h2 class="math"><i>f </i>(<i>x</i>) = <i>x</i><sup>2</sup> ' + linearTerm + constantTerm + '</h2>';
+    
+    quadToFactor.innerHTML = newQuad;
+    
+    var resultText = document.getElementById("result");
+    
+    resultText.innerHTML = '';
+    
+    var clearInput = document.getElementById("factoredForm");
+    clearInput.value = '';
+    
+    hasIncreased = 0;
+}
+
+function testFactoring() {
+    var factorToTest = document.getElementById("factoredForm").value, testZero1, testZero2, answer = 'Please try again.';
+    
+    if ((factorToTest.match(/\(/g) || []).length == 1) {
+        testZero1 = 0;
+        testZero2 = factorToTest.replace(/^\s+|\s+$/gm,'').replace(/\(|\)/g,'').replace(/x/g,'').replace(/ /g,'');
+        
+    } else if ((factorToTest.match(/\(/g) || []).length == 2) {
+        testZero1 = factorToTest.substring(0,factorToTest.lastIndexOf("(")).replace(/^\s+|\s+$/gm,'').replace(/\(|\)/g,'').replace(/x/g,'').replace(/ /g,'');
+        testZero2 = factorToTest.substring(factorToTest.lastIndexOf("(") + 1).replace(/^\s+|\s+$/gm,'').replace(/\(|\)/g,'').replace(/x/g,'').replace(/ /g,'');
+    }
+    
+    testZero1 = -parseInt(testZero1);
+    testZero2 = -parseInt(testZero2);
+    var correctText = document.getElementById("numberCorrect");
+    
+    if (testZero1 == zero1 && testZero2 == zero2) {
+        answer = 'Correct!';
+        if (hasIncreased == 0) {
+            numberCorrect++;
+            correctText.innerHTML = '<p>Number Correct: ' + numberCorrect + '</p>';
+            hasIncreased = 1;
+        }        
+    }
+    
+    if (testZero1 == zero2 && testZero2 == zero1) {
+        answer = 'Correct!';
+        if (hasIncreased == 0) {
+            numberCorrect++;
+            correctText.innerHTML = '<p>Number Correct: ' + numberCorrect + '</p>';
+            hasIncreased = 1;
+        }
+
+    }
+    
+    var resultText = document.getElementById("result");
+    
+    resultText.innerHTML = '<h1>' + answer;
 }

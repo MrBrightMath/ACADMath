@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Parent Function Identification</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap"
+            rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://www.w3schools.com/w3css/4/w3.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="styles.css" />
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <div class="w3-container spartan">
+            <h1>ACAD Math Apps</h1>
+            <img src="images/Spartan-Logo2.png" height="50" class="logo" />
+        </div>
+        
+        <div class="w3-container">
+            <h1>Parent Functions</h1>
+            <p>Instructions:</p>
+            <div class="w3-container w3-border-green w3-leftbar w3-topbar w3-bottombar w3-rightbar">
+                <ul>
+                    <li><p>Click the button for your class to be given the name of a parent function.</p></li>
+                    <li><p>Select which equation and graph match the name.</p></li>
+                    <li><p>Click the "Check" button at the bottom to check your answer.</p></li>
+                    <li><p>Then click the "Continue" button to get the next parent function name.</p></li>
+                </ul>
+            </div>
+            <p>Once all parent functions are correctly matched, it will say so at the bottom.</p>
+            <button onclick="startGeo()" id="gStart">Begin with Geometry Parent Functions</button><button onclick="startPC()" id="pcStart">Begin with Pre-Calculus Parent Functions</button>
+
+            <h2>Names</h2>
+            <div id="nameGrid"></div>
+
+
+            <h2>Equations</h2>
+            <div id="eqGrid" class="eqGrid"></div>
+
+
+            <h2>Graphs</h2>
+            <div id="graphGrid" class="graphGrid"></div>
+
+
+            <div id="checkDiv"></div>
+            <br />
+            <button onclick="check()">Check Answer</button> <button onclick="continuePracGrid()">Continue</button>
+            <br />
+        </div>
+    </body>
+</html>

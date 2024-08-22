@@ -28,6 +28,12 @@ td {
     font-family: Times New Roman;
 }
 
+.grid {
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, 100px);
+    display: grid;
+}
+
 .eqGrid {
   grid-gap: 10px;
   grid-template-columns: repeat(auto-fill, 130px);
@@ -54,4 +60,169 @@ td {
 .vertImg {
     display: flex;
     height: 200px;
+}
+
+.spartan {
+    color:#fff!important;
+    background-color:#18453B!important
+}
+
+.logo {
+    position: absolute; 
+    top: 10px; 
+    right: 10px; 
+}
+
+.roboto-thin {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.roboto-light {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.roboto-medium {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.roboto-bold {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.roboto-black {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+.roboto-thin-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.roboto-light-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.roboto-regular-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.roboto-medium-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.roboto-bold-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.roboto-black-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+}
+
+p {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+}
+
+pretest {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 22px;
+    color: darkgreen;
+}
+
+.bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.teko {
+  font-family: "Teko", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1, h2, h3 {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h4 {
+    font-family: "Teko", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 18px;
+    text-wrap: wrap;
+}
+
+.w3-a-large {
+    font-family: "Teko", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 22px;
+}
+
+.w3-a-normal {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+}
+
+.w3-a-small {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+}
+
+button {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
 }

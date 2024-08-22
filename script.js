@@ -1,3 +1,4 @@
+// BEGIN PARENT FUNCTION JS
 let geoParentFunctions = [
     [0, "Linear", "linearEQ.png", "linearGraph.png"],
     [1, "Quadratic", "quadEQ.png", "quadGraph.png"],
@@ -159,7 +160,18 @@ function check() {
     }
 }
 
-var zero1 = 0, zero2 = 0, numberCorrect = 0, hasIncreased = 0;
+// BEGIN FACTORING JS
+var zero1 = 0, zero2 = 0, numberCorrect = 0, numberGuesses = 0; hasIncreased = 0, whichIncorrect = 0, incorrectResponses = ["Not quite, but keep at it!", "I'm sorry, but give it another go!", "No, but don't give up!"];
+
+function startFresh() {
+    numberCorrect = 0;
+    hasIncreased = 0;
+    numberGuesses = 0;
+    document.getElementById("numberCorrect").innerHTML = "<p>Correct: 0</p>";
+    document.getElementById("numberGuesses").innerHTML = "<p>Guesses: 0</p>";
+    document.getElementById("percentCorrect").innerHTML = "<p>Percent: 0</p>";
+    getQuad();
+}
 
 function getQuad() {
     zero1 = Math.floor(Math.random()*20) - 10;
@@ -207,10 +219,14 @@ function getQuad() {
     clearInput.value = '';
     
     hasIncreased = 0;
+    
+    document.getElementById("testFactoring").style.visibility = "visible";
+    document.getElementById("nextQuad").style.visibility = "hidden";
+    document.getElementById("startFresh").innerHTML = "Start Fresh";
 }
 
 function testFactoring() {
-    var factorToTest = document.getElementById("factoredForm").value, testZero1, testZero2, answer = 'Please try again.';
+    var factorToTest = document.getElementById("factoredForm").value, testZero1, testZero2, answer = incorrectResponses[whichIncorrect];
     
     if ((factorToTest.match(/\(/g) || []).length == 1) {
         testZero1 = 0;
@@ -223,14 +239,24 @@ function testFactoring() {
     
     testZero1 = -parseInt(testZero1);
     testZero2 = -parseInt(testZero2);
-    var correctText = document.getElementById("numberCorrect");
+    var correctText = document.getElementById("numberCorrect"), guessesText = document.getElementById("numberGuesses"), percentText = document.getElementById("percentCorrect"), checkButton = document.getElementById("testFactoring"), getQuadButton = document.getElementById("nextQuad");
+    
+    if (hasIncreased == 0) {
+        numberGuesses++;
+        whichIncorrect++;
+        if (whichIncorrect > 2) {
+            whichIncorrect = 0;
+        }
+    }
     
     if (testZero1 == zero1 && testZero2 == zero2) {
         answer = 'Correct!';
         if (hasIncreased == 0) {
             numberCorrect++;
-            correctText.innerHTML = '<p>Number Correct: ' + numberCorrect + '</p>';
+            correctText.innerHTML = '<p>Correct: ' + numberCorrect + '</p>';
             hasIncreased = 1;
+            checkButton.style.visibility = "hidden";
+            getQuadButton.style.visibility = "visible";
         }        
     }
     
@@ -238,11 +264,16 @@ function testFactoring() {
         answer = 'Correct!';
         if (hasIncreased == 0) {
             numberCorrect++;
-            correctText.innerHTML = '<p>Number Correct: ' + numberCorrect + '</p>';
+            correctText.innerHTML = '<p>Correct: ' + numberCorrect + '</p>';
             hasIncreased = 1;
+            checkButton.style.visibility = "hidden";
+            getQuadButton.style.visibility = "visible";
         }
 
     }
+    
+    guessesText.innerHTML = '<p>Guesses: ' + numberGuesses + '</p>';
+    percentText.innerHTML = '<p>Percent: ' + Math.floor(numberCorrect/numberGuesses * 100) + '%</p>';
     
     var resultText = document.getElementById("result");
     

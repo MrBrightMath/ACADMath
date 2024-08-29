@@ -289,3 +289,17 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.radical
+{
+    background: url(Images/radical.png) no-repeat left center;
+    height:40px;
+    width:60px;
+    padding:10px;
+}
+.radical input[type="text"]
+{
+    background:rgba(0,0,0,0);
+    border:1px solid #fff;
+    color:#fff;
+}

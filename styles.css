@@ -1,13 +1,5 @@
-.title {
-    color: green;
-}
-
-.subhead {
-    color: darkolivegreen;
-}
-
 .correctAnswer {
-    color: springgreen;
+    color: forestgreen;
 }
 
 .incorrectAnswer {
@@ -199,25 +191,14 @@ h4 {
     text-wrap: wrap;
 }
 
-.w3-a-large {
+.appTitle {
     font-family: "Teko", sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     font-style: normal;
-    font-size: 22px;
-}
-
-.w3-a-normal {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 16px;
-}
-
-.w3-a-small {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 12px;
+    font-size: 18px;
+    text-wrap: wrap;
+    color: white;
+    text-align: center;
 }
 
 button {
@@ -290,16 +271,112 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-.radical
-{
+.radical {
     background: url(Images/radical.png) no-repeat left center;
     height:40px;
-    width:60px;
+    width:70px;
     padding:10px;
 }
-.radical input[type="text"]
-{
+
+.radical input[type="text"] {
     background:rgba(0,0,0,0);
     border:1px solid #fff;
     color:#fff;
+}
+
+@font-face {
+  font-family: "Digital";
+  src: url('Fonts/digital-7.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.scoreboard {
+    font-family: 'Digital';
+    font-size: x-large;
+    color: forestgreen;
+    font-weight: 600;
+    background-color: black;
+    padding: 5px;
+    text-align-last: center;
+}
+
+.scoreboardRed {
+    font-family: 'Digital';
+    font-size: x-large;
+    color: darkred;
+    font-weight: 600;
+    background-color: black;
+    padding: 5px;
+    text-align-last: center;
+}
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    width: 120px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+    padding: 2px 6px;
+}
+
+.graphCard {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    width: 220px;
+    height: 220px;
+    padding: 5px 5px;
+}
+
+.graphCard:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.eqCard {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    width: 120px;
+    height: 60px;
+    padding: 5px 5px;
+}
+
+.eqCard:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.scoreGrid {
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fill, 75px);
+    display: grid;
+}
+
+.scoreCard {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+    width: 75px;
+    height: 50px;
+    padding: px;
+    background-color: darkgreen;
+    text-align: center;
+}
+
+scoreText {
+    font-family: "Teko", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 18px;
+    text-wrap: wrap;
+    color: white;
+    text-align: center; 
 }

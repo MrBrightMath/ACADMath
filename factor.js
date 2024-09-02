@@ -1,31 +1,109 @@
-// BEGIN FACTORING JS
-var zero1 = 0, zero2 = 0, numberCorrect = 0, numberGuesses = 0; hasIncreased = 0, whichIncorrect = 0, incorrectResponses = ["Not quite, but keep at it!", "I'm sorry, but give it another go!", "No, but don't give up!"];
+// Scoreboard JS
+var numberCorrect = 0, numberGuesses = 0, hasIncreased = 0;
 
-function startFresh() {
+function resetScoreboard() {
     numberCorrect = 0;
     hasIncreased = 0;
     numberGuesses = 0;
-    document.getElementById("numberCorrect").innerHTML = "<p>Correct: 0</p>";
-    document.getElementById("numberGuesses").innerHTML = "<p>Guesses: 0</p>";
-    document.getElementById("percentCorrect").innerHTML = "<p>Percent: 0</p>";
-    getQuad();
+    document.getElementById('correct').innerHTML = '0';
+    document.getElementById('guesses').innerHTML = '0';
+    document.getElementById('percent').innerHTML = '0';
 }
 
-function getQuad() {
+function updateScore() {
+    document.getElementById('correct').innerHTML = numberCorrect;
+    document.getElementById('guesses').innerHTML = numberGuesses;
+    document.getElementById('percent').innerHTML = Math.floor(numberCorrect/numberGuesses * 100) + '%';
+}
+
+// RESULT
+var whichIncorrect = 0, incorrectResponses = ["Not quite, but keep at it!", "I'm sorry, but give it another go!", "No, but don't give up!"];
+
+function isCorrect(correct) {
+    if (hasIncreased == 0) {
+        numberGuesses++;
+    }
+    if (correct) {
+        numberCorrect++;
+        hasIncreased = 1;
+        document.getElementById('result').innerHTML = '<h2 style="color: green">Correct!</h2>';
+        document.getElementById('check').style.visibility = 'hidden';
+        document.getElementById('nextProb').style.visibility = 'visible';
+    } else {
+        document.getElementById('result').innerHTML = '<h2 style="color: darkred">' + incorrectResponses[whichIncorrect] + '</h2>';
+        whichIncorrect++;
+        if (whichIncorrect == incorrectResponses.length) {
+            whichIncorrect = 0;
+        }
+    }
+    document.getElementById('result').style.visibility = 'visible';
+    
+    if (numberCorrect == 10) {
+        throwConfetti();
+    }
+}
+
+function clearResult() {
+    document.getElementById('result').innerHTML = '<h2 style="color: green">--</h2>';
+    document.getElementById('result').style.visibility = 'hidden';
+    hasIncreased = 0;
+    document.getElementById('check').style.visibility = 'visible';
+    document.getElementById('nextProb').style.visibility = 'hidden';
+    document.getElementById('startFresh').innerHTML = 'Start Fresh';
+}
+
+function throwConfetti() {
+    const fullscreenDiv = document.createElement('div');
+    fullscreenDiv.style.position = 'fixed';
+    fullscreenDiv.style.top = 0;
+    fullscreenDiv.style.left = 0;
+    fullscreenDiv.style.width = '100%';
+    fullscreenDiv.style.height = '100%';
+    fullscreenDiv.style.backgroundColor = 'transparent';
+    fullscreenDiv.style.zIndex = 9999;
+    
+    const gifImage = document.createElement('img');
+    gifImage.src = 'Images/confetti.gif';
+    gifImage.style.width = '100%';
+    gifImage.style.height = '100%';
+    gifImage.style.objectFit = 'contain';
+    
+    fullscreenDiv.appendChild(gifImage);
+    
+    document.body.appendChild(fullscreenDiv);
+    
+    const cleanUp = setTimeout(cleanUpConfetti, 2000, fullscreenDiv);
+}
+
+function cleanUpConfetti(thing) {
+    document.body.removeChild(thing);
+}
+
+// BEGIN FACTORING JS
+var zero1 = 0, zero2 = 0, displayedQuad = '', linearTerm = '', constantTerm = '';
+
+function startFresh() {
+    resetScoreboard();
+    clearResult();
+    nextProb();
+    document.getElementById('factoredForm').style.visibility = 'visible';
+}
+
+function nextProb() {
     zero1 = Math.floor(Math.random()*20) - 10;
     zero2 = Math.floor(Math.random()*20) - 10;
-    var c = -zero1 * -zero2, b = -zero1 + -zero2, bOp = '', cOp = '', quadToFactor = document.getElementById("quadToFactor"), linearTerm = '', constantTerm = '';
+    var c = -zero1 * -zero2, b = -zero1 + -zero2, bOp = '', cOp = '', quadToFactor = document.getElementById("problem");
     
     if (b > 0) {
         bOp = '+';
     } else if (b < 0) {
-        bOp = '–';
+        bOp = '-';
     }
     
     if (c > 0) {
         cOp = '+';
     } else if (c < 0) {
-        cOp = '–';
+        cOp = '-';
     }
     
     b = Math.abs(b);
@@ -34,37 +112,29 @@ function getQuad() {
     if (b == 0) {
         linearTerm = '';
     } else if (b == 1) {
-        linearTerm = bOp + ' <i>x</i> ';
+        linearTerm = bOp + 'x';
     } else {
-        linearTerm = bOp + ' ' + b + '<i>x</i> ';
+        linearTerm = bOp + b + 'x';
     }
     
     if (c == 0) {
         constantTerm = '';
     } else {
-        constantTerm = cOp + ' ' + c;
+        constantTerm = cOp + c;
     }
     
-    let newQuad = '<h2 class="math"><i>f </i>(<i>x</i>) = <i>x</i><sup>2</sup> ' + linearTerm + constantTerm + '</h2>';
+    displayedQuad = String.raw`\(f(x)=x^2` + linearTerm + constantTerm + String.raw`\)`;
     
-    quadToFactor.innerHTML = newQuad;
+    problem.innerHTML = displayedQuad;
+    MathJax.typeset();
     
-    var resultText = document.getElementById("result");
+    document.getElementById('factoredForm').value = '';
     
-    resultText.innerHTML = '';
-    
-    var clearInput = document.getElementById("factoredForm");
-    clearInput.value = '';
-    
-    hasIncreased = 0;
-    
-    document.getElementById("testFactoring").style.visibility = "visible";
-    document.getElementById("nextQuad").style.visibility = "hidden";
-    document.getElementById("startFresh").innerHTML = "Start Fresh";
+    clearResult();
 }
 
-function testFactoring() {
-    var factorToTest = document.getElementById("factoredForm").value, testZero1, testZero2, answer = incorrectResponses[whichIncorrect];
+function check() {
+    var factorToTest = document.getElementById("factoredForm").value, testZero1, testZero2, firstFactor, secondFactor;
     
     if ((factorToTest.match(/\(/g) || []).length == 1) {
         testZero1 = 0;
@@ -77,43 +147,36 @@ function testFactoring() {
     
     testZero1 = -parseInt(testZero1);
     testZero2 = -parseInt(testZero2);
-    var correctText = document.getElementById("numberCorrect"), guessesText = document.getElementById("numberGuesses"), percentText = document.getElementById("percentCorrect"), checkButton = document.getElementById("testFactoring"), getQuadButton = document.getElementById("nextQuad");
     
-    if (hasIncreased == 0) {
-        numberGuesses++;
-        whichIncorrect++;
-        if (whichIncorrect > 2) {
-            whichIncorrect = 0;
-        }
+    if (zero1 < 0) {
+        firstFactor = '(x+' + Math.abs(zero1) + ')';
+    } else if (zero1 == 0) {
+        firstFactor = 'x';
+    } else {
+        firstFactor = '(x-' + Math.abs(zero1) + ')';
+    }
+    
+    if (zero2 < 0) {
+        secondFactor = '(x+' + Math.abs(zero2) + ')';
+    } else if (zero2 == 0) {
+        secondFactor = firstFactor;
+        firstFactor = 'x';
+    } else {
+        secondFactor = '(x-' + Math.abs(zero2) + ')';
     }
     
     if (testZero1 == zero1 && testZero2 == zero2) {
-        answer = 'Correct!';
-        if (hasIncreased == 0) {
-            numberCorrect++;
-            correctText.innerHTML = '<p>Correct: ' + numberCorrect + '</p>';
-            hasIncreased = 1;
-            checkButton.style.visibility = "hidden";
-            getQuadButton.style.visibility = "visible";
-        }        
+        displayedQuad = String.raw`\(f(x)=x^2` + linearTerm + constantTerm + '=' + firstFactor + secondFactor + String.raw`\)`;
+        isCorrect(true);
+    } else if (testZero1 == zero2 && testZero2 == zero1) {
+        displayedQuad = String.raw`\(f(x)=x^2` + linearTerm + constantTerm + '=' + firstFactor + secondFactor + String.raw`\)`;
+        isCorrect(true);
+    } else {
+        isCorrect(false);
     }
     
-    if (testZero1 == zero2 && testZero2 == zero1) {
-        answer = 'Correct!';
-        if (hasIncreased == 0) {
-            numberCorrect++;
-            correctText.innerHTML = '<p>Correct: ' + numberCorrect + '</p>';
-            hasIncreased = 1;
-            checkButton.style.visibility = "hidden";
-            getQuadButton.style.visibility = "visible";
-        }
+    document.getElementById('problem').innerHTML = displayedQuad;
+    MathJax.typeset();
 
-    }
-    
-    guessesText.innerHTML = '<p>Guesses: ' + numberGuesses + '</p>';
-    percentText.innerHTML = '<p>Percent: ' + Math.floor(numberCorrect/numberGuesses * 100) + '%</p>';
-    
-    var resultText = document.getElementById("result");
-    
-    resultText.innerHTML = '<h1>' + answer;
+    updateScore();
 }

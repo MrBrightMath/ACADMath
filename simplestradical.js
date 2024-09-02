@@ -1,91 +1,55 @@
-let irrArray = [1,1,2,2,2,2,3,3,3,3,5,5,5,5,6,6,6,7,7,7,10,10,11];
+// Scoreboard JS
+var numberCorrect = 0, numberGuesses = 0, hasIncreased = 0;
 
-var ratSolution = 0, irrSolution = 0, numberCorrect = 0, numberGuesses = 0; hasIncreased = 0, whichIncorrect = 0, incorrectResponses = ["Not quite, but keep at it!", "I'm sorry, but give it another go!", "No, but don't give up!"];
-
-function startFresh() {
+function resetScoreboard() {
     numberCorrect = 0;
     hasIncreased = 0;
     numberGuesses = 0;
-    document.getElementById("numberCorrect").innerHTML = "<p>Correct: 0</p>";
-    document.getElementById("numberGuesses").innerHTML = "<p>Guesses: 0</p>";
-    document.getElementById("percentCorrect").innerHTML = "<p>Percent: 0</p>";
-    getRad();
+    document.getElementById('correct').innerHTML = '0';
+    document.getElementById('guesses').innerHTML = '0';
+    document.getElementById('percent').innerHTML = '0';
 }
 
-function getRad() {
-    ratSolution = Math.floor(Math.random()*10) + 1;
-    irrSolution = irrArray[Math.floor(Math.random()*irrArray.length)];
-    var newRad = ratSolution * ratSolution * irrSolution;
-    radToDisplay = String.raw`\(\sqrt{` + newRad + String.raw`}\)`;
-    
-    document.getElementById("radical").innerHTML = radToDisplay;
-    MathJax.typeset();
-    
-    var resultText = document.getElementById("result");
-    
-    resultText.innerHTML = '';
-    
-    document.getElementById("rational").value = '';
-    document.getElementById("irrational").value = '';
-    
-    hasIncreased = 0;
-    
-    document.getElementById("testRad").style.visibility = "visible";
-    document.getElementById("nextRad").style.visibility = "hidden";
-    document.getElementById("startFresh").innerHTML = "Start Fresh";
+function updateScore() {
+    document.getElementById('correct').innerHTML = numberCorrect;
+    document.getElementById('guesses').innerHTML = numberGuesses;
+    document.getElementById('percent').innerHTML = Math.floor(numberCorrect/numberGuesses * 100) + '%';
 }
 
-function testRad() {
+// RESULT
+var whichIncorrect = 0, incorrectResponses = ["Not quite, but keep at it!", "I'm sorry, but give it another go!", "No, but don't give up!"];
+
+function isCorrect(correct) {
     if (hasIncreased == 0) {
         numberGuesses++;
+    }
+    if (correct) {
+        numberCorrect++;
+        hasIncreased = 1;
+        document.getElementById('result').innerHTML = '<h2 style="color: green">Correct!</h2>';
+        document.getElementById('check').style.visibility = 'hidden';
+        document.getElementById('nextProb').style.visibility = 'visible';
+    } else {
+        document.getElementById('result').innerHTML = '<h2 style="color: darkred">' + incorrectResponses[whichIncorrect] + '</h2>';
         whichIncorrect++;
-        if (whichIncorrect > 2) {
+        if (whichIncorrect == incorrectResponses.length) {
             whichIncorrect = 0;
         }
     }
+    document.getElementById('result').style.visibility = 'visible';
     
-    var guessedRat;
-    if (document.getElementById("rational").value == '') {
-        guessedRat = 1;
-    } else {
-        guessedRat = parseInt(document.getElementById("rational").value);
+    if (numberCorrect == 10) {
+        throwConfetti();
     }
-    
-    var guessedIrr;
-    if (document.getElementById("irrational").value == '') {
-        guessedIrr = 1;
-    } else {
-        guessedIrr = parseInt(document.getElementById("irrational").value);
-    }
-    
-    if (guessedRat == ratSolution && guessedIrr == irrSolution) {
-        document.getElementById("result").innerHTML = "<h1>Correct!</h1>";
-        var newRad = ratSolution * ratSolution * irrSolution;
-        if (irrSolution == 1) {
-            radToDisplay = String.raw`\(\sqrt{` + newRad + String.raw`} = ` + ratSolution + String.raw`\)`;
-        } else {
-            radToDisplay = String.raw`\(\sqrt{` + newRad + String.raw`} = ` + ratSolution + String.raw`\sqrt{` + irrSolution + String.raw`}\)`;
-        }
-    
-        document.getElementById("radical").innerHTML = radToDisplay;
-        MathJax.typeset();
-        if (hasIncreased == 0) {
-            numberCorrect++;
-            hasIncreased = 1;
-            document.getElementById("testRad").style.visibility = "hidden";
-            document.getElementById("nextRad").style.visibility = "visible";
-        }
-        if (numberCorrect == 10) {
-            throwConfetti();
-        }
-        
-    } else {
-        document.getElementById("result").innerHTML = "<h1>" + incorrectResponses[whichIncorrect] + "</h1>";
-    }
-    
-    document.getElementById("numberGuesses").innerHTML = '<p>Guesses: ' + numberGuesses + '</p>';
-    document.getElementById("numberCorrect").innerHTML = '<p>Correct: ' + numberCorrect + '</p>';
-    document.getElementById("percentCorrect").innerHTML = '<p>Percent: ' + Math.floor(numberCorrect/numberGuesses * 100) + '%</p>';
+}
+
+function clearResult() {
+    document.getElementById('result').innerHTML = '<h2 style="color: green">--</h2>';
+    document.getElementById('result').style.visibility = 'hidden';
+    hasIncreased = 0;
+    document.getElementById('check').style.visibility = 'visible';
+    document.getElementById('nextProb').style.visibility = 'hidden';
+    document.getElementById('startFresh').innerHTML = 'Start Fresh';
 }
 
 function throwConfetti() {
@@ -113,4 +77,69 @@ function throwConfetti() {
 
 function cleanUpConfetti(thing) {
     document.body.removeChild(thing);
+}
+
+// SIMPLEST RADICAL FORM
+let irrArray = [1,1,2,2,2,2,3,3,3,3,5,5,5,5,6,6,6,7,7,7,10,10,11];
+
+var ratSolution = 0, irrSolution = 0;
+
+function startFresh() {
+    resetScoreboard();
+    clearResult();
+    nextProb();
+    document.getElementById('rational').style.visibility = 'visible';
+    document.getElementById('irrational').style.visibility = 'visible';
+}
+
+function nextProb() {
+    ratSolution = Math.floor(Math.random()*10) + 1;
+    irrSolution = irrArray[Math.floor(Math.random()*irrArray.length)];
+    var newRad = ratSolution * ratSolution * irrSolution;
+    radToDisplay = String.raw`\(\sqrt{` + newRad + String.raw`}\)`;
+    
+    document.getElementById('problem').innerHTML = radToDisplay;
+    MathJax.typeset();
+    
+    document.getElementById('rational').value = '';
+    document.getElementById('irrational').value = '';
+    
+    clearResult();
+}
+
+function check() {
+    var guessedRat;
+    if (document.getElementById('rational').value == '') {
+        guessedRat = 1;
+    } else {
+        guessedRat = parseInt(document.getElementById('rational').value);
+    }
+    
+    var guessedIrr;
+    if (document.getElementById('irrational').value == '') {
+        guessedIrr = 1;
+    } else {
+        guessedIrr = parseInt(document.getElementById('irrational').value);
+    }
+    
+    if (guessedRat == ratSolution && guessedIrr == irrSolution) {
+        var newRad = ratSolution * ratSolution * irrSolution;
+        if (irrSolution == 1) {
+            radToDisplay = String.raw`\(\sqrt{` + newRad + String.raw`} = ` + ratSolution + String.raw`\)`;
+        } else {
+            if (ratSolution == 1) {
+                radToDisplay = String.raw`\(\sqrt{` + newRad + String.raw`} = \sqrt{` + irrSolution + String.raw`}\)`;
+            } else {
+                radToDisplay = String.raw`\(\sqrt{` + newRad + String.raw`} = ` + ratSolution + String.raw`\sqrt{` + irrSolution + String.raw`}\)`;
+            }
+        }
+    
+        document.getElementById('problem').innerHTML = radToDisplay;
+        MathJax.typeset();
+        isCorrect(true);
+    } else {
+        isCorrect(false);
+    }
+    
+    updateScore();
 }

@@ -78,7 +78,7 @@ function continuePracGrid() {
     nameRadio.checked = true;
     var nameLabel = document.createElement('label');
     nameLabel.htmlFor = 'name0';
-    var description = document.createTextNode(shuffledPF[0][1]);
+    var description = document.createTextNode(' ' + shuffledPF[0][1]);
     nameLabel.appendChild(description);
     nameGrid.appendChild(nameRadio);
     nameGrid.appendChild(nameLabel);
@@ -95,7 +95,7 @@ function continuePracGrid() {
         eqLabel.htmlFor = 'eq' + i;
         eqLabel.innerHTML = '<img src="Images/' + shuffledPF[i][2] + '" >';
         var newDiv = document.createElement('div');
-        newDiv.className = 'vertCent';
+        newDiv.className = 'vertCent eqCard';
         newDiv.appendChild(eqRadio);
         newDiv.appendChild(eqLabel);
         eqGrid.appendChild(newDiv);
@@ -114,7 +114,7 @@ function continuePracGrid() {
         graphLabel.htmlFor = 'eq' + i;
         graphLabel.innerHTML = '<img src="Images/' + shuffledPF[i][3] + '" height="200" >';
         var newGraphDiv = document.createElement('div');
-        newGraphDiv.className = 'vertImg';
+        newGraphDiv.className = 'vertImg graphCard';
         newGraphDiv.appendChild(graphRadio);
         newGraphDiv.appendChild(graphLabel);
         graphGrid.appendChild(newGraphDiv);

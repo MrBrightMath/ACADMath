@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Unit Circle</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap"
+            rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://www.w3schools.com/w3css/4/w3.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" type="text/css" href="dd.css" />
+        <script src="dd.min.js"></script>
+        <script src="unitcircle.js"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <div class="w3-container spartan">
+            <h1><a href="index.html"><i class="fa fa-home"></i></a> ACAD Math Apps</h1>
+            <img src="Images/Spartan-Logo2.png" height="50" class="logo" />
+        </div>
+        
+        <!-- Body -->
+        <div class="w3-container">
+            <h2>Unit Circle</h2>
+            <p>Fill in the unit circle and check your answer with the "Check" button. Correct solutions will be highlighted in green while incorrect will be highlighted in red.</p>
+            <p>The inner <span style="color: forestgreen;">green</span> circle is for <span style="color: forestgreen;">degrees</span>. Make sure to include the ° even for 0°.</p>
+            <p>The inner <span style="color: orangered;">red</span> circle is for <span style="color: orangered;">radians</span>.  Make sure to include π even for 0π.</p>
+            <p>The outer points are for (cos(θ), sin(θ)).</p>
+        </div>
+        
+        <button onclick="addRoot()" style="position: fixed; bottom: 5px; left: 20px; z-index: 1;">√</button>
+        <button onclick="addPi()" style="position: fixed; bottom: 5px; left: 60px; z-index: 1; font-family: Times;">π</button>
+        <button onclick="addDegree()" style="position: fixed; bottom: 5px; left: 100px; z-index: 1; font-family: Times;">°</button>
+        <button onclick="checkUC()" style="position: fixed; bottom: 5px; left: 140px; z-index: 1;">Check</button>
+        <button onclick="clearUC()" style="position: fixed; bottom: 5px; left: 215px; z-index: 1;">Clear</button>
+        
+        <div class="w3-container" style="position: relative; overflow-x: scroll;">
+            <img style="width: 1045px" src="Images/unitcircle.png">
+
+            <!-- 0 Degrees Inputs (Degrees, Radians, Cosine, Sine) -->
+            <div style="position: absolute; top: 423px; left: 735px;"><input data-solution="0°" class="ucShort" id="uc1" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 423px; left: 845px;"><input data-solution="0π" class="ucShort" id="uc2" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 443px; left: 955px;"><input data-solution="1" class="ucShort" id="uc3" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 443px; left: 1005px;"><input data-solution="0" class="ucShort" id="uc4" onFocus="setFocus()"></div>
+            
+            <!-- 30 Degrees Inputs (Degrees, Radians, Cosine, Sine) -->
+            <div style="position: absolute; top: 333px; left: 710px;"><input data-solution="30°" class="ucShort" id="uc5" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 279px; left: 802px;"><input data-solution="π/6" class="ucLong" id="uc6" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 243px; left: 905px;"><input data-solution="√3/2" class="ucLong" id="uc7" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 243px; left: 975px;"><input data-solution="1/2" class="ucLong" id="uc8" onFocus="setFocus()"></div>
+            
+            <!-- 45 Degrees Inputs (Degrees, Radians, Cosine, Sine) -->
+            <div style="position: absolute; top: 285px; left: 675px;"><input data-solution="45°" class="ucShort" id="uc9" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 215px; left: 742px;"><input data-solution="π/4" class="ucLong" id="uc10" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 163px; left: 845px;"><input data-solution="√2/2" class="ucLong" id="uc11" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 163px; left: 915px;"><input data-solution="√2/2" class="ucLong" id="uc12" onFocus="setFocus()"></div>
+            
+            <!-- 60 Degrees Inputs (Degrees, Radians, Cosine, Sine) -->
+            <div style="position: absolute; top: 250px; left: 630px;"><input data-solution="60°" class="ucShort" id="uc13" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 160px; left: 675px;"><input data-solution="π/3" class="ucLong" id="uc14" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 85px; left: 762px;"><input data-solution="1/2" class="ucLong" id="uc15" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 85px; left: 835px;"><input data-solution="√3/2" class="ucLong" id="uc16" onFocus="setFocus()"></div>
+            
+            <!-- 90 Degrees Inputs (Degrees, Radians, Cosine, Sine) -->
+            <div style="position: absolute; top: 225px; left: 520px;"><input data-solution="90°" class="ucShort" id="uc17" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 115px; left: 510px;"><input data-solution="π/2" class="ucLong" id="uc18" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 20px; left: 495px;"><input data-solution="0" class="ucShort" id="uc19" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 20px; left: 545px;"><input data-solution="1" class="ucShort" id="uc20" onFocus="setFocus()"></div>
+            
+            <!-- 120 Degrees Inputs (Degrees, Radians, Cosine, Sine) -->
+            <div style="position: absolute; top: 250px; left: 410px;"><input data-solution="120°" class="ucShort" id="uc21" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 160px; left: 350px;"><input data-solution="2π/3" class="ucLong" id="uc22" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 80px; left: 185px;"><input data-solution="-1/2" class="ucLong" id="uc23" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 80px; left: 255px;"><input data-solution="√3/2" class="ucLong" id="uc24" onFocus="setFocus()"></div>
+            
+            <!-- 135 Degrees Inputs (Degrees, Radians, Cosine, Sine) -->
+            <div style="position: absolute; top: 285px; left: 365px;"><input data-solution="135°" class="ucShort" id="uc25" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 215px; left: 282px;"><input data-solution="3π/4" class="ucLong" id="uc26" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 150px; left: 105px;"><input data-solution="-√2/2" class="ucLong" id="uc27" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 150px; left: 180px;"><input data-solution="√2/2" class="ucLong" id="uc28" onFocus="setFocus()"></div>
+            
+            <!-- 150 Degrees Inputs (Degrees, Radians, Cosine, Sine) -->
+            <div style="position: absolute; top: 333px; left: 330px;"><input data-solution="150°" class="ucShort" id="uc29" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 279px; left: 232px;"><input data-solution="5π/6" class="ucLong" id="uc30" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 240px; left: 45px;"><input data-solution="-√3/2" class="ucLong" id="uc31" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 240px; left: 120px;"><input data-solution="1/2" class="ucLong" id="uc32" onFocus="setFocus()"></div>
+            
+            <!-- 180 Degrees Inputs (Degrees, Radians, Cosine, Sine) -->
+            <div style="position: absolute; top: 440px; left: 305px;"><input data-solution="180°" class="ucShort" id="uc33" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 440px; left: 195px;"><input data-solution="π" class="ucShort" id="uc34" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 440px; left: 35px;"><input data-solution="-1" class="ucShort" id="uc35" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 440px; left: 85px;"><input data-solution="0" class="ucShort" id="uc36" onFocus="setFocus()"></div>
+            
+            <!-- 210 Degrees Inputs (Degrees, Radians, Cosine, Sine) -->
+            <div style="position: absolute; top: 550px; left: 330px;"><input data-solution="210°" class="ucShort" id="uc37" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 599px; left: 232px;"><input data-solution="7π/6" class="ucLong" id="uc38" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 645px; left: 45px;"><input data-solution="-√3/2" class="ucLong" id="uc39" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 645px; left: 120px;"><input data-solution="-1/2" class="ucLong" id="uc40" onFocus="setFocus()"></div>
+
+            <!-- 225 Degrees Inputs (Degrees, Radians, Cosine, Sine) -->
+            <div style="position: absolute; top: 595px; left: 365px;"><input data-solution="225°" class="ucShort" id="uc41" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 670px; left: 282px;"><input data-solution="5π/4" class="ucLong" id="uc42" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 730px; left: 105px;"><input data-solution="-√2/2" class="ucLong" id="uc43" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 730px; left: 180px;"><input data-solution="-√2/2" class="ucLong" id="uc44" onFocus="setFocus()"></div>
+            
+            <!-- 240 Degrees Inputs (Degrees, Radians, Cosine, Sine) -->
+            <div style="position: absolute; top: 630px; left: 410px;"><input data-solution="240°" class="ucShort" id="uc45" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 725px; left: 350px;"><input data-solution="4π/3" class="ucLong" id="uc46" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 800px; left: 185px;"><input data-solution="-1/2" class="ucLong" id="uc47" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 800px; left: 255px;"><input data-solution="-√3/2" class="ucLong" id="uc48" onFocus="setFocus()"></div>
+
+            <!-- 270 Degrees Inputs (Degrees, Radians, Cosine, Sine) -->
+            <div style="position: absolute; top: 660px; left: 520px;"><input data-solution="270°" class="ucShort" id="uc49" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 765px; left: 510px;"><input data-solution="3π/2" class="ucLong" id="uc50" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 860px; left: 495px;"><input data-solution="0" class="ucShort" id="uc51" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 860px; left: 545px;"><input data-solution="-1" class="ucShort" id="uc52" onFocus="setFocus()"></div>
+
+            <!-- 300 Degrees Inputs (Degrees, Radians, Cosine, Sine) -->
+            <div style="position: absolute; top: 630px; left: 625px;"><input data-solution="300°" class="ucShort" id="uc53" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 725px; left: 670px;"><input data-solution="5π/3" class="ucLong" id="uc54" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 795px; left: 765px;"><input data-solution="1/2" class="ucLong" id="uc55" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 795px; left: 840px;"><input data-solution="-√3/2" class="ucLong" id="uc56" onFocus="setFocus()"></div>
+
+            <!-- 315 Degrees Inputs (Degrees, Radians, Cosine, Sine) -->
+            <div style="position: absolute; top: 595px; left: 675px;"><input data-solution="315°" class="ucShort" id="uc57" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 670px; left: 745px;"><input data-solution="7π/4" class="ucLong" id="uc58" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 725px; left: 850px;"><input data-solution="√2/2" class="ucLong" id="uc59" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 725px; left: 925px;"><input data-solution="-√2/2" class="ucLong" id="uc60" onFocus="setFocus()"></div>
+
+            <!-- 330 Degrees Inputs (Degrees, Radians, Cosine, Sine) -->
+            <div style="position: absolute; top: 550px; left: 710px;"><input data-solution="330°" class="ucShort" id="uc61" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 599px; left: 795px;"><input data-solution="11π/6" class="ucLong" id="uc62" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 640px; left: 905px;"><input data-solution="√3/2" class="ucLong" id="uc63" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 640px; left: 980px;"><input data-solution="-1/2" class="ucLong" id="uc64" onFocus="setFocus()"></div>
+            
+            <div style="position: absolute; top: 463px; left: 735px;"><input data-solution="360°" class="ucShort" id="uc65" onFocus="setFocus()"></div>
+            <div style="position: absolute; top: 463px; left: 845px;"><input data-solution="2π" class="ucShort" id="uc66" onFocus="setFocus()"></div>
+        </div>
+    </body>
+</html>

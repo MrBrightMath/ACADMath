@@ -1,6 +1,6 @@
 function clearUC() {
     var currentInput;
-    for (i = 1; i < 67; i++) {
+    for (i = 1; i < 23; i++) {
         currentInput = document.getElementById("uc"+i);
         currentInput.value = "";
         currentInput.style.backgroundColor = "white";
@@ -13,7 +13,7 @@ var focusedInput = document.getElementById("uc1");
 
 function checkUC() {
     var currentInput;
-    for (i = 1; i < 67; i++) {
+    for (i = 1; i < 23; i++) {
         currentInput = document.getElementById("uc"+i);
         if (currentInput.value != "") {
             if (currentInput.value == currentInput.dataset.solution) {

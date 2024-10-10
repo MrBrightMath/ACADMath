@@ -1,3 +1,15 @@
+function replaceSymbols(inputElement) {
+    if (inputElement.value.includes("pi")) {
+        inputElement.value = inputElement.value.replace("pi", "π");
+    }
+    if (inputElement.value.includes("sqrt")) {
+        inputElement.value = inputElement.value.replace("sqrt", "√");
+    }
+    if (inputElement.value.includes("deg")) {
+        inputElement.value = inputElement.value.replace("deg", "°");
+    }
+}
+
 function clearUC() {
     var currentInput;
     for (i = 1; i < 23; i++) {

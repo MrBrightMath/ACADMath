@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Rounding</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap"
+            rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://www.w3schools.com/w3css/4/w3.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="styles.css" />
+        <script src="rounding.js"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <div class="w3-container spartan">
+            <h1><a href="index.html"><i class="fa fa-home"></i></a> ACAD Math Apps</h1>
+            <img src="Images/Spartan-Logo2.png" height="50" class="logo" />
+        </div>
+        
+        <!-- Body -->
+        <div class="w3-container">
+            <h2>Rounding</h2>
+            <p>Click the button to generate a random number and a place value to round it to.  Then round.</p>
+
+            <button onclick="startFresh()" id="startFresh">Start</button>
+            <br/>
+            <br/>
+            Whole Numbers <label class="switch">
+                <input type="checkbox" id="decimals">
+                <span class="slider round"></span>
+            </label> Decimals
+            <div><br/></div>
+            <div id = "newScores" class="scoreGrid">
+                <div class="scoreCard">
+                    <scoreText>CORRECT:</scoreText>
+                    <br /><scoreText id="correct">0</scoreText>
+                </div>
+                <div class="scoreCard">
+                    <scoreText>GUESSES:</scoreText>
+                    <br /><scoreText id="guesses">0</scoreText>
+                </div>
+                <div class="scoreCard">
+                    <scoreText>PERCENT:</scoreText>
+                    <br /><scoreText id="percent">0</scoreText>
+                </div>
+            </div>
+            
+            <div id ="result"><h2> </h2></div>
+            <div id="problem" style="text-align: left; font-size: x-large"><h2> </h2></div>
+            <br />
+            <input id="rounded" style="width: 200px; height: 40px; font-size: x-large; visibility: hidden;">
+            <br /><br />
+            <button onclick="check()" id="check" style="visibility: hidden;">Check Answer</button><button onclick="nextProb()" id="nextProb" style="visibility: hidden;">Next Problem</button>
+            <br /><br />
+        </div>
+    </body>
+</html>

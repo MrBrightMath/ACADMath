@@ -143,3 +143,200 @@ function check() {
     
     updateScore();
 }
+
+// Scoreboard2 JS
+var numberCorrect2 = 0, numberGuesses2 = 0, hasIncreased2 = 0;
+
+function resetScoreboard2() {
+    numberCorrect2 = 0;
+    hasIncreased2 = 0;
+    numberGuesses2 = 0;
+    document.getElementById('correct2').innerHTML = '0';
+    document.getElementById('guesses2').innerHTML = '0';
+    document.getElementById('percent2').innerHTML = '0';
+}
+
+function updateScore2() {
+    document.getElementById('correct2').innerHTML = numberCorrect2;
+    document.getElementById('guesses2').innerHTML = numberGuesses2;
+    document.getElementById('percent2').innerHTML = Math.floor(numberCorrect2/numberGuesses2 * 100) + '%';
+}
+
+// RESULT
+var whichIncorrect2 = 0, incorrectResponses2 = ["Not quite, but keep at it!", "I'm sorry, but give it another go!", "No, but don't give up!"];
+
+function isCorrect2(correct) {
+    if (hasIncreased2 == 0) {
+        numberGuesses2++;
+    }
+    if (correct) {
+        numberCorrect2++;
+        hasIncreased2 = 1;
+        document.getElementById('result2').innerHTML = '<h2 style="color: green">Correct!</h2>';
+        document.getElementById('check2').style.visibility = 'hidden';
+        document.getElementById('nextProb2').style.visibility = 'visible';
+    } else {
+        document.getElementById('result2').innerHTML = '<h2 style="color: darkred">' + incorrectResponses2[whichIncorrect2] + '</h2>';
+        whichIncorrect2++;
+        if (whichIncorrect2 == incorrectResponses2.length) {
+            whichIncorrect2 = 0;
+        }
+    }
+    document.getElementById('result2').style.visibility = 'visible';
+    
+    if (numberCorrect2 == 10) {
+        throwConfetti2();
+    }
+}
+
+function clearResult2() {
+    document.getElementById('result2').innerHTML = '<h2 style="color: green">--</h2>';
+    document.getElementById('result2').style.visibility = 'hidden';
+    hasIncreased2 = 0;
+    document.getElementById('check2').style.visibility = 'visible';
+    document.getElementById('nextProb2').style.visibility = 'hidden';
+    document.getElementById('startFresh2').innerHTML = 'Start Fresh';
+}
+
+function throwConfetti2() {
+    const fullscreenDiv = document.createElement('div');
+    fullscreenDiv.style.position = 'fixed';
+    fullscreenDiv.style.top = 0;
+    fullscreenDiv.style.left = 0;
+    fullscreenDiv.style.width = '100%';
+    fullscreenDiv.style.height = '100%';
+    fullscreenDiv.style.backgroundColor = 'transparent';
+    fullscreenDiv.style.zIndex = 9999;
+    
+    const gifImage = document.createElement('img');
+    gifImage.src = 'Images/confetti.gif';
+    gifImage.style.width = '100%';
+    gifImage.style.height = '100%';
+    gifImage.style.objectFit = 'contain';
+    
+    fullscreenDiv.appendChild(gifImage);
+    
+    document.body.appendChild(fullscreenDiv);
+    
+    const cleanUp = setTimeout(cleanUpConfetti2, 2000, fullscreenDiv);
+}
+
+function cleanUpConfetti2(thing) {
+    document.body.removeChild(thing);
+}
+
+// SIMPLEST RADICAL FORM
+let irrArray2 = [1,1,2,2,2,2,3,3,3,3,5,5,5,5,6,6,6,7,7,7,10,10,11];
+
+var ratSolution2 = 0, irrSolution2 = 0, xpower = 0, ypower = 0, zpower = 0, radToDisplay2 = '';
+
+function startFresh2() {
+    resetScoreboard2();
+    clearResult2();
+    nextProb2();
+    document.getElementById('rational2').style.visibility = 'visible';
+    document.getElementById('irrational2').style.visibility = 'visible';
+}
+
+function nextProb2() {
+    ratInt = Math.floor(Math.random()*10) + 1;
+    ratSolution2 = ratInt;
+    irrInt = irrArray2[Math.floor(Math.random()*irrArray.length)];
+    irrSolution2 = irrInt;
+    xRatPower = Math.floor(Math.random()*10);
+    xIrrPower = Math.floor(Math.random()*2);
+    yRatPower = Math.floor(Math.random()*10);
+    yIrrPower = Math.floor(Math.random()*2);
+    zRatPower = Math.floor(Math.random()*10);
+    zIrrPower = Math.floor(Math.random()*2);
+    
+    if (xRatPower > 0) {
+        if (xRatPower == 1) {
+            ratSolution2 = ratSolution2 + 'x';
+        } else {
+            ratSolution2 = ratSolution2 + String.raw`x^` + xRatPower;
+        }
+    }
+    if (yRatPower > 0) {
+        if (yRatPower == 1) {
+            ratSolution2 = ratSolution2 + 'y';
+        } else {
+            ratSolution2 = ratSolution2 + String.raw`y^` + yRatPower;
+        }
+    }
+    if (zRatPower > 0) {
+        if (zRatPower == 1) {
+            ratSolution2 = ratSolution2 + 'z';
+        } else {
+            ratSolution2 = ratSolution2 + String.raw`z^` + zRatPower;
+        }
+    }
+    if (xIrrPower > 0) {
+        irrSolution2 = irrSolution2 + 'x';
+    }
+    if (yIrrPower > 0) {
+        irrSolution2 = irrSolution2 + 'y';
+    }
+    if (zIrrPower > 0) {
+        irrSolution2 = irrSolution2 + 'z';
+    }
+
+    var newInt = ratInt * ratInt * irrInt;
+    var newX = '', newY = '', newZ = '';
+    if (2*xRatPower + xIrrPower > 0) {
+        newX = 'x^{' + (2*xRatPower + xIrrPower) + '}';
+    }
+    if (2*yRatPower + yIrrPower > 0) {
+        newY = 'y^{' + (2*yRatPower + yIrrPower) + '}';
+    }
+    if (2*zRatPower + zIrrPower > 0) {
+        newZ = 'z^{' + (2*zRatPower + zIrrPower) + '}';
+    }
+    radToDisplay2 = String.raw`\(\sqrt{` + newInt + newX + newY + newZ + String.raw`}\)`;
+    
+    document.getElementById('problem2').innerHTML = radToDisplay2;
+    MathJax.typeset();
+    
+    document.getElementById('rational2').value = '';
+    document.getElementById('irrational2').value = '';
+    
+    clearResult2();
+    // alert('Rational: ' + ratSolution2 + ', Irrational: ' + irrSolution2);
+}
+
+function check2() {
+    var guessedRat2;
+    if (document.getElementById('rational2').value == '') {
+        guessedRat2 = 1;
+    } else {
+        guessedRat2 = document.getElementById('rational2').value;
+    }
+    
+    var guessedIrr2;
+    if (document.getElementById('irrational2').value == '') {
+        guessedIrr2 = 1;
+    } else {
+        guessedIrr2 = document.getElementById('irrational2').value
+    }
+    alert('Rational: ' + ratSolution2 + ', Guessed: ' + guessedRat2 + ', Irrational: ' + irrSolution2 + ', Guessed: ' + guessedIrr2);
+    if (guessedRat2 == ratSolution2 && guessedIrr2 == irrSolution2) {
+        var newRad2 = ratSolution2 * ratSolution2 * irrSolution2;
+        if (irrSolution2 == 1) {
+            radToDisplay2 = radToDisplay2.substr(0, radToDisplay2.length - 2) + String.raw` = ` + ratSolution2 + String.raw`\)`;
+        } else {
+            if (ratSolution2 == 1) {
+                radToDisplay2 = radToDisplay2.substr(0, radToDisplay2.length - 2) + String.raw` = \sqrt{` + irrSolution2 + String.raw`}\)`;
+            } else {
+                radToDisplay2 = radToDisplay2.substr(0, radToDisplay2.length - 2) + String.raw` = ` + ratSolution2 + String.raw`\sqrt{` + irrSolution2 + String.raw`}\)`;
+            }
+        }
+    
+        document.getElementById('problem2').innerHTML = radToDisplay2;
+        MathJax.typeset();
+        isCorrect2(true);
+    } else {
+        isCorrect2(false);
+    }
+    
+    updateScore2();
+}

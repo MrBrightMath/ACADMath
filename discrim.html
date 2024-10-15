@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Simplest Radical Form</title>
+        <title>Discriminant and Zeros</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,7 +22,7 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="styles.css" />
-        <script src="simplestradical.js"></script>
+        <script src="discrim.js"></script>
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </head>
     <body>
@@ -34,14 +34,18 @@
         
         <!-- Body -->
         <div class="w3-container">
-            <h2>Simplest Radical Form</h2>
-            <p>
-                Click the button to generate a radical number.  Fill the boxes for the rational part and irrational part to give the original number's simplest radical form.
-            </p>
-
+            <h2>Discriminant and Zeros</h2>
+            <p>Click START and then calculate the discriminant. Use the discriminant to determine how many zeros the quadratic will have.</p>
+        </div>
+        
+        <div class="w3-container">
+            <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
+                <h3>Discriminant of a Quadratic Function</h3>
+                <p>\(f(x)=ax^2+bx+c\) has a discriminant of \(b^2-4ac\)</p>
+            </div>
             <button onclick="startFresh()" id="startFresh">Start</button>
             <div><br/></div>
-            <div id = "newScores" class="scoreGrid">
+            <div id="newScores" class="scoreGrid">
                 <div class="scoreCard">
                     <scoreText>CORRECT:</scoreText>
                     <br /><scoreText id="correct">0</scoreText>
@@ -56,45 +60,17 @@
                 </div>
             </div>
             
-            <div id ="result"><h2> </h2></div>
-            <div id="problem" style="text-align: left; font-size: x-large"><h2> </h2></div>
+            <div id="result"><h2> </h2></div>
+            <div id="problem"><h2> </h2></div>
             <br />
-            <input id="rational" style="width: 40px; height: 40px; font-size: x-large; visibility: hidden;"> <input id="irrational" style="text-align: right; font-size: x-large; visibility: hidden;" class="radical">
+            Discriminant: <input id="discrim" style="visibility: hidden; width: 100px">
+            <br />
+            <br />
+            Number of Zeros: <input id="numZeros" style="visibility: hidden; width: 70px">
             <br /><br />
             <button onclick="check()" id="check" style="visibility: hidden;">Check Answer</button><button onclick="nextProb()" id="nextProb" style="visibility: hidden;">Next Problem</button>
             <br /><br />
         </div>
         
-        <div class="w3-container">
-            <h2>Simplest Radical Form with Variables</h2>
-            <p>
-                Click the button to generate a radical expression.  Fill the boxes for the rational part and irrational part to give the original number's simplest radical form.
-            </p>
-
-            <button onclick="startFresh2()" id="startFresh2">Start</button>
-            <div><br/></div>
-            <div id = "newScores2" class="scoreGrid">
-                <div class="scoreCard">
-                    <scoreText>CORRECT:</scoreText>
-                    <br /><scoreText id="correct2">0</scoreText>
-                </div>
-                <div class="scoreCard">
-                    <scoreText>GUESSES:</scoreText>
-                    <br /><scoreText id="guesses2">0</scoreText>
-                </div>
-                <div class="scoreCard">
-                    <scoreText>PERCENT:</scoreText>
-                    <br /><scoreText id="percent2">0</scoreText>
-                </div>
-            </div>
-            
-            <div id ="result2"><h2> </h2></div>
-            <div id="problem2" style="text-align: left; font-size: x-large"><h2> </h2></div>
-            <br />
-            <input id="rational2" style="width: 200px; height: 40px; font-size: x-large; visibility: hidden;"> <input id="irrational2" style="width: 110px; text-align: right; font-size: x-large; visibility: hidden;" class="radical">
-            <br /><br />
-            <button onclick="check2()" id="check2" style="visibility: hidden;">Check Answer</button><button onclick="nextProb2()" id="nextProb2" style="visibility: hidden;">Next Problem</button>
-            <br /><br />
-        </div>
     </body>
 </html>

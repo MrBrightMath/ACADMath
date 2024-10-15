@@ -38,10 +38,12 @@
             <p>
                 Click the START button to generate a quadratic or absolute value function, and identify where it's vertex is.
                 Then click the CHECK button to check your answer.
-            </p>
-
+            </p>        
+        </div>
+        
+        <div class="w3-container">
             <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
-                <h3>Vertex of a Quadratic Function</h3>
+                <h3>Vertex of a Quadratic Function in Vertex Form</h3>
                 <p>\(f(x)=a(x-h)^2+k\) has a vertex at \((h,k)\)</p>
             </div>
             <button onclick="startFresh()" id="startFresh">Start</button>
@@ -67,6 +69,38 @@
             <input id="quadVertex" style="visibility: hidden;">
             <br /><br />
             <button onclick="check()" id="check" style="visibility: hidden;">Check Answer</button><button onclick="nextProb()" id="nextProb" style="visibility: hidden;">Next Problem</button>
+            <br /><br />
+        </div>
+        
+        <div class="w3-container">
+            <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
+                <h3>Vertex of a Quadratic Function in Standard Form</h3>
+                <p>\(f(x)=ax^2+bx+c\) has a vertex at \(x=\frac{-b}{2a}\)</p>
+                <p>Find the \(x\) coordinate of the vertex.</p>
+            </div>
+            <button onclick="startFresh3()" id="startFresh3">Start</button>
+            <div><br/></div>
+            <div id="newScores3" class="scoreGrid">
+                <div class="scoreCard">
+                    <scoreText>CORRECT:</scoreText>
+                    <br /><scoreText id="correct3">0</scoreText>
+                </div>
+                <div class="scoreCard">
+                    <scoreText>GUESSES:</scoreText>
+                    <br /><scoreText id="guesses3">0</scoreText>
+                </div>
+                <div class="scoreCard">
+                    <scoreText>PERCENT:</scoreText>
+                    <br /><scoreText id="percent3">0</scoreText>
+                </div>
+            </div>
+            
+            <div id="result3"><h2> </h2></div>
+            <div id="problem3"><h2> </h2></div>
+            <br />
+            <p>\(x=\) <input id="quadVertex3" style="visibility: hidden;"></p>
+            <br /><br />
+            <button onclick="check3()" id="check3" style="visibility: hidden;">Check Answer</button><button onclick="nextProb3()" id="nextProb3" style="visibility: hidden;">Next Problem</button>
             <br /><br />
         </div>
         

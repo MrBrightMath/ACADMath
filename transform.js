@@ -109,19 +109,24 @@ function simplify(str) {
 }
 
 function getRandFrac() {
-    var num = Math.floor(Math.random() * 9)-4;
+    var num = Math.floor(Math.random() * 9) - 4;
     while (num == 0) {
         num = Math.floor(Math.random() * 9) - 4;
     }
-    
-    var denoms = [1, 1, 1, 1, 1, 2, 3, 4], den = denoms[Math.floor(Math.random() * denoms.length)], frac = simplify(num + "/" + den), data=frac.split("/"), sign="";
-    
+
+    var denoms = [1, 1, 1, 1, 1, 2, 3, 4],
+        den = denoms[Math.floor(Math.random() * denoms.length)],
+        frac = simplify(num + "/" + den),
+        data = frac.split("/"),
+        sign = "";
+
     if (num < 0) {
         sign = "-";
     }
-    
-    var value = num/den, displayFrac = "";
-    
+
+    var value = num / den,
+        displayFrac = "";
+
     if (value == Math.floor(value)) {
         if (value == 1) {
             displayFrac = "";
@@ -134,11 +139,12 @@ function getRandFrac() {
         displayFrac = sign + String.raw`\frac{` + Math.abs(data[0]) + "}{" + data[1] + "}";
     }
 
-    return([value, displayFrac, num, den]);
+    return [value, displayFrac, num, den];
 }
 
 function getHorK(hork, max) {
-    var randInt = Math.floor(Math.random() * (2 * max + 1)) - max, display="";
+    var randInt = Math.floor(Math.random() * (2 * max + 1)) - max,
+        display = "";
     if (hork == "h") {
         if (randInt < 0) {
             display = "+" + -randInt;
@@ -157,6 +163,56 @@ function getHorK(hork, max) {
         }
     }
     return [randInt, display];
+}
+
+function toggleInputs(useTrig, useB) {
+    if (useTrig) {
+        document.getElementById("horizShiftInput").style.display = "none";
+        document.getElementById("vertShiftInput").style.display = "none";
+        document.getElementById("horizCompInput").style.display = "none";
+        document.getElementById("vertCompInput").style.display = "none";
+        document.getElementById("amp").style.display = "inline";
+        document.getElementById("mid").style.display = "inline";
+        document.getElementById("phase").style.display = "inline";
+        document.getElementById("freq").style.display = "inline";
+    } else {
+        document.getElementById("horizShiftInput").style.display = "inline";
+        document.getElementById("vertShiftInput").style.display = "inline";
+        document.getElementById("horizCompInput").style.display = "inline";
+        document.getElementById("vertCompInput").style.display = "inline";
+        document.getElementById("amp").style.display = "none";
+        document.getElementById("mid").style.display = "none";
+        document.getElementById("phase").style.display = "none";
+        document.getElementById("freq").style.display = "none";
+    }
+    if (!useB) {
+        document.getElementById("freq").style.display = "none";
+        document.getElementById("horizCompInput").style.display = "none";
+    }
+}
+
+function whiteInputs() {
+    document.getElementById("horizShiftDir").style.backgroundColor = "white";
+        document.getElementById("horizShiftVal").style.backgroundColor = "white";
+        document.getElementById("vertShiftDir").style.backgroundColor = "white";
+        document.getElementById("vertShiftVal").style.backgroundColor = "white";
+        document.getElementById("horizCompDir").style.backgroundColor = "white";
+        document.getElementById("horizCompVal").style.backgroundColor = "white";
+        document.getElementById("horizRef").style.backgroundColor = "white";
+        document.getElementById("vertCompDir").style.backgroundColor = "white";
+        document.getElementById("vertCompVal").style.backgroundColor = "white";
+        document.getElementById("vertRef").style.backgroundColor = "white";
+        document.getElementById("sineHorizShiftDir").style.backgroundColor = "white";
+        document.getElementById("sineHorizShiftVal").style.backgroundColor = "white";
+        document.getElementById("sineVertShiftDir").style.backgroundColor = "white";
+        document.getElementById("sineVertShiftVal").style.backgroundColor = "white";
+        document.getElementById("sineHorizCompDir").style.backgroundColor = "white";
+        document.getElementById("sineHorizCompVal").style.backgroundColor = "white";
+        document.getElementById("sineHorizRef").style.backgroundColor = "white";
+        document.getElementById("sineVertCompDir").style.backgroundColor = "white";
+        document.getElementById("sineVertCompVal").style.backgroundColor = "white";
+        document.getElementById("sineVertRef").style.backgroundColor = "white";
+        
 }
 
 // TRANSFORMATION SPECIFIC
@@ -194,7 +250,6 @@ function setOtherValues() {
     } else {
         vr = 1;
     }
-
 
     if (Math.abs(b) > 1) {
         hcd = 1;
@@ -243,6 +298,8 @@ function debug() {
     temp = temp + "vcd: " + vcd + "\n";
     temp = temp + "hr: " + hr + "\n";
     temp = temp + "vr: " + vr + "\n";
+    temp = temp + "funcType: " + funcType + "\n";
+    temp = temp + "horComp: " + horComp + "\n";
     alert(temp);
 }
 
@@ -252,10 +309,21 @@ function nextProb() {
         aArray = getRandFrac(),
         bArray = getRandFrac(),
         hArray = getHorK("h", 10),
-        kArray = getHorK("k", 10);
-        
+        kArray = getHorK("k", 10),
+        whichFunction = 0;
+    
+    whiteInputs();
+
     funcType = document.getElementById("funcType").value;
+    if (funcType == 6) {
+        funcType = Math.floor(Math.random() * 5) + 1;
+    }
     horComp = document.getElementById("horComp").value;
+    if (horComp == 4) {
+        horComp = Math.floor(Math.random() * 3) + 1;
+    }
+    whichFunction = 3 * (Number(funcType) - 1) + Number(horComp) - 1;
+
     a = aArray[0];
     b = bArray[0];
     h = hArray[0];
@@ -267,10 +335,10 @@ function nextProb() {
     if (b == 1) {
         bh = h;
     } else {
-        bh = bArray[2] * hArray[0] / bArray[3];
+        bh = (bArray[2] * hArray[0]) / bArray[3];
     }
-    
-    var data = simplify((Math.abs(bArray[2])*Math.abs(hArray[0])) + "/" + bArray[3]).split("/");
+
+    var data = simplify(Math.abs(bArray[2]) * Math.abs(hArray[0]) + "/" + bArray[3]).split("/");
     if (bh == Math.floor(bh)) {
         if (bh > 0) {
             displayBH = "-" + bh;
@@ -291,48 +359,53 @@ function nextProb() {
     setOtherValues();
     funcToDisplay = "";
 
-    switch (funcType) {
-        case "1": // Quadratic
-            switch (horComp) {
-                case "1": // No B Value
-                    useB = false;
-                    buildQuadNoB();
-                    break;
-                case "2": // Standard bx-bh
-                    useB = true;
-                    buildQuadStandB();
-                    break;
-                case "3": // GCF b(x-h)
-                    useB = true;
-                    buildQuadGCFB();
-                    break;
-                case "4": // Random
-                    randHorComp = Math.floor(Math.random() * 3 + 1).toString();
-                    switch (randHorComp) {
-                        case "1": // No B Value
-                            useB = false;
-                            buildQuadNoB();
-                            break;
-                        case "2": // Standard bx-bh
-                            useB = true;
-                            buildQuadStandB();
-                            break;
-                        case "3": // GCF b(x-h)
-                            useB = true;
-                            buildQuadGCFB();
-                            break;
-                        default: // Default to No B
-                            useB = false;
-                            buildQuadNoB();
-                    }
-                    break;
-                default: // Default to No B
-                    useB = false;
-                    buildQuadNoB();
-            }
+    switch (whichFunction) {
+        case 0:
+            buildQuadNoB();
             break;
-        default: // Default to Quadratic
-            useB = false;
+        case 1:
+            buildQuadStandB();
+            break;
+        case 2:
+            buildQuadGCFB();
+            break;
+        case 3:
+            buildABSNoB();
+            break;
+        case 4:
+            buildABSStandB();
+            break;
+        case 5:
+            buildABSGCFB();
+            break;
+        case 6:
+            buildRadNoB();
+            break;
+        case 7:
+            buildRadStandB();
+            break;
+        case 8:
+            buildRadGCFB();
+            break;
+        case 9:
+            buildExpNoB();
+            break;
+        case 10:
+            buildExpStandB();
+            break;
+        case 11:
+            buildExpGCFB();
+            break;
+        case 12:
+            buildSineNoB();
+            break;
+        case 13:
+            buildSineStandB();
+            break;
+        case 14:
+            buildSineGCFB();
+            break;
+        default:
             buildQuadNoB();
     }
 
@@ -345,16 +418,63 @@ function resetInputs() {
     document.getElementById("problem").innerHTML = funcToDisplay;
     MathJax.typeset();
 
-    document.getElementById("quadHorizShiftDir").value = 0;
-    document.getElementById("quadHorizShiftVal").value = "";
-    document.getElementById("quadVertShiftDir").value = 0;
-    document.getElementById("quadVertShiftVal").value = "";
-    document.getElementById("quadHorizCompDir").value = 0;
-    document.getElementById("quadHorizCompVal").value = "";
-    document.getElementById("quadHorizRef").value = 0;
-    document.getElementById("quadVertCompDir").value = 0;
-    document.getElementById("quadVertCompVal").value = "";
-    document.getElementById("quadVertRef").value = 0;
+    document.getElementById("horizShiftDir").value = 0;
+    document.getElementById("horizShiftVal").value = "";
+    document.getElementById("vertShiftDir").value = 0;
+    document.getElementById("vertShiftVal").value = "";
+    document.getElementById("horizCompDir").value = 0;
+    document.getElementById("horizCompVal").value = "";
+    document.getElementById("horizRef").value = 0;
+    document.getElementById("vertCompDir").value = 0;
+    document.getElementById("vertCompVal").value = "";
+    document.getElementById("vertRef").value = 0;
+}
+
+function buildSineNoB() {
+    if (displayA == "-") {
+        displayA = "-1" + String.raw`\cdot `;
+    } else if (displayA != "") {
+        displayA = displayA + String.raw`\cdot `;
+    }
+    if (h == 0) {
+        funcToDisplay = String.raw`\f(x)=` + displayA + "sin(x)" + displayK + String.raw`\)`;
+    } else {
+        funcToDisplay = String.raw`\(f(x)=` + displayA + "sin(x" + displayH + ")" + displayK + String.raw`\)`;
+    }
+    toggleInputs(true, false);
+}
+
+function buildExpNoB() {
+    if (displayA == "-") {
+        displayA = "-1" + String.raw`\cdot `;
+    } else if (displayA != "") {
+        displayA = displayA + String.raw`\cdot `;
+    }
+    if (h == 0) {
+        funcToDisplay = String.raw`\f(x)=` + displayA + "2^x" + displayK + String.raw`\)`;
+    } else {
+        funcToDisplay = String.raw`\(f(x)=` + displayA + "2^{x" + displayH + "}" + displayK + String.raw`\)`;
+    }
+    toggleInputs(false, false);
+}
+
+function buildRadNoB() {
+    if (h == 0) {
+        funcToDisplay = String.raw`\f(x)=` + displayA + String.raw`\sqrt{x}` + displayK + String.raw`\)`;
+    } else {
+        funcToDisplay =
+            String.raw`\(f(x)=` + displayA + String.raw`\sqrt{x` + displayH + "}" + displayK + String.raw`\)`;
+    }
+    toggleInputs(false, false);
+}
+
+function buildABSNoB() {
+    if (h == 0) {
+        funcToDisplay = String.raw`\f(x)=` + displayA + "|x|" + displayK + String.raw`\)`;
+    } else {
+        funcToDisplay = String.raw`\(f(x)=` + displayA + "|x" + displayH + "|" + displayK + String.raw`\)`;
+    }
+    toggleInputs(false, false);
 }
 
 function buildQuadNoB() {
@@ -363,7 +483,93 @@ function buildQuadNoB() {
     } else {
         funcToDisplay = String.raw`\(f(x)=` + displayA + "(x" + displayH + ")^2" + displayK + String.raw`\)`;
     }
-    document.getElementById("horCompInput").style.visibility = "hidden";
+    toggleInputs(false, false);
+}
+
+function buildSineStandB() {
+    if (displayA == "-") {
+        displayA = "-1" + String.raw`\cdot `;
+    } else if (displayA != "") {
+        displayA = displayA + String.raw`\cdot `;
+    }
+    var tempDisplay = "";
+    if (h == 0) {
+        if (b == 1) {
+            tempDisplay = "sin(x)";
+        } else {
+            tempDisplay = "sin(" + displayB + "x)";
+        }
+    } else {
+        if (b == 1) {
+            tempDisplay = "sin(x" + displayH + ")";
+        } else {
+            tempDisplay = "sin(" + displayB + "x" + displayBH + ")";
+        }
+    }
+    funcToDisplay = String.raw`\(f(x)=` + displayA + tempDisplay + displayK + String.raw`\)`;
+    toggleInputs(true, true);
+}
+
+function buildExpStandB() {
+    if (displayA == "-") {
+        displayA = "-1" + String.raw`\cdot `;
+    } else if (displayA != "") {
+        displayA = displayA + String.raw`\cdot `;
+    }
+    var tempDisplay = "";
+    if (h == 0) {
+        if (b == 1) {
+            tempDisplay = "2^x";
+        } else {
+            tempDisplay = "2^{" + displayB + "x}";
+        }
+    } else {
+        if (b == 1) {
+            tempDisplay = "2^{x" + displayH + "}";
+        } else {
+            tempDisplay = "2^{" + displayB + "x" + displayBH + "}";
+        }
+    }
+    funcToDisplay = String.raw`\(f(x)=` + displayA + tempDisplay + displayK + String.raw`\)`;
+    toggleInputs(false, true);
+}
+
+function buildRadStandB() {
+    var tempDisplay = "";
+    if (h == 0) {
+        if (b == 1) {
+            tempDisplay = String.raw`\sqrt{x}`;
+        } else {
+            tempDisplay = String.raw`\sqrt{` + displayB + "x}";
+        }
+    } else {
+        if (b == 1) {
+            tempDisplay = String.raw`\sqrt{x` + displayH + "}";
+        } else {
+            tempDisplay = String.raw`\sqrt{` + displayB + "x" + displayBH + "}";
+        }
+    }
+    funcToDisplay = String.raw`\(f(x)=` + displayA + tempDisplay + displayK + String.raw`\)`;
+    toggleInputs(false, true);
+}
+
+function buildABSStandB() {
+    var tempDisplay = "";
+    if (h == 0) {
+        if (b == 1) {
+            tempDisplay = "|x|";
+        } else {
+            tempDisplay = "|" + displayB + "x|";
+        }
+    } else {
+        if (b == 1) {
+            tempDisplay = "|x" + displayH + "|";
+        } else {
+            tempDisplay = "|" + displayB + "x" + displayBH + "|";
+        }
+    }
+    funcToDisplay = String.raw`\(f(x)=` + displayA + tempDisplay + displayK + String.raw`\)`;
+    toggleInputs(false, true);
 }
 
 function buildQuadStandB() {
@@ -376,13 +582,99 @@ function buildQuadStandB() {
         }
     } else {
         if (b == 1) {
-            tempDisplay = "(x" + displayBH + ")^2";
+            tempDisplay = "(x" + displayH + ")^2";
         } else {
             tempDisplay = "(" + displayB + "x" + displayBH + ")^2";
         }
     }
-    document.getElementById("horCompInput").style.visibility = "visible";
     funcToDisplay = String.raw`\(f(x)=` + displayA + tempDisplay + displayK + String.raw`\)`;
+    toggleInputs(false, true);
+}
+
+function buildSineGCFB() {
+    if (displayA == "-") {
+        displayA = "-1" + String.raw`\cdot `;
+    } else if (displayA != "") {
+        displayA = displayA + String.raw`\cdot `;
+    }
+    var tempDisplay = "";
+    if (h != 0) {
+        if (b == 1) {
+            tempDisplay = "sin(x" + displayH + ")";
+        } else {
+            tempDisplay = "sin(" + displayB + "(x" + displayH + "))";
+        }
+    } else {
+        if (b == 1) {
+            tempDisplay = "sin(x)";
+        } else {
+            tempDisplay = "sin(" + displayB + "x)";
+        }
+    }
+    funcToDisplay = String.raw`\(f(x)=` + displayA + tempDisplay + displayK + String.raw`\)`;
+    toggleInputs(true, true);
+}
+
+function buildExpGCFB() {
+    if (displayA == "-") {
+        displayA = "-1" + String.raw`\cdot `;
+    } else if (displayA != "") {
+        displayA = displayA + String.raw`\cdot `;
+    }
+    var tempDisplay = "";
+    if (h != 0) {
+        if (b == 1) {
+            tempDisplay = "2^{x" + displayH + "}";
+        } else {
+            tempDisplay = "2^{" + displayB + "(x" + displayH + ")}";
+        }
+    } else {
+        if (b == 1) {
+            tempDisplay = "2^x";
+        } else {
+            tempDisplay = "2^{" + displayB + "x}";
+        }
+    }
+    funcToDisplay = String.raw`\(f(x)=` + displayA + tempDisplay + displayK + String.raw`\)`;
+    toggleInputs(false, true);
+}
+
+function buildRadGCFB() {
+    var tempDisplay = "";
+    if (h != 0) {
+        if (b == 1) {
+            tempDisplay = String.raw`\sqrt{x` + displayH + "}";
+        } else {
+            tempDisplay = String.raw`\sqrt{` + displayB + "(x" + displayH + ")}";
+        }
+    } else {
+        if (b == 1) {
+            tempDisplay = String.raw`\sqrt{x}`;
+        } else {
+            tempDisplay = String.raw`\sqrt{` + displayB + "x" + "}";
+        }
+    }
+    funcToDisplay = String.raw`\(f(x)=` + displayA + tempDisplay + displayK + String.raw`\)`;
+    toggleInputs(false, true);
+}
+
+function buildABSGCFB() {
+    var tempDisplay = "";
+    if (h != 0) {
+        if (b == 1) {
+            tempDisplay = "|x" + displayH + "|";
+        } else {
+            tempDisplay = "|" + displayB + "(x" + displayH + ")|";
+        }
+    } else {
+        if (b == 1) {
+            tempDisplay = "|x|";
+        } else {
+            tempDisplay = "|" + displayB + "x" + "|";
+        }
+    }
+    funcToDisplay = String.raw`\(f(x)=` + displayA + tempDisplay + displayK + String.raw`\)`;
+    toggleInputs(false, true);
 }
 
 function buildQuadGCFB() {
@@ -400,124 +692,172 @@ function buildQuadGCFB() {
             tempDisplay = "(" + displayB + "x" + ")^2";
         }
     }
-    document.getElementById("horCompInput").style.visibility = "visible";
     funcToDisplay = String.raw`\(f(x)=` + displayA + tempDisplay + displayK + String.raw`\)`;
+    toggleInputs(false, true);
 }
 
 function check() {
-    var allCorrect = true;
-    if (document.getElementById("quadHorizShiftDir").value != hsd) {
-        allCorrect = false;
-        document.getElementById("quadHorizShiftDir").style.backgroundColor = "lightcoral";
+    var allCorrect = true,
+        inputs = [
+            ["horizShiftDir", hsd],
+            ["horizShiftVal", Math.abs(h)],
+            ["vertShiftDir", vsd],
+            ["vertShiftVal", Math.abs(k)],
+            ["vertCompDir", vcd],
+            ["vertCompVal", Math.abs(a)],
+            ["vertRef", vr],
+            ["horizCompDir", hcd],
+            ["horizCompVal", Math.abs(b)],
+            ["horizRef", hr]
+        ],
+        sineInputs = [
+            ["sineHorizShiftDir", hsd],
+            ["sineHorizShiftVal", Math.abs(h)],
+            ["sineVertShiftDir", vsd],
+            ["sineVertShiftVal", Math.abs(k)],
+            ["sineVertCompDir", vcd],
+            ["sineVertCompVal", Math.abs(a)],
+            ["sineVertRef", vr],
+            ["sineHorizCompDir", hcd],
+            ["sineHorizCompVal", Math.abs(b)],
+            ["sineHorizRef", hr]
+        ],
+        arrayToTest = [],
+        lengthToTest = 0;
+    
+    if (funcType == 5) {
+        arrayToTest = sineInputs;
     } else {
-        document.getElementById("quadHorizShiftDir").style.backgroundColor = "lightgreen";
+        arrayToTest = inputs;
+    }
+    
+    if (horComp == 1) {
+        lengthToTest = arrayToTest.length - 3;
+    } else {
+        lengthToTest = arrayToTest.length;
     }
 
-    if (Math.abs(document.getElementById("quadHorizShiftVal").value) != Math.abs(h)) {
-        allCorrect = false;
-        document.getElementById("quadHorizShiftVal").style.backgroundColor = "lightcoral";
-    } else {
-        document.getElementById("quadHorizShiftVal").style.backgroundColor = "lightgreen";
+    for (let i = 0; i < lengthToTest; i++) {
+        var valToTest;
+        if (document.getElementById(arrayToTest[i][0]).value.includes("/")) {
+            var data = document.getElementById(arrayToTest[i][0]).value.split("/"),
+                numOne = data[0],
+                numTwo = data[1];
+            valToTest = numOne / numTwo;
+        } else {
+            valToTest = document.getElementById(arrayToTest[i][0]).value;
+        }
+        if (valToTest != arrayToTest[i][1]) {
+            allCorrect = false;
+            document.getElementById(arrayToTest[i][0]).style.backgroundColor = "lightcoral";
+        } else {
+            document.getElementById(arrayToTest[i][0]).style.backgroundColor = "lightgreen";
+        }
     }
 
-    if (document.getElementById("quadVertShiftDir").value != vsd) {
+    /*if (document.getElementById("horizShiftDir").value != hsd) {
         allCorrect = false;
-        document.getElementById("quadVertShiftDir").style.backgroundColor = "lightcoral";
+        document.getElementById("horizShiftDir").style.backgroundColor = "lightcoral";
     } else {
-        document.getElementById("quadVertShiftDir").style.backgroundColor = "lightgreen";
+        document.getElementById("horizShiftDir").style.backgroundColor = "lightgreen";
     }
 
-    if (Math.abs(document.getElementById("quadVertShiftVal").value) != Math.abs(k)) {
+    if (Math.abs(document.getElementById("horizShiftVal").value) != Math.abs(h)) {
         allCorrect = false;
-        document.getElementById("quadVertShiftVal").style.backgroundColor = "lightcoral";
+        document.getElementById("horizShiftVal").style.backgroundColor = "lightcoral";
     } else {
-        document.getElementById("quadVertShiftVal").style.backgroundColor = "lightgreen";
+        document.getElementById("horizShiftVal").style.backgroundColor = "lightgreen";
+    }
+
+    if (document.getElementById("vertShiftDir").value != vsd) {
+        allCorrect = false;
+        document.getElementById("vertShiftDir").style.backgroundColor = "lightcoral";
+    } else {
+        document.getElementById("vertShiftDir").style.backgroundColor = "lightgreen";
+    }
+
+    if (Math.abs(document.getElementById("vertShiftVal").value) != Math.abs(k)) {
+        allCorrect = false;
+        document.getElementById("vertShiftVal").style.backgroundColor = "lightcoral";
+    } else {
+        document.getElementById("vertShiftVal").style.backgroundColor = "lightgreen";
     }
 
     if (useB) {
-        if (document.getElementById("quadHorizCompDir").value != hcd) {
+        if (document.getElementById("horizCompDir").value != hcd) {
             allCorrect = false;
-            document.getElementById("quadHorizCompDir").style.backgroundColor = "lightcoral";
+            document.getElementById("horizCompDir").style.backgroundColor = "lightcoral";
         } else {
-            document.getElementById("quadHorizCompDir").style.backgroundColor = "lightgreen";
+            document.getElementById("horizCompDir").style.backgroundColor = "lightgreen";
         }
 
-        if (document.getElementById("quadHorizCompVal").value.includes("/")) {
-            var dataB = document.getElementById("quadHorizCompVal").value.split("/"),
+        if (document.getElementById("horizCompVal").value.includes("/")) {
+            var dataB = document.getElementById("horizCompVal").value.split("/"),
                 numOneB = dataB[0],
                 numTwoB = dataB[1],
                 checkB = numOneB / numTwoB;
             if (Math.abs(checkB) != Math.abs(b)) {
                 allCorrect = false;
-                document.getElementById("quadHorizCompVal").style.backgroundColor = "lightcoral";
+                document.getElementById("horizCompVal").style.backgroundColor = "lightcoral";
             } else {
-                document.getElementById("quadHorizCompVal").style.backgroundColor = "lightgreen";
+                document.getElementById("horizCompVal").style.backgroundColor = "lightgreen";
             }
         } else {
-            if (Math.abs(document.getElementById("quadHorizCompVal").value) != Math.abs(b)) {
+            if (Math.abs(document.getElementById("horizCompVal").value) != Math.abs(b)) {
                 allCorrect = false;
-                document.getElementById("quadHorizCompVal").style.backgroundColor = "lightcoral";
+                document.getElementById("horizCompVal").style.backgroundColor = "lightcoral";
             } else {
-                document.getElementById("quadHorizCompVal").style.backgroundColor = "lightgreen";
+                document.getElementById("horizCompVal").style.backgroundColor = "lightgreen";
             }
         }
-        if (document.getElementById("quadHorizRef").value != hr) {
+        if (document.getElementById("horizRef").value != hr) {
             allCorrect = false;
-            document.getElementById("quadHorizRef").style.backgroundColor = "lightcoral";
+            document.getElementById("horizRef").style.backgroundColor = "lightcoral";
         } else {
-            document.getElementById("quadHorizRef").style.backgroundColor = "lightgreen";
+            document.getElementById("horizRef").style.backgroundColor = "lightgreen";
         }
-    }
-    
-    if (document.getElementById("quadVertCompDir").value != vcd) {
-        allCorrect = false;
-        document.getElementById("quadVertCompDir").style.backgroundColor = "lightcoral";
-    } else {
-        document.getElementById("quadVertCompDir").style.backgroundColor = "lightgreen";
     }
 
-    if (document.getElementById("quadVertCompVal").value.includes("/")) {
-        var dataA = document.getElementById("quadVertCompVal").value.split("/"),
+    if (document.getElementById("vertCompDir").value != vcd) {
+        allCorrect = false;
+        document.getElementById("vertCompDir").style.backgroundColor = "lightcoral";
+    } else {
+        document.getElementById("vertCompDir").style.backgroundColor = "lightgreen";
+    }
+
+    if (document.getElementById("vertCompVal").value.includes("/")) {
+        var dataA = document.getElementById("vertCompVal").value.split("/"),
             numOneA = dataA[0],
             numTwoA = dataA[1],
             checkA = numOneA / numTwoA;
         if (Math.abs(checkA) != Math.abs(a)) {
             allCorrect = false;
-            document.getElementById("quadVertCompVal").style.backgroundColor = "lightcoral";
+            document.getElementById("vertCompVal").style.backgroundColor = "lightcoral";
         } else {
-            document.getElementById("quadVertCompVal").style.backgroundColor = "lightgreen";
+            document.getElementById("vertCompVal").style.backgroundColor = "lightgreen";
         }
     } else {
-        if (Math.abs(document.getElementById("quadVertCompVal").value) != Math.abs(a)) {
+        if (Math.abs(document.getElementById("vertCompVal").value) != Math.abs(a)) {
             allCorrect = false;
-            document.getElementById("quadVertCompVal").style.backgroundColor = "lightcoral";
+            document.getElementById("vertCompVal").style.backgroundColor = "lightcoral";
         } else {
-            document.getElementById("quadVertCompVal").style.backgroundColor = "lightgreen";
+            document.getElementById("vertCompVal").style.backgroundColor = "lightgreen";
         }
     }
 
-    if (document.getElementById("quadVertRef").value != vr) {
+    if (document.getElementById("vertRef").value != vr) {
         allCorrect = false;
-        document.getElementById("quadVertRef").style.backgroundColor = "lightcoral";
+        document.getElementById("vertRef").style.backgroundColor = "lightcoral";
     } else {
-        document.getElementById("quadVertRef").style.backgroundColor = "lightgreen";
+        document.getElementById("vertRef").style.backgroundColor = "lightgreen";
     }
+    */
 
     if (allCorrect) {
-        document.getElementById("quadHorizShiftDir").style.backgroundColor = "white";
-        document.getElementById("quadHorizShiftVal").style.backgroundColor = "white";
-        document.getElementById("quadVertShiftDir").style.backgroundColor = "white";
-        document.getElementById("quadVertShiftVal").style.backgroundColor = "white";
-        document.getElementById("quadHorizCompDir").style.backgroundColor = "white";
-        document.getElementById("quadHorizCompVal").style.backgroundColor = "white";
-        document.getElementById("quadHorizRef").style.backgroundColor = "white";
-        document.getElementById("quadVertCompDir").style.backgroundColor = "white";
-        document.getElementById("quadVertCompVal").style.backgroundColor = "white";
-        document.getElementById("quadVertRef").style.backgroundColor = "white";
         isCorrect(true);
     } else {
         isCorrect(false);
     }
-    
+
     updateScore();
 }

@@ -39,13 +39,6 @@
 
         <div class="w3-container">
             <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
-                <h3>Quadratic Transformations</h3>
-                <ul>
-                    <li><p>No Horizontal Compression: \(f(x)=a(x-h)^2+k\)</p></li>
-                    <li><p>Standard Horizontal Compression: \(f(x)=a(bx-bh)^2+k\)</p></li>
-                    <li><p>GCF Horizontal Compression: \(f(x)=a(b(x-h))^2+k\)</p></li>
-                </ul>
-
                 <h3>What the Variables do</h3>
                 <ul>
                     <li>
@@ -69,16 +62,16 @@
                 <label for="funcType">▶Function Type:</label>
                 <select name="funcType" id="funcType">
                     <option value="1">Quadratic</option>
-                    <!-- <option value="2">Absolute Value</option>
+                    <option value="2">Absolute Value</option>
                     <option value="3">Radical (Square Root)</option>
                     <option value="4">Exponential</option>
                     <option value="5">Sine</option>
-                    <option value="6">Random</option> -->
+                    <option value="6">Random</option>
                 </select>
                 <br />
                 <label for="horComp">▶Horizontal Compression:</label>
                 <select name="horComp" id="horComp">
-                    <option value="1">No Horizontal Compression</option>
+                    <option value="1">No Horizontal Compression (b = 1)</option>
                     <option value="2">Standard Horizontal Compression</option>
                     <option value="3">GCF Horizontal Compression</option>
                     <option value="4">Random</option>
@@ -86,7 +79,11 @@
                 <br />
                 <br />
             </div>
-            <div><button onclick="startFresh()" id="startFresh">Start</button><button onclick="debug()">Debug</button></div>
+            <div>
+                <button onclick="startFresh()" id="startFresh">Start</button><button onclick="debug()" style="visibility: hidden;">Debug</button
+                ><button onclick="check()" id="check" style="visibility: hidden">Check Answer</button
+                ><button onclick="nextProb()" id="nextProb" style="visibility: hidden">Next Problem</button>
+            </div>
             <div><br /></div>
             <div id="newScores" class="scoreGrid">
                 <div class="scoreCard">
@@ -107,61 +104,114 @@
             <div id="problem"><h2></h2></div>
             <br />
             <h4>Input Answers:</h4>
-            <div class="w3-container" style="padding-left: 20px">
-                <label for="quadHorizShiftDir">▶Horizontal Shift:</label>
-                <select id="quadHorizShiftDir">
+            <div class="w3-container" style="padding-left: 20px" id="horizShiftInput">
+                <label for="horizShiftDir">▶Horizontal Shift:</label>
+                <select id="horizShiftDir">
                     <option value="0">None</option>
                     <option value="1">Right</option>
                     <option value="-1">Left</option>
                 </select>
-                by <input id="quadHorizShiftVal" style="width: 50px" />
+                by <input id="horizShiftVal" style="width: 50px" />
+                <br />
             </div>
-            <br />
-            <div class="w3-container" style="padding-left: 20px">
-                <label for="quadVertShiftDir">▶Vertical Shift:</label>
-                <select id="quadVertShiftDir">
+            
+            <div class="w3-container" style="padding-left: 20px" id="vertShiftInput">
+                <label for="vertShiftDir">▶Vertical Shift:</label>
+                <select id="vertShiftDir">
                     <option value="0">None</option>
                     <option value="1">Up</option>
                     <option value="-1">Down</option>
                 </select>
-                by <input id="quadVertShiftVal" style="width: 50px" />
+                by <input id="vertShiftVal" style="width: 50px" />
+                <br/>
             </div>
 
-            <br />
-            <div class="w3-container" style="padding-left: 20px" id="horCompInput">
-                <label for="quadHorizCompDir">▶Horizontal Compression:</label>
-                <select id="quadHorizCompDir">
-                    <option value="0">None</option>
-                    <option value="1">Compression</option>
-                    <option value="-1">Stretch</option>
-                </select>
-                by <input id="quadHorizCompVal" style="width: 50px" />
-                with
-                <select id="quadHorizRef">
-                    <option value="0">No reflection</option>
-                    <option value="1">Reflection</option>
-                </select>
-            </div>
-
-            <br />
-            <div class="w3-container" style="padding-left: 20px">
-                <label for="quadVertCompDir">▶Vertical Stretch:</label>
-                <select id="quadVertCompDir">
+            <div class="w3-container" style="padding-left: 20px" id="vertCompInput">
+                <label for="vertCompDir">▶Vertical Stretch:</label>
+                <select id="vertCompDir">
                     <option value="0">None</option>
                     <option value="1">Stretch</option>
                     <option value="-1">Compression</option>
                 </select>
-                by <input id="quadVertCompVal" style="width: 50px" />
+                by <input id="vertCompVal" style="width: 50px" />
                 with
-                <select id="quadVertRef">
+                <select id="vertRef">
+                    <option value="0">No reflection</option>
+                    <option value="1">Reflection</option>
+                </select>
+                <br/>
+            </div>
+
+            <div class="w3-container" style="padding-left: 20px" id="horizCompInput">
+                <label for="horizCompDir">▶Horizontal Compression:</label>
+                <select id="horizCompDir">
+                    <option value="0">None</option>
+                    <option value="1">Compression</option>
+                    <option value="-1">Stretch</option>
+                </select>
+                by <input id="horizCompVal" style="width: 50px" />
+                with
+                <select id="horizRef">
+                    <option value="0">No reflection</option>
+                    <option value="1">Reflection</option>
+                </select>
+                <br/>
+            </div>
+
+            <div class="w3-container" style="padding-left: 20px; display: none" id="amp">
+                <label for="sineVertCompDir">▶Amplitude:</label>
+                <select id="sineVertCompDir">
+                    <option value="0">None</option>
+                    <option value="1">Stretch</option>
+                    <option value="-1">Compression</option>
+                </select>
+                by <input id="sineVertCompVal" style="width: 50px" />
+                with
+                <select id="sineVertRef">
+                    <option value="0">No reflection</option>
+                    <option value="1">Reflection</option>
+                </select>
+                <br/>
+            </div>
+
+            <div class="w3-container" style="padding-left: 20px; display: none" id="mid">
+                <label for="sineVertShiftDir">▶Midline:</label>
+                <select id="sineVertShiftDir">
+                    <option value="0">None</option>
+                    <option value="1">Up</option>
+                    <option value="-1">Down</option>
+                </select>
+                by <input id="sineVertShiftVal" style="width: 50px" />
+                <br/>
+            </div>
+            
+            <div class="w3-container" style="padding-left: 20px; display: none" id="phase">
+                <label for="sineHorizShiftDir">▶Phase Shift:</label>
+                <select id="sineHorizShiftDir">
+                    <option value="0">None</option>
+                    <option value="1">Right</option>
+                    <option value="-1">Left</option>
+                </select>
+                by <input id="sineHorizShiftVal" style="width: 50px" />
+                <br/>
+            </div>
+
+            <div class="w3-container" style="padding-left: 20px; display: none" id="freq">
+                <label for="sineHorizCompDir">▶Frequency:</label>
+                <select id="sineHorizCompDir">
+                    <option value="0">None</option>
+                    <option value="1">Compression</option>
+                    <option value="-1">Stretch</option>
+                </select>
+                by <input id="sineHorizCompVal" style="width: 50px" />
+                with
+                <select id="sineHorizRef">
                     <option value="0">No reflection</option>
                     <option value="1">Reflection</option>
                 </select>
             </div>
 
             <br /><br />
-            <button onclick="check()" id="check" style="visibility: hidden">Check Answer</button
-            ><button onclick="nextProb()" id="nextProb" style="visibility: hidden">Next Problem</button> <br /><br />
             <div id="debug"></div>
         </div>
     </body>

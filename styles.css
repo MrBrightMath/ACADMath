@@ -218,6 +218,15 @@ button {
     font-size: 24px;
 }
 
+.next {
+    color: white;
+    background-color: #0B9A6D;
+}
+
+.start {
+    background-color: #7BBD00;
+}
+
 /* The switch - the box around the slider */
 .switch {
     position: relative;

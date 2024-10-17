@@ -171,15 +171,15 @@ function toggleInputs(useTrig, useB) {
         document.getElementById("vertShiftInput").style.display = "none";
         document.getElementById("horizCompInput").style.display = "none";
         document.getElementById("vertCompInput").style.display = "none";
-        document.getElementById("amp").style.display = "inline";
-        document.getElementById("mid").style.display = "inline";
-        document.getElementById("phase").style.display = "inline";
-        document.getElementById("freq").style.display = "inline";
+        document.getElementById("amp").style.display = "";
+        document.getElementById("mid").style.display = "";
+        document.getElementById("phase").style.display = "";
+        document.getElementById("freq").style.display = "";
     } else {
-        document.getElementById("horizShiftInput").style.display = "inline";
-        document.getElementById("vertShiftInput").style.display = "inline";
-        document.getElementById("horizCompInput").style.display = "inline";
-        document.getElementById("vertCompInput").style.display = "inline";
+        document.getElementById("horizShiftInput").style.display = "";
+        document.getElementById("vertShiftInput").style.display = "";
+        document.getElementById("horizCompInput").style.display = "";
+        document.getElementById("vertCompInput").style.display = "";
         document.getElementById("amp").style.display = "none";
         document.getElementById("mid").style.display = "none";
         document.getElementById("phase").style.display = "none";
@@ -754,104 +754,6 @@ function check() {
             document.getElementById(arrayToTest[i][0]).style.backgroundColor = "lightgreen";
         }
     }
-
-    /*if (document.getElementById("horizShiftDir").value != hsd) {
-        allCorrect = false;
-        document.getElementById("horizShiftDir").style.backgroundColor = "lightcoral";
-    } else {
-        document.getElementById("horizShiftDir").style.backgroundColor = "lightgreen";
-    }
-
-    if (Math.abs(document.getElementById("horizShiftVal").value) != Math.abs(h)) {
-        allCorrect = false;
-        document.getElementById("horizShiftVal").style.backgroundColor = "lightcoral";
-    } else {
-        document.getElementById("horizShiftVal").style.backgroundColor = "lightgreen";
-    }
-
-    if (document.getElementById("vertShiftDir").value != vsd) {
-        allCorrect = false;
-        document.getElementById("vertShiftDir").style.backgroundColor = "lightcoral";
-    } else {
-        document.getElementById("vertShiftDir").style.backgroundColor = "lightgreen";
-    }
-
-    if (Math.abs(document.getElementById("vertShiftVal").value) != Math.abs(k)) {
-        allCorrect = false;
-        document.getElementById("vertShiftVal").style.backgroundColor = "lightcoral";
-    } else {
-        document.getElementById("vertShiftVal").style.backgroundColor = "lightgreen";
-    }
-
-    if (useB) {
-        if (document.getElementById("horizCompDir").value != hcd) {
-            allCorrect = false;
-            document.getElementById("horizCompDir").style.backgroundColor = "lightcoral";
-        } else {
-            document.getElementById("horizCompDir").style.backgroundColor = "lightgreen";
-        }
-
-        if (document.getElementById("horizCompVal").value.includes("/")) {
-            var dataB = document.getElementById("horizCompVal").value.split("/"),
-                numOneB = dataB[0],
-                numTwoB = dataB[1],
-                checkB = numOneB / numTwoB;
-            if (Math.abs(checkB) != Math.abs(b)) {
-                allCorrect = false;
-                document.getElementById("horizCompVal").style.backgroundColor = "lightcoral";
-            } else {
-                document.getElementById("horizCompVal").style.backgroundColor = "lightgreen";
-            }
-        } else {
-            if (Math.abs(document.getElementById("horizCompVal").value) != Math.abs(b)) {
-                allCorrect = false;
-                document.getElementById("horizCompVal").style.backgroundColor = "lightcoral";
-            } else {
-                document.getElementById("horizCompVal").style.backgroundColor = "lightgreen";
-            }
-        }
-        if (document.getElementById("horizRef").value != hr) {
-            allCorrect = false;
-            document.getElementById("horizRef").style.backgroundColor = "lightcoral";
-        } else {
-            document.getElementById("horizRef").style.backgroundColor = "lightgreen";
-        }
-    }
-
-    if (document.getElementById("vertCompDir").value != vcd) {
-        allCorrect = false;
-        document.getElementById("vertCompDir").style.backgroundColor = "lightcoral";
-    } else {
-        document.getElementById("vertCompDir").style.backgroundColor = "lightgreen";
-    }
-
-    if (document.getElementById("vertCompVal").value.includes("/")) {
-        var dataA = document.getElementById("vertCompVal").value.split("/"),
-            numOneA = dataA[0],
-            numTwoA = dataA[1],
-            checkA = numOneA / numTwoA;
-        if (Math.abs(checkA) != Math.abs(a)) {
-            allCorrect = false;
-            document.getElementById("vertCompVal").style.backgroundColor = "lightcoral";
-        } else {
-            document.getElementById("vertCompVal").style.backgroundColor = "lightgreen";
-        }
-    } else {
-        if (Math.abs(document.getElementById("vertCompVal").value) != Math.abs(a)) {
-            allCorrect = false;
-            document.getElementById("vertCompVal").style.backgroundColor = "lightcoral";
-        } else {
-            document.getElementById("vertCompVal").style.backgroundColor = "lightgreen";
-        }
-    }
-
-    if (document.getElementById("vertRef").value != vr) {
-        allCorrect = false;
-        document.getElementById("vertRef").style.backgroundColor = "lightcoral";
-    } else {
-        document.getElementById("vertRef").style.backgroundColor = "lightgreen";
-    }
-    */
 
     if (allCorrect) {
         isCorrect(true);

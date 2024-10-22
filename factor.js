@@ -86,12 +86,12 @@ function startFresh() {
     resetScoreboard();
     clearResult();
     nextProb();
-    document.getElementById('factoredForm').style.visibility = 'visible';
 }
 
 function nextProb() {
     zero1 = Math.floor(Math.random()*21) - 10;
     zero2 = Math.floor(Math.random()*21) - 10;
+    
     if (zero1 == 0 && zero2 == 0) {
         while (zero2 == 0) {
             zero2 = Math.floor(Math.random()*21) - 10;
@@ -134,6 +134,11 @@ function nextProb() {
     MathJax.typeset();
     
     document.getElementById('factoredForm').value = '';
+    document.getElementById('zero1').value = '';
+    document.getElementById('zero2').value = '';
+    document.getElementById("factoredForm").style.backgroundColor = "white";
+    document.getElementById("zero1").style.backgroundColor = "white";
+    document.getElementById("zero2").style.backgroundColor = "white";
     
     clearResult();
 }
@@ -170,15 +175,39 @@ function check() {
         secondFactor = '(x-' + Math.abs(zero2) + ')';
     }
     
-    if (testZero1 == zero1 && testZero2 == zero2) {
-        displayedQuad = String.raw`\(f(x)=x^2` + linearTerm + constantTerm + '=' + firstFactor + secondFactor + String.raw`\)`;
-        isCorrect(true);
-    } else if (testZero1 == zero2 && testZero2 == zero1) {
-        displayedQuad = String.raw`\(f(x)=x^2` + linearTerm + constantTerm + '=' + firstFactor + secondFactor + String.raw`\)`;
-        isCorrect(true);
+    var allCorrect = true;
+    if (testZero1 != zero1 && testZero1 != zero2) {
+        allCorrect = false;
+        document.getElementById("factoredForm").style.backgroundColor = "lightcoral";
     } else {
-        isCorrect(false);
+        document.getElementById("factoredForm").style.backgroundColor = "lightgreen";
     }
+    if (testZero2 != zero1 && testZero2 != zero2) {
+        allCorrect = false;
+        document.getElementById("factoredForm").style.backgroundColor = "lightcoral";
+    } else {
+        document.getElementById("factoredForm").style.backgroundColor = "lightgreen";
+    }
+    
+    var typedZero1 = document.getElementById("zero1"), typedZero2 = document.getElementById("zero2");
+    if (typedZero1.value != zero1 && typedZero1.value != zero2) {
+        allCorrect = false;
+        typedZero1.style.backgroundColor = "lightcoral";
+    } else {
+        typedZero1.style.backgroundColor = "lightgreen";
+    }
+    if (typedZero2.value != zero1 && typedZero2.value != zero2) {
+        allCorrect = false;
+        typedZero2.style.backgroundColor = "lightcoral";
+    } else {
+        typedZero2.style.backgroundColor = "lightgreen";
+    }
+    
+    if (allCorrect) {
+        displayedQuad = String.raw`\(f(x)=x^2` + linearTerm + constantTerm + '=' + firstFactor + secondFactor + String.raw`\)`;
+    }
+    
+    isCorrect(allCorrect);
     
     document.getElementById('problem').innerHTML = displayedQuad;
     MathJax.typeset();
@@ -309,6 +338,11 @@ function nextProb2() {
     MathJax.typeset();
     
     document.getElementById('factoredForm2').value = '';
+    document.getElementById('zero12').value = '';
+    document.getElementById('zero22').value = '';
+    document.getElementById("factoredForm2").style.backgroundColor = "white";
+    document.getElementById("zero12").style.backgroundColor = "white";
+    document.getElementById("zero22").style.backgroundColor = "white";
     
     clearResult2();
 }
@@ -355,16 +389,68 @@ function check2() {
     possibleSolutions.push(firstFactor + secondFactor);
     possibleSolutions.push(secondFactor + firstFactor);
     
+    var allCorrect = true;
     if (possibleSolutions.includes(factorToTest)) {
         var a = m1 * m2;
         displayedQuad2 = String.raw`\(f(x)=` + a + String.raw`x^2` + linearTerm2 + constantTerm2 + "=" + factorToTest + String.raw`\)`;
-        isCorrect2(true);
+        document.getElementById("factoredForm2").style.backgroundColor = "lightgreen";
     } else {
-        isCorrect2(false);
+        document.getElementById("factoredForm2").style.backgroundColor = "lightcoral";
+        allCorrect = false;
     }
+    
+    if (document.getElementById("zero12").value != simplifyFraction(-b1, m1).typed && document.getElementById("zero12").value != simplifyFraction(-b2, m2).typed) {
+        allCorrect = false;
+        document.getElementById("zero12").style.backgroundColor = "lightcoral";
+    } else {
+        document.getElementById("zero12").style.backgroundColor = "lightgreen";
+    }
+
+    if (document.getElementById("zero22").value != simplifyFraction(-b1, m1).typed && document.getElementById("zero22").value != simplifyFraction(-b2, m2).typed) {
+        allCorrect = false;
+        document.getElementById("zero22").style.backgroundColor = "lightcoral";
+    } else {
+        document.getElementById("zero22").style.backgroundColor = "lightgreen";
+    }
+
+    isCorrect2(allCorrect);
     
     document.getElementById('problem2').innerHTML = displayedQuad2;
     MathJax.typeset();
 
     updateScore2();
+}
+
+function simplifyFraction(numerator, denonminator) {
+    var mathjax = "",
+        typed = "",
+        sign = "";
+    if (numerator != 0) {
+        for (var i = Math.max(numerator, denonminator); i > 1; i--) {
+            if (numerator % i == 0 && denonminator % i == 0) {
+                numerator /= i;
+                denonminator /= i;
+            }
+        }
+        if (numerator < 0) {
+            sign = "-";
+        }
+        if (denonminator === 1) {
+            mathjax = numerator.toString();
+            typed = numerator.toString();
+        } else {
+            mathjax = sign + String.raw`\frac{` + Math.abs(numerator).toString() + "}{" + denonminator.toString() + "}";
+            typed = numerator.toString() + "/" + denonminator.toString();
+        }
+    } else {
+        mathjax = 0;
+        typed = 0;
+    }
+    return {
+        value: numerator / denonminator,
+        numerator: numerator,
+        denominator: denonminator,
+        mathjax: mathjax,
+        typed: typed
+    };
 }

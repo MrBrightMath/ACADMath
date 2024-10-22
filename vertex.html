@@ -46,20 +46,20 @@
                 <h3>Vertex of a Quadratic Function in Vertex Form</h3>
                 <p>\(f(x)=a(x-h)^2+k\) has a vertex at \((h,k)\)</p>
             </div>
-            <button onclick="startFresh()" id="startFresh">Start</button>
+            <button onclick="startFresh()" class="start" id="startFresh">Start</button><button onclick="debug()" style="visibility: hidden">Debug</button><button onclick="check()" class="next" id="check" style="visibility: hidden;">Check Answer</button><button onclick="nextProb()" class="next" id="nextProb" style="visibility: hidden;">Next Problem</button>
             <div><br/></div>
             <div id="newScores" class="scoreGrid">
                 <div class="scoreCard">
-                    <scoreText>CORRECT:</scoreText>
-                    <br /><scoreText id="correct">0</scoreText>
+                    <span class="scoreText">CORRECT:</span>
+                    <br /><span class="scoreText" id="correct">0</span>
                 </div>
                 <div class="scoreCard">
-                    <scoreText>GUESSES:</scoreText>
-                    <br /><scoreText id="guesses">0</scoreText>
+                    <span class="scoreText">GUESSES:</span>
+                    <br /><span class="scoreText" id="guesses">0</span>
                 </div>
                 <div class="scoreCard">
-                    <scoreText>PERCENT:</scoreText>
-                    <br /><scoreText id="percent">0</scoreText>
+                    <span class="scoreText">PERCENT:</span>
+                    <br /><span class="scoreText" id="percent">0</span>
                 </div>
             </div>
             
@@ -68,7 +68,6 @@
             <br />
             <input id="quadVertex" style="visibility: hidden;">
             <br /><br />
-            <button onclick="check()" id="check" style="visibility: hidden;">Check Answer</button><button onclick="nextProb()" id="nextProb" style="visibility: hidden;">Next Problem</button>
             <br /><br />
         </div>
         
@@ -78,20 +77,20 @@
                 <p>\(f(x)=ax^2+bx+c\) has a vertex at \(x=\frac{-b}{2a}\)</p>
                 <p>Find the \(x\) coordinate of the vertex.</p>
             </div>
-            <button onclick="startFresh3()" id="startFresh3">Start</button>
+            <button onclick="startFresh3()" class="start" id="startFresh3">Start</button><button onclick="debug3()" style="visibility: hidden">Debug</button><button onclick="check3()" class="next" id="check3" style="visibility: hidden;">Check Answer</button><button onclick="nextProb3()" class="next" id="nextProb3" style="visibility: hidden;">Next Problem</button>
             <div><br/></div>
             <div id="newScores3" class="scoreGrid">
                 <div class="scoreCard">
-                    <scoreText>CORRECT:</scoreText>
-                    <br /><scoreText id="correct3">0</scoreText>
+                    <span class="scoreText">CORRECT:</span>
+                    <br /><span class="scoreText" id="correct3">0</span>
                 </div>
                 <div class="scoreCard">
-                    <scoreText>GUESSES:</scoreText>
-                    <br /><scoreText id="guesses3">0</scoreText>
+                    <span class="scoreText">GUESSES:</span>
+                    <br /><span class="scoreText" id="guesses3">0</span>
                 </div>
                 <div class="scoreCard">
-                    <scoreText>PERCENT:</scoreText>
-                    <br /><scoreText id="percent3">0</scoreText>
+                    <span class="scoreText">PERCENT:</span>
+                    <br /><span class="scoreText" id="percent3">0</span>
                 </div>
             </div>
             
@@ -100,7 +99,6 @@
             <br />
             <p>\(x=\) <input id="quadVertex3" style="visibility: hidden;"></p>
             <br /><br />
-            <button onclick="check3()" id="check3" style="visibility: hidden;">Check Answer</button><button onclick="nextProb3()" id="nextProb3" style="visibility: hidden;">Next Problem</button>
             <br /><br />
         </div>
         
@@ -109,20 +107,20 @@
                 <h3>Vertex of an Absolute Value Function</h3>
                 <p>\(f(x)=a|x-h|+k\) has a vertex at \((h,k)\)</p>
             </div>
-            <button onclick="startFresh2()" id="startFresh2">Start</button>
+            <button onclick="startFresh2()" class="start" id="startFresh2">Start</button><button onclick="debug2()" style="visibility: hidden">Debug</button><button onclick="check2()" class="next" id="check2" style="visibility: hidden;">Check Answer</button><button onclick="nextProb2()" class="next" id="nextProb2" style="visibility: hidden;">Next Problem</button>
             <div><br/></div>
             <div id = "newScores2" class="scoreGrid">
                 <div class="scoreCard">
-                    <scoreText>CORRECT:</scoreText>
-                    <br /><scoreText id="correct2">0</scoreText>
+                    <span class="scoreText">CORRECT:</span>
+                    <br /><span class="scoreText" id="correct2">0</span>
                 </div>
                 <div class="scoreCard">
-                    <scoreText>GUESSES:</scoreText>
-                    <br /><scoreText id="guesses2">0</scoreText>
+                    <span class="scoreText">GUESSES:</span>
+                    <br /><span class="scoreText" id="guesses2">0</span>
                 </div>
                 <div class="scoreCard">
-                    <scoreText>PERCENT:</scoreText>
-                    <br /><scoreText id="percent2">0</scoreText>
+                    <span class="scoreText">PERCENT:</span>
+                    <br /><span class="scoreText" id="percent2">0</span>
                 </div>
             </div>
             
@@ -131,7 +129,6 @@
             <br />
             <input id="absVertex" style="visibility: hidden;">
             <br /><br />
-            <button onclick="check2()" id="check2" style="visibility: hidden;">Check Answer</button><button onclick="nextProb2()" id="nextProb2" style="visibility: hidden;">Next Problem</button>
             <br /><br />
         </div>
         

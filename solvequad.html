@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Solving Quadratics</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="styles.css" />
+        <script src="solvequad.js"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <div class="w3-container spartan">
+            <h1>
+                <a href="index.html"><i class="fa fa-home"></i></a> ACAD Math Apps
+            </h1>
+            <img src="Images/Spartan-Logo2.png" height="50" class="logo" />
+        </div>
+
+        <!-- Body -->
+        <div class="w3-container">
+            <h2>Solving Quadratics</h2>
+            <p>Click START to generate a random quadratic equation to solve.</p>
+            <p>All answers should be in lowest terms and simplest radical form.  That means if you get an answer like:</p>
+            <p>\(x=\frac{28\pm\sqrt{320}}{12}\)</p>
+            <p>It is really:</p>
+            <p>\(x=\frac{28\pm\sqrt{320}}{12}=\frac{28\pm8\sqrt{5}}{12}=\frac{4(7\pm2\sqrt{5})}{4(3)}=\frac{7\pm2\sqrt{5}}{3}\)</p>
+            <p>And should be typed it as <b>(2+√2)/3</b> as the solution for \(x_1\) and <b>(2+√2)/3</b> for \(x_2\).  Note that you need the parentheses around the numerator.</p>
+            <p>If you type "sqrt", it will be replaced with √, and if you type "no", it will be replaced with ∅ to represent no solution.  If there is only one solution, put the ∅ as the solution for \(x_2\).</p>
+
+            <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
+                <h3>Best Methods Based on Type of Quadratic</h3>
+                <ul>
+                    <li><b>Standard Form:</b> \(ax^2+bx+c=0\)
+                        <br/>▹Try factoring or graphing first<br/>
+                        <br/>▹If that doesn't work, use the quadratic formula: \(x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\)<br/><br/></li>
+                    <li><b>Vertex Form:</b> \(a(x-h)^2+k=0\)
+                        <br/>▹Use inverse operations</li>
+                </ul>
+            </div>
+            <div>
+                <h2>Choose Settings</h2>
+                <label for="solutionMethod">▶Solution Method:</label>
+                <select name="solutionMethod" id="solutionMethod">
+                    <option value="1">Factoring/Graphing</option>
+                    <option value="2">Inverse Operations</option>
+                    <option value="3">Quadratic Formula</option>
+                    <option value="4">Random</option>
+                </select>
+                <br />
+                <label for="aValueRange">▶\(a\) Value Range:</label>
+                <select name="aValueRange" id="aValueRange">
+                    <option value="1">a = 1</option>
+                    <option value="2">2 &lt; a &lt; 6</option>
+                    <option value="3">Random</option>
+                </select>
+                <br />
+                <br />
+            </div>
+            <button onclick="startFresh()" class="start" id="startFresh" tabindex="1">Start</button
+            ><button onclick="debug()" style="visibility: visible">Debug</button
+            ><button onclick="check()" class="start" id="check" style="visibility: hidden" tabindex="4">Check Answer</button
+            ><button onclick="nextProb()" class="start" id="nextProb" style="visibility: hidden" tabindex="5">Next Problem</button>
+            <div><br /></div>
+            <div id="newScores" class="scoreGrid">
+                <div class="scoreCard">
+                    <span class="scoreText">CORRECT:</span>
+                    <br /><span class="scoreText" id="correct">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">GUESSES:</span>
+                    <br /><span class="scoreText" id="guesses">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">PERCENT:</span>
+                    <br /><span class="scoreText" id="percent">0</span>
+                </div>
+            </div>
+
+            <div id="result"><h2>--</h2></div>
+            <div id="problem"><h2>--</h2></div>
+            <br />
+            <label for="xSol1">\(x_1=\)</label>
+            <input id="xSol1" name="xSol1" onkeyup="replaceSymbols(this)" tabindex="2"/>&emsp;&emsp;
+            <br/><br/>
+            <label for="xSol2">\(x_2=\)</label>
+            <input id="xSol2" name="xSol2" onkeyup="replaceSymbols(this)" tabindex="3"/>
+            <br /><br />
+
+            <br /><br />
+        </div>
+    </body>
+</html>

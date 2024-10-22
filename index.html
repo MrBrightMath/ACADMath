@@ -9,227 +9,409 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
             rel="stylesheet" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
-            rel="stylesheet" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap"
-            rel="stylesheet" />
-        <link
-            rel="stylesheet"
-            href="https://www.w3schools.com/w3css/4/w3.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="flickity.css" />
         <script src="script.js"></script>
+        <script src="flickity.js"></script>
     </head>
-    
+
     <body>
         <!-- Header -->
         <div class="w3-container spartan">
-            <h1><a href="index.html"><i class="fa fa-home"></i></a> ACAD Math Apps</h1>
+            <h1>
+                <a href="index.html"><i class="fa fa-home"></i></a> ACAD Math Apps
+            </h1>
             <img src="Images/Spartan-Logo2.png" height="50" class="logo" />
         </div>
-        
+
         <!-- Body -->
         <div class="w3-container">
             <p>Choose an app to practice below.</p>
-            <div class="eqGrid">
-                <div class="card" style="background-color: #008208">
-                    <div class="w3-container">
-                        <p></p>
-                    </div>
-                    <div class="w3-container">
-                        <img src="Images/Graph.svg" width="70px" style="display: block; margin-left: auto; margin-right: auto; margin-top: auto;">
-                    </div>
-                    <div class="w3-container">
-                        <a href="parentfunctions.html" class="appTitle"><p class="appTitle">Parent Functions</p></a>
+            <div class="topicGrid">
+                <div>
+                    <h2>Quadratics</h2>
+                    <div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true, "cellAlign": "center" }'>
+                        <div class="gallery-cell">
+                            <div class="card card2">
+                                <div class="w3-container">
+                                    <p></p>
+                                </div>
+                                <div class="w3-container">
+                                    <a href="factor.html"
+                                        ><img
+                                            src="Images/Zeros.svg"
+                                            width="70px"
+                                            style="display: block; margin-left: auto; margin-right: auto; margin-top: auto"
+                                    /></a>
+                                </div>
+                                <div class="w3-container">
+                                    <a href="factor.html" class="appTitle"><p class="appTitle">Factoring Quadratics</p></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gallery-cell">
+                            <div class="card card2">
+                                <div class="w3-container">
+                                    <p></p>
+                                </div>
+                                <div class="w3-container">
+                                    <a href="completesquare.html"
+                                        ><img
+                                            src="Images/Vertex.svg"
+                                            width="70px"
+                                            style="display: block; margin-left: auto; margin-right: auto; margin-top: auto"
+                                    /></a>
+                                </div>
+                                <div class="w3-container">
+                                    <a href="completesquare.html" class="appTitle"
+                                        ><p class="appTitle">Completing the Square</p></a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-cell">
+                            <div class="card card2">
+                                <div class="w3-container">
+                                    <p></p>
+                                </div>
+                                <div class="w3-container">
+                                    <a href="vertex.html"
+                                        ><img
+                                            src="Images/parabolic-andrejs-kirma-flaticon.png"
+                                            width="70px"
+                                            style="display: block; margin-left: auto; margin-right: auto; margin-top: auto"
+                                    /></a>
+                                </div>
+                                <div class="w3-container">
+                                    <a href="vertex.html" class="appTitle"><p class="appTitle">Find the Vertex</p></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-cell">
+                            <div class="card card2">
+                                <div class="w3-container">
+                                    <p></p>
+                                </div>
+                                <div class="w3-container">
+                                    <a href="discrim.html"
+                                        ><img
+                                            src="Images/Discrim.svg"
+                                            width="70px"
+                                            style="display: block; margin-left: auto; margin-right: auto; margin-top: auto"
+                                    /></a>
+                                </div>
+                                <div class="w3-container">
+                                    <a href="discrim.html" class="appTitle"
+                                        ><p class="appTitle">Identify the Discriminant</p></a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-cell">
+                            <div class="card card2">
+                                <div class="w3-container">
+                                    <p></p>
+                                </div>
+                                <div class="w3-container">
+                                    <a href="transform.html"
+                                        ><img
+                                            src="Images/parabolic-neg-andrejs-kirma-flaticon.png"
+                                            width="70px"
+                                            style="display: block; margin-left: auto; margin-right: auto; margin-top: auto"
+                                    /></a>
+                                </div>
+                                <div class="w3-container">
+                                    <a href="transform.html" class="appTitle"><p class="appTitle">Transform Functions</p></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-cell">
+                            <div class="card card2">
+                                <div class="w3-container">
+                                    <p></p>
+                                </div>
+                                <div class="w3-container">
+                                    <a href="solvequad.html"
+                                        ><img
+                                            src="Images/X-Squared.svg"
+                                            width="70px"
+                                            style="display: block; margin-left: auto; margin-right: auto; margin-top: auto"
+                                    /></a>
+                                </div>
+                                <div class="w3-container">
+                                    <a href="solvequad.html" class="appTitle"><p class="appTitle">Solve Quadratics</p></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="card" style="background-color: #7BBD00">
-                    <div class="w3-container">
-                        <p></p>
-                    </div>
-                    <div class="w3-container">
-                        <img src="Images/Zeros.svg" width="70px" style="display: block; margin-left: auto; margin-right: auto; margin-top: auto;">
-                    </div>
-                    <div class="w3-container">
-                        <a href="factor.html" class="appTitle"><p class="appTitle">Factoring Quadratics</p></a>
-                    </div>
-                </div>
-                <div class="card" style="background-color: #0B9A6D">
-                    <div class="w3-container">
-                        <p></p>
-                    </div>
-                    <div class="w3-container">
-                        <img src="Images/Vertex.svg" width="70px" style="display: block; margin-left: auto; margin-right: auto; margin-top: auto;">
-                    </div>
-                    <div class="w3-container">
-                        <a href="completesquare.html" class="appTitle"><p class="appTitle">Completing the Square</p></a>
-                    </div>
-                </div>
-                <div class="card" style="background-color: #18453B">
-                    <div class="w3-container">
-                        <p></p>
-                    </div>
-                    <div class="w3-container">
-                        <img src="Images/Root.svg" width="70px" style="display: block; margin-left: auto; margin-right: auto; margin-top: auto;">
-                    </div>
-                    <div class="w3-container">
-                        <a href="simplestradical.html" class="appTitle"><p class="appTitle">Simplest Radical Form</p></a>
+                <div>
+                    <h2>ABS Value</h2>
+                    <div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true, "cellAlign": "center" }'>
+                <div class="gallery-cell">
+                    <div class="card card3">
+                        <div class="w3-container">
+                            <p></p>
+                        </div>
+                        <div class="w3-container">
+                            <a href="vertex.html"
+                                ><img
+                                    src="Images/parabolic-andrejs-kirma-flaticon.png"
+                                    width="70px"
+                                    style="display: block; margin-left: auto; margin-right: auto; margin-top: auto"
+                            /></a>
+                        </div>
+                        <div class="w3-container">
+                            <a href="vertex.html" class="appTitle"><p class="appTitle">Find the Vertex</p></a>
+                        </div>
                     </div>
                 </div>
-                <div class="card" style="background-color: #008208">
-                    <div class="w3-container">
-                        <p></p>
-                    </div>
-                    <div class="w3-container">
-                        <img src="Images/quadrant-freepik.png" width="70px" style="display: block; margin-left: auto; margin-right: auto; margin-top: auto;">
-                    </div>
-                    <div class="w3-container">
-                        <a href="unitcircle.html" class="appTitle"><p class="appTitle">Full Unit Circle</p></a>
+                <div class="gallery-cell">
+                    <div class="card card3">
+                        <div class="w3-container">
+                            <p></p>
+                        </div>
+                        <div class="w3-container">
+                            <a href="transform.html"
+                                ><img
+                                    src="Images/parabolic-neg-andrejs-kirma-flaticon.png"
+                                    width="70px"
+                                    style="display: block; margin-left: auto; margin-right: auto; margin-top: auto"
+                            /></a>
+                        </div>
+                        <div class="w3-container">
+                            <a href="transform.html" class="appTitle"><p class="appTitle">Transform Functions</p></a>
+                        </div>
                     </div>
                 </div>
-                <div class="card" style="background-color: #7BBD00">
+            </div>
+                </div>
+                <div>
+                    <h2>Numbers</h2>
+                    <div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true, "cellAlign": "center" }'>
+                <div class="gallery-cell">
+                    <div class="card card4">
+                        <div class="w3-container">
+                            <p></p>
+                        </div>
+                        <div class="w3-container">
+                            <a href="rounding.html"
+                                ><img
+                                    src="Images/number-1-freepik.png"
+                                    width="70px"
+                                    style="display: block; margin-left: auto; margin-right: auto; margin-top: auto"
+                            /></a>
+                        </div>
+                        <div class="w3-container">
+                            <a href="rounding.html" class="appTitle"><p class="appTitle">Rounding Numbers</p></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-cell">
+                    <div class="card card4">
+                        <div class="w3-container">
+                            <p></p>
+                        </div>
+                        <div class="w3-container">
+                            <a href="simplestradical.html"
+                                ><img
+                                    src="Images/Root.svg"
+                                    width="70px"
+                                    style="display: block; margin-left: auto; margin-right: auto; margin-top: auto"
+                            /></a>
+                        </div>
+                        <div class="w3-container">
+                            <a href="simplestradical.html" class="appTitle"
+                                ><p class="appTitle">Simplest Radical Form</p></a
+                            >
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-cell">
+                    <div class="card card4">
+                        <div class="w3-container">
+                            <p></p>
+                        </div>
+                        <div class="w3-container">
+                            <a href="simplestradical.html"
+                                ><img
+                                    src="Images/letter-i.png"
+                                    width="70px"
+                                    style="display: block; margin-left: auto; margin-right: auto; margin-top: auto"
+                            /></a>
+                        </div>
+                        <div class="w3-container">
+                            <a href="ipowers.html" class="appTitle"><p class="appTitle">Simplify Powers of i</p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+                <div>
+                    <h2>Geometry</h2>
+                    <div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true, "cellAlign": "center" }'>
+                <div class="gallery-cell">
+                    <div class="card card5">
+                        <div class="w3-container">
+                            <p></p>
+                        </div>
+                        <div class="w3-container">
+                            <a href="parentfunctions.html"
+                                ><img
+                                    src="Images/Graph.svg"
+                                    width="70px"
+                                    style="display: block; margin-left: auto; margin-right: auto; margin-top: auto"
+                            /></a>
+                        </div>
+                        <div class="w3-container">
+                            <a href="parentfunctions.html" class="appTitle"><p class="appTitle">Parent Functions</p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+                <div>
+                    <h2>Trigonometry</h2>
+                    <div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true, "cellAlign": "center" }'>
+                <div class="gallery-cell">
+                    <div class="card card6">
                     <div class="w3-container">
                         <p></p>
                     </div>
                     <div class="w3-container">
-                        <img src="Images/quadrant-moniruldislam-flaticon.png" width="70px" style="display: block; margin-left: auto; margin-right: auto; margin-top: auto;">
+                        <a href="quadone.html"><img
+                            src="Images/quadrant-moniruldislam-flaticon.png"
+                            width="70px"
+                            style="display: block; margin-left: auto; margin-right: auto; margin-top: auto" /></a>
                     </div>
                     <div class="w3-container">
                         <a href="quadone.html" class="appTitle"><p class="appTitle">Unit Circle Quad One</p></a>
                     </div>
                 </div>
-                <div class="card" style="background-color: #0B9A6D">
+                </div>
+                <div class="gallery-cell">
+                    <div class="card card6">
                     <div class="w3-container">
                         <p></p>
                     </div>
                     <div class="w3-container">
-                        <img src="Images/parabolic-andrejs-kirma-flaticon.png" width="70px" style="display: block; margin-left: auto; margin-right: auto; margin-top: auto;">
+                        <a href="unitcircle.html"><img
+                            src="Images/quadrant-freepik.png"
+                            width="70px"
+                            style="display: block; margin-left: auto; margin-right: auto; margin-top: auto" /></a>
                     </div>
                     <div class="w3-container">
-                        <a href="vertex.html" class="appTitle"><p class="appTitle">Find the Vertex</p></a>
+                        <a href="unitcircle.html" class="appTitle"><p class="appTitle">Full Unit Circle</p></a>
                     </div>
                 </div>
-                <div class="card" style="background-color: #18453B">
-                    <div class="w3-container">
-                        <p></p>
-                    </div>
-                    <div class="w3-container">
-                        <img src="Images/number-1-freepik.png" width="70px" style="display: block; margin-left: auto; margin-right: auto; margin-top: auto;">
-                    </div>
-                    <div class="w3-container">
-                        <a href="rounding.html" class="appTitle"><p class="appTitle">Rounding Numbers</p></a>
-                    </div>
                 </div>
-                <div class="card" style="background-color: #008208">
+                <div class="gallery-cell">
+                    <div class="card card6">
                     <div class="w3-container">
                         <p></p>
                     </div>
                     <div class="w3-container">
-                        <img src="Images/parabolic-neg-andrejs-kirma-flaticon.png" width="70px" style="display: block; margin-left: auto; margin-right: auto; margin-top: auto;">
+                        <a href="transform.html"><img
+                            src="Images/parabolic-neg-andrejs-kirma-flaticon.png"
+                            width="70px"
+                            style="display: block; margin-left: auto; margin-right: auto; margin-top: auto" /></a>
                     </div>
                     <div class="w3-container">
                         <a href="transform.html" class="appTitle"><p class="appTitle">Transform Functions</p></a>
                     </div>
                 </div>
-                <div class="card" style="background-color: #7BBD00">
-                    <div class="w3-container">
-                        <p></p>
-                    </div>
-                    <div class="w3-container">
-                        <img src="Images/Zeros.svg" width="70px" style="display: block; margin-left: auto; margin-right: auto; margin-top: auto;">
-                    </div>
-                    <div class="w3-container">
-                        <a href="discrim.html" class="appTitle"><p class="appTitle">Identify the Discriminant</p></a>
-                    </div>
-                </div>
-                <div class="card" style="background-color: #0B9A6D">
-                    <div class="w3-container">
-                        <p></p>
-                    </div>
-                    <div class="w3-container">
-                        <img src="Images/letter-i.png" width="70px" style="display: block; margin-left: auto; margin-right: auto; margin-top: auto;">
-                    </div>
-                    <div class="w3-container">
-                        <a href="ipowers.html" class="appTitle"><p class="appTitle">Simplify Powers of i</p></a>
-                    </div>
                 </div>
             </div>
-            
+                </div>
+            </div>
+            <br/><br/>
+            <div>
             <p>There's more apps coming later this semester!</p>
             <ul style="font-family: Arial; font-size: small">
                 <li>End Behavior Identification</li>
                 <li>Zero Behavior Identification</li>
-                <li>Powers of i, binomial expansion of i, complex conjugate</li>
+                <li>Complex and radical conjugate</li>
                 <li>Rationalize denominators</li>
                 <li>Evaluate Trig Functions Using Unit Circle</li>
             </ul>
+                </div>
+            <div style="display: none;">
             <p>Reorganize into categories?</p>
             <ul style="font-family: Arial; font-size: xx-small">
                 <li>Quadratics</li>
-                <ul>
+                <li><ul>
                     <li>Complete Square</li>
                     <li>Find Vertex</li>
                     <li>Discriminant and Zeros</li>
                     <li>Transformations</li>
                     <li>Factoring</li>
                     <li>*Solve EQ</li>
-                </ul>
+                </ul></li>
                 <li>Absolute Value</li>
-                <ul>
+                <li><ul>
                     <li>Find Vertex</li>
                     <li>Transformations</li>
                     <li>*Solve EQ</li>
-                </ul>
+                </ul></li>
                 <li>Numbers</li>
-                <ul>
+                <li><ul>
                     <li>Rounding</li>
                     <li>Simplest Radical Form</li>
                     <li>*Powers of i and Complex Numbers</li>
                     <li>*Complex and Radical Conjugates</li>
-                </ul>
+                </ul></li>
                 <li>Trig</li>
-                <ul>
+                <li><ul>
                     <li>Unit Circle - Quadrant 1</li>
                     <li>Unit Circle - Full Circle</li>
                     <li>*Evaluate Trig Functions with Unit Circle</li>
                     <li>Transformations</li>
-                </ul>
+                </ul></li>
                 <li>Geometry</li>
-                <ul>
+                <li><ul>
                     <li>Parent Functions</li>
                     <li>*Identify Pythag Triples</li>
                     <li>*Special Right Triangles</li>
                     <li>*Find Center of Circle EQ</li>
                     <li>*Area - dropdown with circle, trapezoid, parallelogram, triangle</li>
                     <li>*Volume - dropdown with prism (rect and tri), cylinder, cone, pyramid, sphere</li>
-                </ul>
+                </ul></li>
                 <li>Polynomials</li>
-                <ul>
+                <li><ul>
                     <li>*End Behavior</li>
                     <li>*Zero Behavior</li>
                     <li>*Sum/Difference of Cubes</li>
-                </ul>
+                </ul></li>
                 <li>Systems of Linear Equations</li>
-                <ul>
+                <li><ul>
                     <li>*Solve</li>
                     <li>*Word Problems to Equations</li>
                     <li>*Matrix Operations</li>
-                </ul>
+                </ul></li>
                 <li>Exponential/Log</li>
-                <ul>
+                <li><ul>
                     <li>*Convert Between Exp/Log</li>
                     <li>*Evaluate Log</li>
                     <li>*Exponent Expression Simplification</li>
-                </ul>
+                </ul></li>
             </ul>
-            <br>
-            <br>
-            <p style="font-size: x-small">Unit Circle, Number-1 icon by Freepik, Quadrant icon by moniruldislam, Parabolic by Andrejs Kirma from Flaticon</p>
+            </div>
+            <br />
+            <br />
+            <p style="font-size: x-small">
+                Unit Circle, Number-1 icon by Freepik, Quadrant icon by moniruldislam, Parabolic by Andrejs Kirma from
+                Flaticon
+            </p>
         </div>
-        
     </body>
 </html>

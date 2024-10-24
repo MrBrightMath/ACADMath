@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Factoring with the AC Method</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap"
+            rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://www.w3schools.com/w3css/4/w3.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="styles.css" />
+        <script src="acfactor.js"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <div class="w3-container spartan">
+            <h1><a href="index.html"><i class="fa fa-home"></i></a> ACAD Math Apps</h1>
+            <img src="Images/Spartan-Logo2.png" height="50" class="logo" />
+        </div>
+        
+        <!-- Body -->
+        <div class="w3-container">
+            <h2>Factoring Quadratics with the AC Method</h2>
+            <p>
+                Click the button to generate a quadratic function. Factor the quadratic and type your solution in the box.
+                Then click the button at the bottom to check your answer.
+            </p>
+
+            <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
+                <h3>AC Method</h3>
+                <ol>
+                    <li style="font-family: Roboto; font-size: small;">Think: What multiplies to make \(a*c\) and adds to make \(b\)?</li>
+                    <li style="font-family: Roboto; font-size: small;">Split the middle term. i.e. Rewrite \(bx\) using those factors.</li>
+                    <li style="font-family: Roboto; font-size: small;">Factor by Grouping: Factor out a GCF from the first two terms and a GCF from the second two terms.</li>
+                    <li style="font-family: Roboto; font-size: small;">Factor out the common parentheses.</li>
+                </ol>
+            </div>
+            <button onclick="startFresh()" class="start" id="startFresh">Start</button><button onclick="debug()" style="visibility: hidden">Debug</button><button onclick="check()" class="next" id="check" style="visibility: hidden;" tabindex="9">Check Answer</button><button onclick="nextProb()" class="next" id="nextProb" style="visibility: hidden;" tabindex="10">Next Problem</button>
+            <div><br/></div>
+            <div id = "newScores" class="scoreGrid">
+                <div class="scoreCard">
+                    <span class="scoreText">CORRECT:</span>
+                    <br /><span class="scoreText" id="correct">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">GUESSES:</span>
+                    <br /><span class="scoreText" id="guesses">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">PERCENT:</span>
+                    <br /><span class="scoreText" id="percent">0</span>
+                </div>
+            </div>
+            
+            <div id ="result"><h2>--</h2></div>
+            <div id="problem"><h2>--</h2></div>
+            <br />
+            <label for="aTimesC">\(ac\) : &emsp;</label>
+            <input id="aTimesC" style="width: 70px;" tabindex="1">
+            <br/><br/>
+            <label for="factor1">Factors that multiply to \(ac\) and add to \(b\) : &emsp;</label>
+            <input id="factor1" style="width: 50px;" tabindex="2"> and <input id="factor2" style="width: 50px;" tabindex="3">
+            <br/><br/>
+            <label for="splitTerm">Split the middle term: &emsp;</label>
+            <input id="splitTerm" tabindex="4">
+            <br/><br/>
+            <label for="GCFFactored">Factor by Grouping: &emsp;</label>
+            <input id="GCFFactored" tabindex="5">
+            <br/><br/>
+            <label for ="factoredForm">Final Factored Form:&emsp;</label>
+            <input id="factoredForm" tabindex="6">
+            <br /><br />
+            <label for="zero1">Zeros: &emsp;\(x_1=\)</label>
+            <input id="zero1" style="width: 70px;" tabindex="7">
+            <label for="zero2">&emsp;\(x_2=\)</label>
+            <input id="zero2" style="width: 70px;" tabindex="8">
+            <br /><br />
+        </div>
+        
+    </body>
+</html>

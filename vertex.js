@@ -320,6 +320,195 @@ function check3() {
     updateScore3();
 }
 
+// BEGIN FACTORED FORM VERTEX JS
+// Scoreboard JS
+var numberCorrect4 = 0, numberGuesses4 = 0, hasIncreased4 = 0;
+
+function resetScoreboard4() {
+    numberCorrect4 = 0;
+    hasIncreased4 = 0;
+    numberGuesses4 = 0;
+    document.getElementById('correct4').innerHTML = '0';
+    document.getElementById('guesses4').innerHTML = '0';
+    document.getElementById('percent4').innerHTML = '0';
+}
+
+function updateScore4() {
+    document.getElementById('correct4').innerHTML = numberCorrect4;
+    document.getElementById('guesses4').innerHTML = numberGuesses4;
+    document.getElementById('percent4').innerHTML = Math.floor(numberCorrect4/numberGuesses4 * 100) + '%';
+}
+
+// RESULT
+var whichIncorrect4 = 0, incorrectResponses4 = ["Not quite, but keep at it!", "I'm sorry, but give it another go!", "No, but don't give up!"];
+
+function isCorrect4(correct) {
+    if (hasIncreased4 == 0) {
+        numberGuesses4++;
+    }
+    if (correct) {
+        numberCorrect4++;
+        hasIncreased4 = 1;
+        document.getElementById('result4').innerHTML = '<h2 style="color: green">Correct!</h2>';
+        document.getElementById('check4').style.visibility = 'hidden';
+        document.getElementById('nextProb4').style.visibility = 'visible';
+    } else {
+        document.getElementById('result4').innerHTML = '<h2 style="color: darkred">' + incorrectResponses3[whichIncorrect3] + '</h2>';
+        whichIncorrect4++;
+        if (whichIncorrect4 == incorrectResponses4.length) {
+            whichIncorrect4 = 0;
+        }
+    }
+    document.getElementById('result4').style.visibility = 'visible';
+    
+    if (numberCorrect4 == 10) {
+        throwConfetti4();
+    }
+}
+
+function clearResult4() {
+    document.getElementById('result4').innerHTML = '<h2 style="color: green">--</h2>';
+    document.getElementById('result4').style.visibility = 'hidden';
+    hasIncreased4 = 0;
+    document.getElementById('check4').style.visibility = 'visible';
+    document.getElementById('nextProb4').style.visibility = 'hidden';
+    document.getElementById('startFresh4').innerHTML = 'Start Fresh';
+}
+
+function throwConfetti4() {
+    const fullscreenDiv = document.createElement('div');
+    fullscreenDiv.style.position = 'fixed';
+    fullscreenDiv.style.top = 0;
+    fullscreenDiv.style.left = 0;
+    fullscreenDiv.style.width = '100%';
+    fullscreenDiv.style.height = '100%';
+    fullscreenDiv.style.backgroundColor = 'transparent';
+    fullscreenDiv.style.zIndex = 9999;
+    
+    const gifImage = document.createElement('img');
+    gifImage.src = 'Images/confetti.gif';
+    gifImage.style.width = '100%';
+    gifImage.style.height = '100%';
+    gifImage.style.objectFit = 'contain';
+    
+    fullscreenDiv.appendChild(gifImage);
+    
+    document.body.appendChild(fullscreenDiv);
+    
+    const cleanUp = setTimeout(cleanUpConfetti4, 2000, fullscreenDiv);
+}
+
+function cleanUpConfetti4(thing) {
+    document.body.removeChild(thing);
+}
+
+// BEGIN QUAD FACTORED VERTEX JS
+var a4 = 0, z1 = 0, z2 = 0, displayedQuad4 = '';
+
+function startFresh4() {
+    resetScoreboard4();
+    clearResult4();
+    nextProb4();
+    document.getElementById('quadVertex4').style.visibility = 'visible';
+}
+
+function nextProb4() {
+    a4 = Math.floor(Math.random()*9) - 4;
+    while (a4 == 0) {
+        a4 = Math.floor(Math.random()*9) - 4;
+    }
+    z1 = Math.floor(Math.random()*41) - 20;
+    z2 = Math.floor(Math.random()*41) - 20;
+    
+    if (z1 == 0 & z2 == 0) {
+        displayedQuad4 = "x^2";
+    } else if (z1 == 0) {
+        if (z2 > 0) {
+            displayedQuad4 = "x(x-" + z2 + ")";
+        } else {
+            displayedQuad4 = "x(x+" + Math.abs(z2) + ")";
+        }
+    } else if (z2 == 0) {
+        if (z1 > 0) {
+            displayedQuad4 = "x(x-" + z1 + ")";
+        } else {
+            displayedQuad4 = "x(x+" + Math.abs(z1) + ")";
+        }
+    } else {
+        if (z1 > 0) {
+            displayedQuad4 = "(x-" + z1 + ")";
+        } else {
+            displayedQuad4 = "(x+" + Math.abs(z1) + ")";
+        }
+        if (z2 > 0) {
+            displayedQuad4 += "(x-" + z2 + ")";
+        } else {
+            displayedQuad4 += "(x+" + Math.abs(z2) + ")";
+        }
+    }
+
+    if (a3 == 1) {
+        displayedQuad4 = String.raw`\(f(x)=` + displayedQuad4 + String.raw`\)`;
+    } else if (a3 == -1) {
+        displayedQuad4 = String.raw`\(f(x)=-` + displayedQuad4 + String.raw`\)`;
+    } else {
+        displayedQuad4 = String.raw`\(f(x)=` + a4 + displayedQuad4 + String.raw`\)`;
+    }
+    
+    document.getElementById('problem4').innerHTML = displayedQuad4;
+    MathJax.typeset();
+    
+    document.getElementById('quadVertex4').value = '';
+    
+    clearResult4();
+}
+
+function simplifyFraction(numerator, denonminator) {
+    var mathjax = "",
+        typed = "",
+        sign = "";
+    if (numerator != 0) {
+        for (var i = Math.max(numerator, denonminator); i > 1; i--) {
+            if (numerator % i == 0 && denonminator % i == 0) {
+                numerator /= i;
+                denonminator /= i;
+            }
+        }
+        if (numerator < 0) {
+            sign = "-";
+        }
+        if (denonminator === 1) {
+            mathjax = numerator.toString();
+            typed = numerator.toString();
+        } else {
+            mathjax = sign + String.raw`\frac{` + Math.abs(numerator).toString() + "}{" + denonminator.toString() + "}";
+            typed = numerator.toString() + "/" + denonminator.toString();
+        }
+    } else {
+        mathjax = 0;
+        typed = 0;
+    }
+    return {
+        value: numerator / denonminator,
+        numerator: numerator,
+        denominator: denonminator,
+        mathjax: mathjax,
+        typed: typed
+    };
+}
+
+function check4() {
+    var vertexToTest4 = document.getElementById('quadVertex4').value;
+    
+    if (vertexToTest4 == simplifyFraction(z1+z2, 2).typed || vertexToTest4 == simplifyFraction(z1+z2,2).value) {
+        isCorrect4(true);
+    } else {
+        isCorrect4(false);
+    }
+
+    updateScore4();
+}
+
 // BEGIN ABS VERTEX JS
 
 // Scoreboard JS

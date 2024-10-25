@@ -135,6 +135,36 @@
         
         <div class="w3-container">
             <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
+                <h3>Vertex of a Quadratic Function in a Random Form</h3>
+                <p>Find the \(x\) coordinate of the vertex.</p>
+            </div>
+            <button onclick="startFresh5()" class="start" id="startFresh5">Start</button><button onclick="debug5()" style="visibility: hidden">Debug</button><button onclick="check5()" class="next" id="check5" style="visibility: hidden;">Check Answer</button><button onclick="nextProb5()" class="next" id="nextProb5" style="visibility: hidden;">Next Problem</button>
+            <div><br/></div>
+            <div id="newScores5" class="scoreGrid">
+                <div class="scoreCard">
+                    <span class="scoreText">CORRECT:</span>
+                    <br /><span class="scoreText" id="correct5">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">GUESSES:</span>
+                    <br /><span class="scoreText" id="guesses5">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">PERCENT:</span>
+                    <br /><span class="scoreText" id="percent5">0</span>
+                </div>
+            </div>
+            
+            <div id="result5"><h2> </h2></div>
+            <div id="problem5"><h2> </h2></div>
+            <br />
+            <p><label for="quadVertex5" id="label5">\(x=\) </label><input id="quadVertex5" style="visibility: hidden;"></p>
+            <br /><br />
+            <br /><br />
+        </div>
+        
+        <div class="w3-container">
+            <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
                 <h3>Vertex of an Absolute Value Function</h3>
                 <p>\(f(x)=a|x-h|+k\) has a vertex at \((h,k)\)</p>
             </div>

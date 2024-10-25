@@ -50,6 +50,7 @@ function clearResult() {
     document.getElementById('check').style.visibility = 'visible';
     document.getElementById('nextProb').style.visibility = 'hidden';
     document.getElementById('startFresh').innerHTML = 'Start Fresh';
+    document.getElementById('startFresh').style.backgroundColor = 'lightcoral';
 }
 
 function throwConfetti() {
@@ -190,6 +191,7 @@ function clearResult3() {
     document.getElementById('check3').style.visibility = 'visible';
     document.getElementById('nextProb3').style.visibility = 'hidden';
     document.getElementById('startFresh3').innerHTML = 'Start Fresh';
+    document.getElementById('startFresh3').style.backgroundColor = 'lightcoral';
 }
 
 function throwConfetti3() {
@@ -373,6 +375,7 @@ function clearResult4() {
     document.getElementById('check4').style.visibility = 'visible';
     document.getElementById('nextProb4').style.visibility = 'hidden';
     document.getElementById('startFresh4').innerHTML = 'Start Fresh';
+    document.getElementById('startFresh4').style.backgroundColor = 'lightcoral';
 }
 
 function throwConfetti4() {
@@ -509,6 +512,212 @@ function check4() {
     updateScore4();
 }
 
+// BEGIN RANDOM FORM VERTEX JS
+// Scoreboard JS
+var numberCorrect5 = 0, numberGuesses5 = 0, hasIncreased5 = 0;
+
+function resetScoreboard5() {
+    numberCorrect5 = 0;
+    hasIncreased5 = 0;
+    numberGuesses5 = 0;
+    document.getElementById('correct5').innerHTML = '0';
+    document.getElementById('guesses5').innerHTML = '0';
+    document.getElementById('percent5').innerHTML = '0';
+}
+
+function updateScore5() {
+    document.getElementById('correct5').innerHTML = numberCorrect5;
+    document.getElementById('guesses5').innerHTML = numberGuesses5;
+    document.getElementById('percent5').innerHTML = Math.floor(numberCorrect5/numberGuesses5 * 100) + '%';
+}
+
+// RESULT
+var whichIncorrect5 = 0, incorrectResponses5 = ["Not quite, but keep at it!", "I'm sorry, but give it another go!", "No, but don't give up!"];
+
+function isCorrect5(correct) {
+    if (hasIncreased5 == 0) {
+        numberGuesses5++;
+    }
+    if (correct) {
+        numberCorrect5++;
+        hasIncreased5 = 1;
+        document.getElementById('result5').innerHTML = '<h2 style="color: green">Correct!</h2>';
+        document.getElementById('check5').style.visibility = 'hidden';
+        document.getElementById('nextProb5').style.visibility = 'visible';
+    } else {
+        document.getElementById('result5').innerHTML = '<h2 style="color: darkred">' + incorrectResponses3[whichIncorrect3] + '</h2>';
+        whichIncorrect5++;
+        if (whichIncorrect5 == incorrectResponses5.length) {
+            whichIncorrect5 = 0;
+        }
+    }
+    document.getElementById('result5').style.visibility = 'visible';
+    
+    if (numberCorrect5 == 10) {
+        throwConfetti();
+    }
+}
+
+function clearResult5() {
+    document.getElementById('result5').innerHTML = '<h2 style="color: green">--</h2>';
+    document.getElementById('result5').style.visibility = 'hidden';
+    hasIncreased5 = 0;
+    document.getElementById('check5').style.visibility = 'visible';
+    document.getElementById('nextProb5').style.visibility = 'hidden';
+    document.getElementById('startFresh5').innerHTML = 'Start Fresh';
+    document.getElementById('startFresh5').style.backgroundColor = 'lightcoral';
+}
+
+var probType = Math.floor(Math.random()*3), displayedQuad5 = '', randA = Math.floor(Math.random()*9) - 4, randB = Math.floor(Math.random()*41)-20, randC = Math.floor(Math.random()*41)-20, randH = Math.floor(Math.random()*41)-20, randK = Math.floor(Math.random()*41)-20, randZ1 = Math.floor(Math.random()*41) - 20, randZ2 = Math.floor(Math.random()*41) - 20;
+
+function startFresh5() {
+    resetScoreboard5();
+    clearResult5();
+    nextProb5();
+    document.getElementById('quadVertex5').style.visibility = 'visible';
+}
+
+function nextProb5() {
+    randA = Math.floor(Math.random()*9) - 4;
+    while (randA == 0) {
+        randA = Math.floor(Math.random()*9) - 4;
+    }
+    randB = Math.floor(Math.random()*41) - 20;
+    randC = Math.floor(Math.random()*41) - 20;
+    randH = Math.floor(Math.random()*41) - 20;
+    randK = Math.floor(Math.random()*41) - 20;
+    randZ1 = Math.floor(Math.random()*41) - 20;
+    randZ2 = Math.floor(Math.random()*41) - 20;
+    probType = Math.floor(Math.random()*3);
+    
+    if (probType == 0) {
+        if (randZ1 == 0 & randZ2 == 0) {
+            displayedQuad5 = "x^2";
+        } else if (randZ1 == 0) {
+            if (randZ2 > 0) {
+                displayedQuad5 = "x(x-" + randZ2 + ")";
+            } else {
+                displayedQuad5 = "x(x+" + Math.abs(randZ2) + ")";
+            }
+        } else if (randZ2 == 0) {
+            if (randZ1 > 0) {
+                displayedQuad5 = "x(x-" + randZ1 + ")";
+            } else {
+                displayedQuad5 = "x(x+" + Math.abs(randZ1) + ")";
+            }
+        } else {
+            if (randZ1 > 0) {
+                displayedQuad5 = "(x-" + randZ1 + ")";
+            } else {
+                displayedQuad5 = "(x+" + Math.abs(randZ1) + ")";
+            }
+            if (randZ2 > 0) {
+                displayedQuad5 += "(x-" + randZ2 + ")";
+            } else {
+                displayedQuad5 += "(x+" + Math.abs(randZ2) + ")";
+            }
+        }
+
+        if (randA == 1) {
+            displayedQuad5 = String.raw`\(f(x)=` + displayedQuad5 + String.raw`\)`;
+        } else if (randA == -1) {
+            displayedQuad5 = String.raw`\(f(x)=-` + displayedQuad5 + String.raw`\)`;
+        } else {
+            displayedQuad5 = String.raw`\(f(x)=` + randA + displayedQuad5 + String.raw`\)`;
+        }
+        document.getElementById("label5").innerHTML = String.raw`\(x=\) `;
+    } else if (probType == 1) {
+        if (randA == 1) {
+            displayedQuad5 = String.raw`\(f(x)=x^2`;
+        } else if (randA == -1) {
+            displayedQuad5 = String.raw`\(f(x)=-x^2`;
+        } else {
+            displayedQuad5 = String.raw`\(f(x)=` + randA + String.raw`x^2`;
+        }
+
+        if (randB > 0) {
+            if (randB == 1) {
+                displayedQuad5 = displayedQuad5 + '+x';
+            } else {
+                displayedQuad5 = displayedQuad5 + '+' + randB + 'x';
+            }        
+        } else if (randB < 0) {
+            if (randB == -1) {
+                displayedQuad5 = displayedQuad5 + '-x';
+            } else {
+                displayedQuad5 = displayedQuad5 + '-' + -randB + 'x';
+            }
+
+        }
+
+        if (randC > 0) {
+            displayedQuad5 = displayedQuad5 + '+' + randC;
+        } else if (randC < 0) {
+            displayedQuad5 = displayedQuad5 + '-' + -randC;
+        }
+        displayedQuad5 = displayedQuad5 + String.raw`\)`;
+        document.getElementById("label5").innerHTML = String.raw`\(x=\) `;
+    } else {
+        if (randH == 0) {
+            displayedQuad5 = String.raw`\(f(x)=` + randA + String.raw`x^2`;
+        } else if (randH > 0) {
+            displayedQuad5 = String.raw`\(f(x)=` + randA + String.raw`(x-` + randH + String.raw`)^2`;
+        } else {
+            displayedQuad5 = String.raw`\(f(x)=` + randA + String.raw`(x+` + -randH + String.raw`)^2`;
+        }
+
+        if (randK > 0) {
+            displayedQuad5 = displayedQuad5 + String.raw`+` + randK + String.raw`\)`;
+        } else if (randK < 0) {
+            displayedQuad5 = displayedQuad5 + randK + String.raw`\)`;
+        } else {
+            displayedQuad5 = displayedQuad5 + String.raw`\)`;
+        }
+        document.getElementById("label5").innerHTML = String.raw`\((h,k)=\) `;
+    }
+    
+    document.getElementById('problem5').innerHTML = displayedQuad5;
+    MathJax.typeset();
+    
+    document.getElementById('quadVertex5').value = '';
+    
+    clearResult5();
+}
+
+function check5() {
+    var vertexToTest5 = document.getElementById('quadVertex5').value;
+    
+    if (probType == 0) {
+        if (vertexToTest5 == simplifyFraction(randZ1+randZ2, 2).typed || vertexToTest5 == simplifyFraction(randZ1+randZ2,2).value) {
+            isCorrect5(true);
+        } else {
+            isCorrect5(false);
+        }
+    } else if (probType == 1) {
+        var sign = 1, frac = 1;
+        if (simplifyFraction(-randB, 2*randA).value < 0) {
+            sign = -1;
+        } else {
+            sign = 1;
+        }
+        frac = simplifyFraction(sign*Math.abs(randB), 2*Math.abs(randA));
+        if (vertexToTest5 == frac.typed || vertexToTest5 == frac.value) {
+            isCorrect5(true);
+        } else {
+            isCorrect5(false);
+        }
+    } else {
+        if (_removeSpaces(vertexToTest5) == "(" + randH + "," + randK + ")" || _removeSpaces(vertexToTest5) == randH + "," + randK) {
+            isCorrect5(true);
+        } else {
+            isCorrect5(false);
+        }
+    }
+    
+
+    updateScore5();
+}
+
 // BEGIN ABS VERTEX JS
 
 // Scoreboard JS
@@ -563,6 +772,7 @@ function clearResult2() {
     document.getElementById('check2').style.visibility = 'visible';
     document.getElementById('nextProb2').style.visibility = 'hidden';
     document.getElementById('startFresh2').innerHTML = 'Start Fresh';
+    document.getElementById('startFresh2').style.backgroundColor = 'lightcoral';
 }
 
 var aa = 0, ah = 0, ak = 0, displayedQuad2 = '';

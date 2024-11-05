@@ -232,7 +232,6 @@ function check() {
     }
     groups.push(group1);
     groups.push(group2);
-    alert(group1 + "\n" + group2);
     
     var allCorrect = true;
     

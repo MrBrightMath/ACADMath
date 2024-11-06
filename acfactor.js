@@ -127,9 +127,19 @@ function nextProb() {
     document.getElementById('factoredForm').value = '';
     document.getElementById('zero1').value = '';
     document.getElementById('zero2').value = '';
+    document.getElementById('aTimesC').value = '';
+    document.getElementById('factor1').value = '';
+    document.getElementById('factor2').value = '';
+    document.getElementById('splitTerm').value = '';
+    document.getElementById('GCFFactored').value = '';
     document.getElementById("factoredForm").style.backgroundColor = "white";
     document.getElementById("zero1").style.backgroundColor = "white";
     document.getElementById("zero2").style.backgroundColor = "white";
+    document.getElementById("aTimesC").style.backgroundColor = "white";
+    document.getElementById("factor1").style.backgroundColor = "white";
+    document.getElementById("factor2").style.backgroundColor = "white";
+    document.getElementById("splitTerm").style.backgroundColor = "white";
+    document.getElementById("GCFFactored").style.backgroundColor = "white";
     
     clearResult();
 }
@@ -295,8 +305,10 @@ function check() {
 
     isCorrect(allCorrect);
     
-    document.getElementById('problem').innerHTML = displayedQuad;
-    MathJax.typeset();
+    if (allCorrect) {
+        document.getElementById('problem').innerHTML = displayedQuad;
+        MathJax.typeset();
+    }
 
     updateScore2();
 }

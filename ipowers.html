@@ -71,6 +71,37 @@
             <br /><br />
             
             <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
+                <h3>Complex Number Operations</h3>
+                <p>Remember that imaginary numbers can only be added with other imaginary numbers.  For example, \(3i+5i=8i\), but \(3i+5=3i+5\).</p>
+            </div>
+            <button onclick="startFresh3()" class="start" id="startFresh3">Start</button
+            ><button onclick="debug3()" style="visibility: hidden">Debug</button
+            ><button onclick="check3()" class="next" id="check3" style="visibility: hidden">Check Answer</button
+            ><button onclick="nextProb3()" class="next" id="nextProb3" style="visibility: hidden">Next Problem</button>
+            <div><br /></div>
+            <div id="newScores3" class="scoreGrid">
+                <div class="scoreCard">
+                    <span class="scoreText">CORRECT:</span>
+                    <br /><span class="scoreText" id="correct3">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">GUESSES:</span>
+                    <br /><span class="scoreText" id="guesses3">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">PERCENT:</span>
+                    <br /><span class="scoreText" id="percent3">0</span>
+                </div>
+            </div>
+
+            <div id="result3"><h2 style="color: darkgreen;">--</h2></div>
+            <div id="problem3">Problem will display here</div>
+            <br />
+            <label for="answerInput3">Type Answer Here:</label>
+            <input name="answerInput3" id="answerInput3"/>
+            <br /><br />
+            
+            <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
                 <h3>Powers of Complex Numbers</h3>
                 <ul>
                     <li>\(i^1 = i\)</li>
@@ -79,6 +110,8 @@
                     <li>\(i^4 = 1\)</li>
                 </ul>
                 <p>For higher powers, the pattern repeats.</p>
+                <p><b>Binomial Coefficients for \((x+y)^n\)</b></p>
+                <img src="Images/pascal.jpg" height="175px"/>
             </div>
             <button onclick="startFresh2()" class="start" id="startFresh2">Start</button
             ><button onclick="debug2()" style="visibility: hidden">Debug</button

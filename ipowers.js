@@ -365,7 +365,7 @@ function isCorrect2(correct) {
 function clearResult2() {
     document.getElementById("result2").innerHTML = '<h2 style="color: green">--</h2>';
     document.getElementById("result2").style.visibility = "hidden";
-    hasIncreased = 0;
+    hasIncreased2 = 0;
     document.getElementById("check2").style.visibility = "visible";
     document.getElementById("nextProb2").style.visibility = "hidden";
     document.getElementById("startFresh2").innerHTML = "Start Fresh";
@@ -477,7 +477,6 @@ function parseComplexInput(input) {
 function check2() {
     var allCorrect2 = false;
     currProb = expandBinomial(ra, ib, pw);
-    alert("expanded ok");
     // check that inputs match the answers
     try {
         const result = parseComplexInput(document.getElementById("answerInput2").value);
@@ -492,7 +491,6 @@ function check2() {
             allCorrect2 = false;
         }
         var temp = "(" + ra + ib + "i)^" + pw + "\n" + "Solution: " + currProb.latex + "\n" + "Real: " + currProb.real + "\nImag: " + currProb.imaginaryCoefficient + "\nParsed Real: " + result.real + "\nParsed Imag: " + result.imaginaryCoefficient;
-    alert(temp);
     } catch (error) {
         console.error(error.message);
         alert("Incorrect syntax in your answer");
@@ -500,4 +498,192 @@ function check2() {
 
     isCorrect2(allCorrect2);
     updateScore2();
+}
+
+// SET-UP
+var numberCorrect3 = 0,
+    numberGuesses3 = 0,
+    hasIncreased3 = 0;
+
+function resetScoreboard3() {
+    numberCorrect3 = 0;
+    hasIncreased3 = 0;
+    numberGuesses3 = 0;
+    document.getElementById("correct3").innerHTML = "0";
+    document.getElementById("guesses3").innerHTML = "0";
+    document.getElementById("percent3").innerHTML = "0";
+}
+
+function updateScore3() {
+    document.getElementById("correct3").innerHTML = numberCorrect3;
+    document.getElementById("guesses3").innerHTML = numberGuesses3;
+    document.getElementById("percent3").innerHTML = Math.floor((numberCorrect3 / numberGuesses3) * 100) + "%";
+}
+
+var whichIncorrect3 = 0,
+    incorrectResponses3 = [
+        "Not quite, but keep at it!",
+        "I'm sorry, but give it another go!",
+        "No, but don't give up!"
+    ];
+
+function isCorrect3(correct) {
+    if (hasIncreased3 == 0) {
+        numberGuesses3++;
+    }
+    if (correct) {
+        numberCorrect3++;
+        hasIncreased3 = 1;
+        document.getElementById("result3").innerHTML = '<h2 style="color: green">Correct!</h2>';
+        document.getElementById("check3").style.visibility = "hidden";
+        document.getElementById("nextProb3").style.visibility = "visible";
+    } else {
+        document.getElementById("result3").innerHTML =
+            '<h2 style="color: darkred">' + incorrectResponses3[whichIncorrect3] + "</h2>";
+        whichIncorrect3++;
+        if (whichIncorrect3 == incorrectResponses3.length) {
+            whichIncorrect3 = 0;
+        }
+    }
+    document.getElementById("result3").style.visibility = "visible";
+
+    if (numberCorrect3 == 10) {
+        throwConfetti();
+    }
+}
+
+function clearResult3() {
+    document.getElementById("result3").innerHTML = '<h2 style="color: green">--</h2>';
+    document.getElementById("result3").style.visibility = "hidden";
+    hasIncreased3 = 0;
+    document.getElementById("check3").style.visibility = "visible";
+    document.getElementById("nextProb3").style.visibility = "hidden";
+    document.getElementById("startFresh3").innerHTML = "Start Fresh";
+}
+
+function startFresh3() {
+    resetScoreboard3();
+    clearResult3();
+    nextProb3();
+}
+
+function randomSign() {
+    var sign = 1;
+    if (Math.random() < 0.5) {
+        sign = 1;
+    } else {
+        sign = -1;
+    }
+    return sign;
+}
+
+// PAGE SPECIFIC
+var funcToDisplay3 = "",
+    a1 = randomSign() * Math.floor(Math.random()*10) + 1,
+    b1 = randomSign() * Math.floor(Math.random()*10) + 1,
+    a2 = randomSign() * Math.floor(Math.random()*10) + 1,
+    b2 = randomSign() * Math.floor(Math.random()*10) + 1,
+    currentProblem3 = {
+        MJ: "",
+        Solution: ""
+    };
+
+function debug3() {
+    var temp = "";
+    alert(temp);
+}
+
+function nextProb3() {
+    // Build the problem here
+    a1 = randomSign() * (Math.floor(Math.random()*10) + 1);
+    b1 = randomSign() * (Math.floor(Math.random()*10) + 1);
+    a2 = randomSign() * (Math.floor(Math.random()*10) + 1);
+    b2 = randomSign() * (Math.floor(Math.random()*10) + 1);
+    var b1Signed = "+" + b1 +  "i", b2Signed = "+" + b2 + "i";
+    
+    if (b1 < 0) {
+        if (b1 == -1) {
+            b1Signed = "-i";
+        } else {
+            b1Signed = b1 + "i";
+        }
+    } else {
+        if (b1 == 1) {
+            b1Signed = "+i";
+        } else {
+            b1Signed = "+" + b1 + "i";
+        }
+    }
+    if (b2 < 0) {
+        if (b2 == -1) {
+            b2Signed = "-i";
+        } else {
+            b2Signed = b2 + "i";
+        }
+    } else {
+        if (b2 == 1) {
+            b2Signed = "+i";
+        } else {
+            b2Signed = "+" + b2 + "i";
+        }
+    }
+    
+    var operationType = Math.floor(Math.random()*3), realPart = 0, complexPart = 0;
+    if (operationType == 0) {
+        // Add
+        currentProblem3.MJ = String.raw`\((` + a1 + b1Signed + String.raw`)+(` + a2 + b2Signed + String.raw`)\)`;
+        realPart = a1 + a2;
+        complexPart = b1 + b2;
+    } else if (operationType == 1) {
+        // Subtract
+        currentProblem3.MJ = String.raw`\((` + a1 + b1Signed + String.raw`)-(` + a2 + b2Signed + String.raw`)\)`;
+        realPart = a1 - a2;
+        complexPart = b1 - b2;
+    } else {
+        // Multiply
+        currentProblem3.MJ = String.raw`\((` + a1 + b1Signed + String.raw`)(` + a2 + b2Signed + String.raw`)\)`;
+        realPart = a1 * a2 - b1 * b2;
+        complexPart = a1 * b2 + a2 * b1;
+    }
+    
+    if (realPart == 0) {
+        if (complexPart == 0) {
+            currentProblem3.Solution = 0;
+        } else {
+            currentProblem3.Solution = complexPart + "i";
+        }
+    } else {
+        if (complexPart == 0) {
+            currentProblem3.Solution = realPart;
+        } else {
+            if (complexPart > 0) {
+                currentProblem3.Solution = realPart.toString() + "+" + complexPart + "i";
+            } else {
+                currentProblem3.Solution = realPart.toString() + complexPart + "i";
+            }
+        }
+    }
+    funcToDisplay3 = currentProblem3.MJ;
+    clearResult3();
+    resetInputs3();
+}
+
+function resetInputs3() {
+    // Display the build function and reset the inputs
+    document.getElementById("problem3").innerHTML = funcToDisplay3;
+    MathJax.typeset();
+
+    // get inputs by ID and set .value to 0 or ""
+    document.getElementById("answerInput3").value = "";
+}
+
+function check3() {
+    var allCorrect3 = true;
+    // check that inputs match the answers
+    if (document.getElementById("answerInput3").value != currentProblem3.Solution) {
+        allCorrect3 = false;
+    }
+
+    isCorrect3(allCorrect3);
+    updateScore3();
 }

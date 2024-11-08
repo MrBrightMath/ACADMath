@@ -165,6 +165,9 @@ function replaceSymbols(inputElement) {
     if (inputElement.value.includes("deg")) {
         inputElement.value = inputElement.value.replace("deg", "°");
     }
+    if (inputElement.value.includes("^2")) {
+        inputElement.value = inputElement.value.replace("^2", "²");
+    }
 }
 
 // PAGE SPECIFIC
@@ -249,7 +252,7 @@ function simplifyPowerOfI(power) {
 
 // Function to expand and simplify (a + bi)^n and return in LaTeX + other components
 function expandBinomial(real, imag, n) {
-    let result = { real: 0, imag: 0 };
+    let result = { real: 0, imag: 0 }, term = { real: 0, imag: 0 };
 
     // Apply binomial theorem: (a + bi)^n = Σ [C(n, k) * a^(n-k) * (bi)^k]
     for (let k = 0; k <= n; k++) {
@@ -276,10 +279,13 @@ function expandBinomial(real, imag, n) {
         let imagPart = Math.pow(imag, k);
 
         // Multiply the real term and imaginary term for each k
-        let term = {
-            real: binomCoeff * realPart * imagPower,
-            imag: binomCoeff * realPart * imagPower
-        };
+        if (isImaginary) {
+            term.imag = binomCoeff * realPart * imagPart * imagPower;
+            term.real = 0;
+        } else {
+            term.real = binomCoeff * realPart * imagPart * imagPower;
+            term.imag = 0;
+        }
 
         // Add the term to the result
         result.real += term.real;
@@ -291,15 +297,20 @@ function expandBinomial(real, imag, n) {
     const finalImaginaryCoefficient = result.imag;
 
     // Format the result in LaTeX
-    var latexResult = finalReal;
+    var latexResult = "";
+    
+    if (finalReal != 0) {
+        latexResult = finalReal.toString();
+    }
+
     if (finalImaginaryCoefficient == 1) {
         latexResult = latexResult + "+i";
     } else if (finalImaginaryCoefficient == -1) {
         latexResult = latexResult + "-i";
     } else if (finalImaginaryCoefficient > 0) {
-        latexResult = latexResult + "+" + finalImaginaryCoefficient + "i";
+        latexResult = latexResult + "+" + finalImaginaryCoefficient.toString() + "i";
     } else if (finalImaginaryCoefficient < 0) {
-        latexResult = latexResult + finalImaginaryCoefficient + "i";
+        latexResult = latexResult + finalImaginaryCoefficient.toString() + "i";
     }
 
     // Return 3 components: LaTeX string, real part, imaginary coefficient
@@ -478,22 +489,8 @@ function check2() {
     var allCorrect2 = false;
     currProb = expandBinomial(ra, ib, pw);
     // check that inputs match the answers
-    try {
-        const result = parseComplexInput(document.getElementById("answerInput2").value);
-        if (result.real == currProb.real) {
-            allCorrect2 = true;
-        } else {
-            allCorrect2 = false;
-        }
-        if (result.imaginaryCoefficient == currProb.imaginaryCoefficient) {
-            allCorrect2 = true;
-        } else {
-            allCorrect2 = false;
-        }
-        var temp = "(" + ra + ib + "i)^" + pw + "\n" + "Solution: " + currProb.latex + "\n" + "Real: " + currProb.real + "\nImag: " + currProb.imaginaryCoefficient + "\nParsed Real: " + result.real + "\nParsed Imag: " + result.imaginaryCoefficient;
-    } catch (error) {
-        console.error(error.message);
-        alert("Incorrect syntax in your answer");
+    if (document.getElementById("answerInput2").value == currProb.latex) {
+        allCorrect2 = true;
     }
 
     isCorrect2(allCorrect2);

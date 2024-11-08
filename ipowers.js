@@ -647,16 +647,31 @@ function nextProb3() {
         if (complexPart == 0) {
             currentProblem3.Solution = 0;
         } else {
-            currentProblem3.Solution = complexPart + "i";
+            if (complexPart == 1) {
+                currentProblem3.Solution = "i";
+            } else if (complexPart == -1) {
+                currentProblem3.Solution = "-i";
+            } else {
+                currentProblem3.Solution = complexPart + "i";
+            }
+            
         }
     } else {
         if (complexPart == 0) {
             currentProblem3.Solution = realPart;
         } else {
             if (complexPart > 0) {
-                currentProblem3.Solution = realPart.toString() + "+" + complexPart + "i";
+                if (complexPart == 1) {
+                    currentProblem3.Solution = realPart.toString() + "+i";
+                } else {
+                    currentProblem3.Solution = realPart.toString() + "+" + complexPart + "i";
+                }                
             } else {
-                currentProblem3.Solution = realPart.toString() + complexPart + "i";
+                if (complexPart == -1) {
+                    currentProblem3.Solution = realPart.toString() + "-i";
+                } else {
+                    currentProblem3.Solution = realPart.toString() + complexPart + "i";
+                }
             }
         }
     }

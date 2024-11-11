@@ -241,11 +241,11 @@ function nextProb2() {
     if (oddB2) {
         ah = (Math.floor(Math.random()*40) - 20)/2;
     } else {
-        ah = Math.floor(Math.random()*40) - 20;
+        ah = Math.floor(Math.random()*21) - 10;
     }
     
-    ak = Math.floor(Math.random()*20) - 10;
-    aa = Math.floor(Math.random()*9) + 2;
+    ak = Math.floor(Math.random()*21) - 10;
+    aa = Math.floor(Math.random()*5) + 2;
     if (Math.random() < 0.5) {
         aa = -aa;
     }

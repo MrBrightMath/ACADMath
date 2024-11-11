@@ -328,5 +328,5 @@ function check2() {
     problem2.innerHTML = displayedQuad2;
     MathJax.typeset();
 
-    updateScore();
+    updateScore2();
 }

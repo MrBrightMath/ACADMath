@@ -112,7 +112,7 @@ function continuePracGrid() {
         graphRadio.value = shuffledPF[i][0];
         graphRadio.name = "pfGraph";
         var graphLabel = document.createElement("label");
-        graphLabel.htmlFor = "eq" + i;
+        graphLabel.htmlFor = "graph" + i;
         graphLabel.innerHTML = '<img src="Images/' + shuffledPF[i][3] + '" height="200" >';
         var newGraphDiv = document.createElement("div");
         newGraphDiv.className = "vertImg graphCard";

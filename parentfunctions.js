@@ -139,7 +139,7 @@ function nextProb() {
     nameRadio.style.visibility = "hidden";
     var nameLabel = document.createElement("label");
     nameLabel.htmlFor = "name0";
-    nameLabel.style.fontSize = "36px";
+    nameLabel.style.fontSize = "24px";
     var description = document.createTextNode(" " + shuffledPF[0][1]);
     nameLabel.appendChild(description);
     nameDiv.appendChild(nameRadio);
@@ -186,7 +186,7 @@ function nextProb() {
         graphRadio.name = "pfGraph";
         var graphLabel = document.createElement("label");
         graphLabel.htmlFor = "graph" + i;
-        graphLabel.innerHTML = '<img src="Images/' + shuffledPF[i][3] + '" height="200" >';
+        graphLabel.innerHTML = '<img src="Images/' + shuffledPF[i][3] + '" height="150" >';
         var newGraphDiv = document.createElement("div");
         newGraphDiv.className = "vertImg graphCard";
         newGraphDiv.appendChild(graphRadio);
@@ -383,7 +383,7 @@ function nextProb2() {
     nameRadio2.style.visibility = "hidden";
     var nameLabel2 = document.createElement("label");
     nameLabel2.htmlFor = "pcname0";
-    nameLabel2.style.fontSize = "36px";
+    nameLabel2.style.fontSize = "24px";
     var description2 = document.createTextNode(" " + shuffledPF2[0][1]);
     nameLabel2.appendChild(description2);
     nameDiv2.appendChild(nameRadio2);
@@ -430,7 +430,7 @@ function nextProb2() {
         graphRadio2.name = "pfGraph2";
         var graphLabel2 = document.createElement("label");
         graphLabel2.htmlFor = "pcgraph" + i;
-        graphLabel2.innerHTML = '<img src="Images/' + shuffledPF2[i][3] + '" height="200" >';
+        graphLabel2.innerHTML = '<img src="Images/' + shuffledPF2[i][3] + '" height="150" >';
         var newGraphDiv2 = document.createElement("div");
         newGraphDiv2.className = "vertImg graphCard";
         newGraphDiv2.appendChild(graphRadio2);

@@ -365,8 +365,8 @@ input:checked + .slider:before {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     border-radius: 5px;
-    width: 220px;
-    height: 220px;
+    width: 170px;
+    height: 160px;
     padding: 5px 5px;
         background: #fff;
 }
@@ -532,21 +532,21 @@ input:checked + .slider:before {
 
 .graph-gallery {
     background: #eee;
-    width: 400px;
-    height: 260px;
+    width: 350px;
+    height: 210px;
     align-content: center;
 }
 
 .graph-gallery2 {
     background: #eee;
-    width: 400px;
-    height: 260px;
+    width: 350px;
+    height: 210px;
     align-content: center;
 }
 
 .graph-gallery-cell {
-    width: 250px;
-    height: 240px;
+    width: 200px;
+    height: 190px;
     align-content: center;
     text-align: center;
     margin-block: 10px;

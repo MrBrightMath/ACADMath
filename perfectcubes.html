@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Perfect Cubes</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="styles.css" />
+        <script src="perfectcubes.js"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <div class="w3-container spartan">
+            <h1>
+                <a href="index.html"><i class="fa fa-home"></i></a> ACAD Math Apps
+            </h1>
+            <img src="Images/Spartan-Logo2.png" height="50" class="logo" />
+        </div>
+
+        <!-- Body -->
+        <div class="w3-container">
+            <h2>Perfect Cubes</h2>
+            <p>Practice to make sure you have your perfect cubes memorized.</p>
+
+            <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
+                <h3>Perfect Cubes in Order</h3>
+                <p>You need the first 10 perfect squares memorized.  This first practice app will give them to you in order, and you must get them all correct to earn a point.</p>
+            </div>
+            <button onclick="startFresh()" class="start" id="startFresh">Start</button
+            ><button onclick="debug()" style="visibility: hidden">Debug</button
+            ><button onclick="check()" class="next" id="check" style="visibility: hidden">Check Answer</button
+            ><button onclick="nextProb()" class="next" id="nextProb" style="visibility: hidden">Next Problem</button>
+            <div><br /></div>
+            <div id="newScores" class="scoreGrid">
+                <div class="scoreCard">
+                    <span class="scoreText">CORRECT:</span>
+                    <br /><span class="scoreText" id="correct">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">GUESSES:</span>
+                    <br /><span class="scoreText" id="guesses">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">PERCENT:</span>
+                    <br /><span class="scoreText" id="percent">0</span>
+                </div>
+            </div>
+
+            <div id="result"><h2></h2></div>
+            <br />
+            <table id="cbTable" style="visibility: hidden;">
+                <tr>
+                    <td>
+                        <label for="cb1">\(1^3=\)</label>
+                        <input id="cb1" data-solution="1" class="ucShort" tabindex="0"/>
+                    </td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="cb6">\(6^3=\)</label>
+                        <input id="cb6" data-solution="216" class="ucShort" tabindex="5"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="cb2">\(2^3=\)</label>
+                        <input id="cb2" data-solution="8" class="ucShort" tabindex="1"/>
+                    </td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="cb7">\(7^3=\)</label>
+                        <input id="cb7" data-solution="343" class="ucShort" tabindex="6"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="cb3">\(3^3=\)</label>
+                        <input id="cb3" data-solution="27" class="ucShort" tabindex="2"/>
+                    </td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="cb8">\(8^3=\)</label>
+                        <input id="cb8" data-solution="512" class="ucShort" tabindex="7"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="cb4">\(4^3=\)</label>
+                        <input id="cb4" data-solution="64" class="ucShort" tabindex="3"/>
+                    </td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="cb9">\(9^3=\)</label>
+                        <input id="cb9" data-solution="729" class="ucShort" tabindex="8"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="cb5">\(5^3=\)</label>
+                        <input id="cb5" data-solution="125" class="ucShort" tabindex="4"/>
+                    </td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="cb10">\(10^3=\)</label>
+                        <input id="cb10" data-solution="1000" class="ucShort" tabindex="9"/>
+                    </td>
+                </tr>
+            </table>
+
+            <br /><br />
+            
+            <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
+                <h3>Random Perfect Cubes</h3>
+            </div>
+            <button onclick="startFresh2()" class="start" id="startFresh2">Start</button
+            ><button onclick="debug2()" style="visibility: hidden">Debug</button
+            ><button onclick="check2()" class="next" id="check2" style="visibility: hidden">Check Answer</button
+            ><button onclick="nextProb2()" class="next" id="nextProb2" style="visibility: hidden">Next Problem</button>
+            <div><br /></div>
+            <div id="newScores2" class="scoreGrid">
+                <div class="scoreCard">
+                    <span class="scoreText">CORRECT:</span>
+                    <br /><span class="scoreText" id="correct2">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">GUESSES:</span>
+                    <br /><span class="scoreText" id="guesses2">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">PERCENT:</span>
+                    <br /><span class="scoreText" id="percent2">0</span>
+                </div>
+            </div>
+
+            <div id="result2"><h2>--</h2></div>
+            <label for="answerInput2" id="answerInput2Label">Problem will appear here</label>
+            <input id="answerInput2" class="ucShort"/>
+            <br /><br />
+            
+            <br/><br/>
+        </div>
+    </body>
+</html>

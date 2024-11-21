@@ -1,66 +1,123 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Parent Function Identification</title>
+        <title>Parent Functions</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
             rel="stylesheet" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
-            rel="stylesheet" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap"
-            rel="stylesheet" />
-        <link
-            rel="stylesheet"
-            href="https://www.w3schools.com/w3css/4/w3.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="flickity.css">
         <script src="parentfunctions.js"></script>
+        <script src="flickity.js"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </head>
     <body>
         <!-- Header -->
         <div class="w3-container spartan">
-            <h1><a href="index.html"><i class="fa fa-home"></i></a> ACAD Math Apps</h1>
+            <h1>
+                <a href="index.html"><i class="fa fa-home"></i></a> ACAD Math Apps
+            </h1>
             <img src="Images/Spartan-Logo2.png" height="50" class="logo" />
         </div>
-        
+
+        <!-- Body -->
         <div class="w3-container">
-            <h1>Parent Functions</h1>
-            <p>Instructions:</p>
-            <div class="w3-container w3-border-green w3-leftbar w3-topbar w3-bottombar w3-rightbar">
-                <ul>
-                    <li><p>Click the button for your class to be given the name of a parent function.</p></li>
-                    <li><p>Select which equation and graph match the name.</p></li>
-                    <li><p>Click the "Check" button at the bottom to check your answer.</p></li>
-                    <li><p>Then click the "Continue" button to get the next parent function name.</p></li>
-                </ul>
+            <h2>Parent Functions</h2>
+            <p>Practice matching parent function names with their equations and graphs.  Choose from either the Geometry class set of parent functions or Pre-Calculus set of parent functions.</p>
+
+            <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
+                <h3>Geometry Functions</h3>
+                <p>A random parent function name will be given. Select the equation and graph that match, and then click the CHECK button.</p>
             </div>
-            <p>Once all parent functions are correctly matched, it will say so at the bottom.</p>
-            <button onclick="startGeo()" id="gStart">Begin with Geometry Parent Functions</button><button onclick="startPC()" id="pcStart">Begin with Pre-Calculus Parent Functions</button>
+            <button onclick="startFresh()" class="start" id="startFresh">Start</button
+            ><button onclick="debug()" style="visibility: hidden">Debug</button
+            ><button onclick="check()" class="start" id="check" style="visibility: hidden">Check Answer</button
+            ><button onclick="nextProb()" class="start" id="nextProb" style="visibility: hidden">Next Problem</button>
+            <div><br /></div>
+            <div id="newScores" class="scoreGrid">
+                <div class="scoreCard">
+                    <span class="scoreText">CORRECT:</span>
+                    <br /><span class="scoreText" id="correct">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">GUESSES:</span>
+                    <br /><span class="scoreText" id="guesses">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">PERCENT:</span>
+                    <br /><span class="scoreText" id="percent">0</span>
+                </div>
+            </div>
 
-            <h2>Names</h2>
-            <div id="nameGrid"></div>
-
-
-            <h2>Equations</h2>
-            <div id="eqGrid" class="eqGrid"></div>
-
-
-            <h2>Graphs</h2>
-            <div id="graphGrid" class="graphGrid"></div>
-
-
-            <div id="checkDiv"></div>
+            <div id="result"><h2>--</h2></div>
+            <h4>Which Equation and Graph Match the Function Named:</h4>
+            <div id="nameDiv"></div>
             <br />
-            <button onclick="check()">Check Answer</button> <button onclick="continuePracGrid()">Continue</button>
+            
+            <h4>Equation:</h4>
+            <div id="eqDiv" class="eq-gallery" data-flickity='{ "wrapAround": true, "pageDots": false, "cellAlign": "center" }'>
+                
+            </div>
             <br />
+            
+            <h4>Graph:</h4>
+            <div id="graphDiv" class="graph-gallery" data-flickity='{ "wrapAround": true, "pageDots": false, "cellAlign": "center" }'>
+                
+            </div>
+
+            <br /><br />
+            
+            <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
+                <h3>Pre-Calculus Functions</h3>
+                <p>A random parent function name will be given. Select the equation and graph that match, and then click the CHECK button.</p>
+            </div>
+            <button onclick="startFresh2()" class="start" id="startFresh2">Start</button
+            ><button onclick="debug2()" style="visibility: hidden">Debug</button
+            ><button onclick="check2()" class="start" id="check2" style="visibility: hidden">Check Answer</button
+            ><button onclick="nextProb2()" class="start" id="nextProb2" style="visibility: hidden">Next Problem</button>
+            <div><br /></div>
+            <div id="newScores2" class="scoreGrid">
+                <div class="scoreCard">
+                    <span class="scoreText">CORRECT:</span>
+                    <br /><span class="scoreText" id="correct2">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">GUESSES:</span>
+                    <br /><span class="scoreText" id="guesses2">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">PERCENT:</span>
+                    <br /><span class="scoreText" id="percent2">0</span>
+                </div>
+            </div>
+
+            <div id="result2"><h2>--</h2></div>
+            <h4>Which Equation and Graph Match the Function Named:</h4>
+            <div id="nameDiv2"></div>
+            <br />
+            
+            <h4>Equation:</h4>
+            <div id="eqDiv2" class="eq-gallery2" data-flickity='{ "wrapAround": true, "pageDots": false, "cellAlign": "center" }'>
+                
+            </div>
+            <br />
+            
+            <h4>Graph:</h4>
+            <div id="graphDiv2" class="graph-gallery2" data-flickity='{ "wrapAround": true, "pageDots": false, "cellAlign": "center" }'>
+                
+            </div>
+
+            <br /><br />
         </div>
     </body>
 </html>

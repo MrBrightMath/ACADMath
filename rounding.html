@@ -37,7 +37,7 @@
             <h2>Rounding</h2>
             <p>Click the button to generate a random number and a place value to round it to.  Then round.</p>
 
-            <button onclick="startFresh()" id="startFresh">Start</button>
+            <button onclick="startFresh()" class="start" id="startFresh">Start</button><button style="visibility: hidden;">Debug</button><button onclick="check()" class="next" id="check" style="visibility: hidden;">Check Answer</button><button onclick="nextProb()" class="next" id="nextProb" style="visibility: hidden;">Next Problem</button>
             <br/>
             <br/>
             Whole Numbers <label class="switch">
@@ -47,16 +47,16 @@
             <div><br/></div>
             <div id = "newScores" class="scoreGrid">
                 <div class="scoreCard">
-                    <scoreText>CORRECT:</scoreText>
-                    <br /><scoreText id="correct">0</scoreText>
+                    <span class="scoreText">CORRECT:</span>
+                    <br /><span class="scoreText" id="correct">0</span>
                 </div>
                 <div class="scoreCard">
-                    <scoreText>GUESSES:</scoreText>
-                    <br /><scoreText id="guesses">0</scoreText>
+                    <span class="scoreText">GUESSES:</span>
+                    <br /><span class="scoreText" id="guesses">0</span>
                 </div>
                 <div class="scoreCard">
-                    <scoreText>PERCENT:</scoreText>
-                    <br /><scoreText id="percent">0</scoreText>
+                    <span class="scoreText">PERCENT:</span>
+                    <br /><span class="scoreText" id="percent">0</span>
                 </div>
             </div>
             
@@ -65,7 +65,7 @@
             <br />
             <input id="rounded" style="width: 200px; height: 40px; font-size: x-large; visibility: hidden;">
             <br /><br />
-            <button onclick="check()" id="check" style="visibility: hidden;">Check Answer</button><button onclick="nextProb()" id="nextProb" style="visibility: hidden;">Next Problem</button>
+            
             <br /><br />
         </div>
     </body>

@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Perfect Squares</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="styles.css" />
+        <script src="perfectsquares.js"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <div class="w3-container spartan">
+            <h1>
+                <a href="index.html"><i class="fa fa-home"></i></a> ACAD Math Apps
+            </h1>
+            <img src="Images/Spartan-Logo2.png" height="50" class="logo" />
+        </div>
+
+        <!-- Body -->
+        <div class="w3-container">
+            <h2>Perfect Squares</h2>
+            <p>Practice to make sure you have your perfect squares memorized.</p>
+
+            <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
+                <h3>Perfect Squares in Order</h3>
+                <p>You need the first 25 perfect squares memorized.  This first practice app will give them to you in order, and you must get them all correct to earn a point.</p>
+            </div>
+            <button onclick="startFresh()" class="start" id="startFresh">Start</button
+            ><button onclick="debug()" style="visibility: hidden">Debug</button
+            ><button onclick="check()" class="next" id="check" style="visibility: hidden">Check Answer</button
+            ><button onclick="nextProb()" class="next" id="nextProb" style="visibility: hidden">Next Problem</button>
+            <div><br /></div>
+            <div id="newScores" class="scoreGrid">
+                <div class="scoreCard">
+                    <span class="scoreText">CORRECT:</span>
+                    <br /><span class="scoreText" id="correct">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">GUESSES:</span>
+                    <br /><span class="scoreText" id="guesses">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">PERCENT:</span>
+                    <br /><span class="scoreText" id="percent">0</span>
+                </div>
+            </div>
+
+            <div id="result"><h2></h2></div>
+            <br />
+            <table id="sqTable" style="visibility: hidden;">
+                <tr>
+                    <td>
+                        <label for="sq1">\(1^2=\)</label>
+                        <input id="sq1" data-solution=1 class="ucShort" tabindex="0"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq6">\(6^2=\)</label>
+                        <input id="sq6" data-solution="36" class="ucShort" tabindex="5"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq11">\(11^2=\)</label>
+                        <input id="sq11" data-solution="121" class="ucShort" tabindex="10"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq16">\(16^2=\)</label>
+                        <input id="sq16" data-solution="256" class="ucShort" tabindex="15"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq21">\(21^2=\)</label>
+                        <input id="sq21" data-solution="441" class="ucShort" tabindex="20"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="sq2">\(2^2=\)</label>
+                        <input id="sq2" data-solution="4" class="ucShort" tabindex="1"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq7">\(7^2=\)</label>
+                        <input id="sq7" data-solution="49" class="ucShort" tabindex="6"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq12">\(12^2=\)</label>
+                        <input id="sq12" data-solution="144" class="ucShort" tabindex="11"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq17">\(17^2=\)</label>
+                        <input id="sq17" data-solution="289" class="ucShort" tabindex="16"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq22">\(22^2=\)</label>
+                        <input id="sq22" data-solution="484" class="ucShort" tabindex="21"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="sq3">\(3^2=\)</label>
+                        <input id="sq3" data-solution="9" class="ucShort" tabindex="2"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq8">\(8^2=\)</label>
+                        <input id="sq8" data-solution="64" class="ucShort" tabindex="7"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq13">\(13^2=\)</label>
+                        <input id="sq13" data-solution="169" class="ucShort" tabindex="12"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq18">\(18^2=\)</label>
+                        <input id="sq18" data-solution="324" class="ucShort" tabindex="17"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq23">\(23^2=\)</label>
+                        <input id="sq23" data-solution="529" class="ucShort" tabindex="22"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="sq4">\(4^2=\)</label>
+                        <input id="sq4" data-solution="16" class="ucShort" tabindex="3"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq9">\(9^2=\)</label>
+                        <input id="sq9" data-solution="81" class="ucShort" tabindex="8"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq14">\(14^2=\)</label>
+                        <input id="sq14" data-solution="196" class="ucShort" tabindex="13"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq19">\(19^2=\)</label>
+                        <input id="sq19" data-solution="361" class="ucShort" tabindex="18"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq24">\(24^2=\)</label>
+                        <input id="sq24" data-solution="576" class="ucShort" tabindex="23"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="sq5">\(5^2=\)</label>
+                        <input id="sq5" data-solution="25" class="ucShort" tabindex="4"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq10">\(10^2=\)</label>
+                        <input id="sq10" data-solution="100" class="ucShort" tabindex="9"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq15">\(15^2=\)</label>
+                        <input id="sq15" data-solution="225" class="ucShort" tabindex="14"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq20">\(20^2=\)</label>
+                        <input id="sq20" data-solution="400" class="ucShort" tabindex="19"/>
+                    </td>
+                    <td style="border-left: 2px solid black;">&nbsp;&nbsp;</td>
+                    <td>
+                        <label for="sq25">\(25^2=\)</label>
+                        <input id="sq25" data-solution="625" class="ucShort" tabindex="24"/>
+                    </td>
+                </tr>
+            </table>
+
+            <br /><br />
+            
+            <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
+                <h3>Random Perfect Squares</h3>
+            </div>
+            <button onclick="startFresh2()" class="start" id="startFresh2">Start</button
+            ><button onclick="debug2()" style="visibility: hidden">Debug</button
+            ><button onclick="check2()" class="next" id="check2" style="visibility: hidden">Check Answer</button
+            ><button onclick="nextProb2()" class="next" id="nextProb2" style="visibility: hidden">Next Problem</button>
+            <div><br /></div>
+            <div id="newScores2" class="scoreGrid">
+                <div class="scoreCard">
+                    <span class="scoreText">CORRECT:</span>
+                    <br /><span class="scoreText" id="correct2">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">GUESSES:</span>
+                    <br /><span class="scoreText" id="guesses2">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">PERCENT:</span>
+                    <br /><span class="scoreText" id="percent2">0</span>
+                </div>
+            </div>
+
+            <div id="result2"><h2>--</h2></div>
+            <label for="answerInput2" id="answerInput2Label">Problem will appear here</label>
+            <input id="answerInput2" class="ucShort"/>
+            <br /><br />
+            
+            <div class="w3-panel w3-border-green w3-leftbar w3-topbar">
+                <h3>Perfect Squares Ending with 5</h3>
+            </div>
+            <button onclick="startFresh3()" class="start" id="startFresh3">Start</button
+            ><button onclick="debug3()" style="visibility: hidden">Debug</button
+            ><button onclick="check3()" class="next" id="check3" style="visibility: hidden">Check Answer</button
+            ><button onclick="nextProb3()" class="next" id="nextProb3" style="visibility: hidden">Next Problem</button>
+            <div><br /></div>
+            <div id="newScores3" class="scoreGrid">
+                <div class="scoreCard">
+                    <span class="scoreText">CORRECT:</span>
+                    <br /><span class="scoreText" id="correct3">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">GUESSES:</span>
+                    <br /><span class="scoreText" id="guesses3">0</span>
+                </div>
+                <div class="scoreCard">
+                    <span class="scoreText">PERCENT:</span>
+                    <br /><span class="scoreText" id="percent3">0</span>
+                </div>
+            </div>
+
+            <div id="result3"><h2>--</h2></div>
+            <label for="answerInput3" id="answerInput3Label">Problem will appear here</label>
+            <input id="answerInput3" class="ucShort"/>
+            <br /><br />
+            <br/><br/>
+        </div>
+    </body>
+</html>
